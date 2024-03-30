@@ -33,7 +33,7 @@ export const grades = observable<GradesType>({
 				name: 'Deutsch',
 				semesters: [
 					{ singleGrades: [{ type: 'Schulaufgabe', points: 15, grade: 1 }] },
-					{ singleGrades: [{ type: 'Schulaufgabe', points: 15, grade: 1 }] },
+					{ singleGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }] },
 				],
 			},
 		],

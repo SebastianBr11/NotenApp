@@ -48,7 +48,6 @@ export const calculateAverageOfSemester = (semester: SemesterType) => {
 		points: sumOfSecondaryPoints,
 		amount: calculateAmountOfSecondaryGrades(semester),
 	})
-
 	// If there's no primary grade, just use the secondary average
 	if (primaryGrade === 0) {
 		return averageOfSecondaryGrades

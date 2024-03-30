@@ -1,13 +1,14 @@
 import { GradesType } from '@/storage/grades'
 import { Link } from 'expo-router'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { Text, View } from './Themed'
 
 type SubjectCardProps = {
 	subject: GradesType['school']['subjects']['0']
 }
 
 export default function SubjectCard({
-	subject: { name, semester, singleGrades },
+	subject: { name, semesters },
 }: SubjectCardProps) {
 	return (
 		<Link
@@ -16,9 +17,11 @@ export default function SubjectCard({
 				params: { subject: name },
 			}}
 		>
-			<View style={styles.card}>
+			<View style={styles.card} lightColor='#eee' darkColor='#222'>
 				<Text style={styles.subjectName}>{name}</Text>
-				<Text style={styles.semesterBadge}>{semester}. Schuljahr</Text>
+				<View style={styles.semesterBadge} lightColor='blue'>
+					<Text lightColor='#fff'>1. Schuljahr</Text>
+				</View>
 			</View>
 		</Link>
 	)
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
 		// borderWidth: 2,
 		borderRadius: 4,
 		padding: 20,
-		backgroundColor: '#eee',
 		alignItems: 'flex-start',
 	},
 	subjectName: {
@@ -39,9 +41,7 @@ const styles = StyleSheet.create({
 		fontWeight: '800',
 	},
 	semesterBadge: {
-		backgroundColor: 'blue',
 		fontSize: 14,
-		color: '#fff',
 		paddingHorizontal: 10,
 		paddingVertical: 4,
 		borderRadius: 100,

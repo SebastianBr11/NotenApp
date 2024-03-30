@@ -1,4 +1,4 @@
-import { GradesType, SemesterType } from '@/storage/grades'
+import { GradesType, SemesterType, SingleGradeType } from '@/storage/grades'
 
 /*
  * FOS Calculation first calculates the average of secondary
@@ -24,16 +24,25 @@ export const calculateAverageOfSemesters = ([
 }
 
 export const calculateAverageOfSemester = (semester: SemesterType) => {
-	let primaryGrade
-	const sumOfSecondaryPoints = semester.singleGrades.reduce(
-		(acc, grade) =>
-			grade.type === 'Schulaufgabe'
-				? (primaryGrade = grade.points)
-				: acc + grade.points,
-		0,
-	)
+	let primaryGrade = 0
+	const sumOfSecondaryPoints = semester.singleGrades.reduce((acc, grade) => {
+		if (grade.type !== 'Schulaufgabe') {
+			return acc + getSecondaryGradeFactor(grade) * grade.points
+		}
 
-	console.log(sumOfSecondaryPoints)
+		// Even though there should only be one Schulaufgabe per semester
+		// Gracefully handle the case of there being multiple by
+		// continuously calculating the average
+		if (primaryGrade !== 0) {
+			primaryGrade = calculateAverage({
+				points: primaryGrade + grade.points,
+				amount: 2,
+			})
+		} else {
+			primaryGrade = grade.points
+		}
+		return acc
+	}, 0)
 
 	const averageOfSecondaryGrades = calculateAverage({
 		points: sumOfSecondaryPoints,
@@ -41,7 +50,7 @@ export const calculateAverageOfSemester = (semester: SemesterType) => {
 	})
 
 	// If there's no primary grade, just use the secondary average
-	if (!primaryGrade) {
+	if (primaryGrade === 0) {
 		return averageOfSecondaryGrades
 	} else {
 		return calculateAverage({
@@ -64,14 +73,20 @@ export const calculateAverage = ({
 export const calculateAmountOfSecondaryGrades = (semester: SemesterType) => {
 	return semester.singleGrades.reduce((acc, grade) => {
 		let addAmount = 0
-		switch (grade.type) {
-			case 'Kurzarbeit':
-				addAmount = 1
-				break
-			case 'Mündlich':
-				addAmount = 0.5
-			default:
+		if (grade.type !== 'Schulaufgabe') {
+			addAmount = getSecondaryGradeFactor(grade)
 		}
 		return acc + addAmount
 	}, 0)
+}
+
+export const getSecondaryGradeFactor = (singleGrade: SingleGradeType) => {
+	switch (singleGrade.type) {
+		case 'Schulaufgabe':
+			throw new Error('Schulaufgabe is not a secondary grade type')
+		case 'Kurzarbeit':
+			return 2
+		case 'Mündlich':
+			return 1
+	}
 }

@@ -1,5 +1,8 @@
 import { SemesterType } from '@/storage/grades'
-import { calculateAmountOfSecondaryGrades } from '../gradeCalcFos'
+import {
+	calculateAmountOfSecondaryGrades,
+	calculateAverage,
+} from '../gradeCalcFos'
 
 describe('calculateAmountOfSecondaryGrades()', () => {
 	it('calculates the correct amount of grades for a mix of grade types', () => {
@@ -24,4 +27,34 @@ describe('calculateAmountOfSecondaryGrades()', () => {
 
 		expect(calculateAmountOfSecondaryGrades(semester2)).toBe(4)
 	})
+})
+
+describe('calculateAverage()', () => {
+	expect(
+		calculateAverage({
+			points: 20,
+			amount: 2,
+		}),
+	).toBe(10)
+
+	expect(
+		calculateAverage({
+			points: 30,
+			amount: 12,
+		}),
+	).toBe(3)
+
+	expect(
+		calculateAverage({
+			points: 35,
+			amount: 3,
+		}),
+	).toBe(12)
+
+	expect(
+		calculateAverage({
+			points: 34,
+			amount: 3,
+		}),
+	).toBe(11)
 })

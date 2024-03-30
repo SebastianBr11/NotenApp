@@ -1,11 +1,13 @@
 import { observable } from '@legendapp/state'
 
+export type SingleGradeType = {
+	type: 'Schulaufgabe' | 'Kurzarbeit' | 'Mündlich'
+	points: number
+	grade: 1 | 2 | 3 | 4 | 5 | 6
+}
+
 export type SemesterType = {
-	singleGrades: Array<{
-		type: 'Schulaufgabe' | 'Kurzarbeit' | 'Mündlich'
-		points: number
-		grade: 1 | 2 | 3 | 4 | 5 | 6
-	}>
+	singleGrades: Array<SingleGradeType>
 }
 
 export type GradesType = {

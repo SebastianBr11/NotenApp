@@ -58,7 +58,7 @@ export const calculateAverage = ({
 	points: number
 	amount: number
 }) => {
-	return Math.ceil(points / amount)
+	return Math.round(points / amount)
 }
 
 export const calculateAmountOfSecondaryGrades = (semester: SemesterType) => {

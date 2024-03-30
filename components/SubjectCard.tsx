@@ -1,4 +1,6 @@
 import { GradesType } from '@/storage/grades'
+import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
+import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { Link } from 'expo-router'
 import { StyleSheet } from 'react-native'
 import { Text, View } from './Themed'
@@ -10,18 +12,24 @@ type SubjectCardProps = {
 export default function SubjectCard({
 	subject: { name, semesters },
 }: SubjectCardProps) {
+	const { dismissAll } = useBottomSheetModal()
+
+	const avg = calculateAverageOfSemesters(semesters)
+
 	return (
 		<Link
 			href={{
 				pathname: '/subjects/[subject]',
 				params: { subject: name },
 			}}
+			onPress={dismissAll}
 		>
 			<View style={styles.card} lightColor='#eee' darkColor='#222'>
 				<Text style={styles.subjectName}>{name}</Text>
-				<View style={styles.semesterBadge} lightColor='blue'>
-					<Text lightColor='#fff'>1. Schuljahr</Text>
+				<View style={styles.semesterBadge} lightColor='blue' darkColor='blue'>
+					<Text lightColor='#fff'>{}</Text>
 				</View>
+				<Text>{avg}</Text>
 			</View>
 		</Link>
 	)

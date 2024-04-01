@@ -8,6 +8,10 @@
 		"android": "expo start --android",
 		"ios": "expo start --ios",
 		"web": "expo start --web",
+		"build-eas-local-prod": "eas build --local --profile production --platform android",
+		"build-eas-local-dev": "eas build --local --profile development --platform android",
+		"build-dev": "APP_VARIANT=development npx expo run",
+		"build-prod": "npx expo run --variant release",
 		"test": "jest --watchAll"
 	},
 	"jest": {

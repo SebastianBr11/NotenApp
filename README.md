@@ -1,6 +1,6 @@
 <h1 align="center"> NotenApp </h1> <br>
 <p align="center">
-![app icon](assets/images/icon.png)
+<img src="https://github.com/SebastianBr11/NotenApp/blob/master/assets/images/icon.png" width=300 >
 </p>
 
 <p align="center">

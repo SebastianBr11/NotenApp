@@ -15,6 +15,7 @@
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
 - [🔧 Running the tests](#-running-the-tests)
+- [🎈 Usage](#-usage)
 - [⛏️ Built Using](#️-built-using)
 
 ## 🧐 About
@@ -80,6 +81,14 @@ To run all test suites, run:
 ```
 yarn test
 ```
+
+## 🎈 Usage
+
+You can see your subjects and their grades at the center of the screen. At the bottom you can either add a new subject or swipe right on the grade to switch to another one.
+<p align="center">
+<img src="images/app_dark.png" width=300 >
+<img src="images/app_light.png" width=300 >
+</p>
 
 ## ⛏️ Built Using
 

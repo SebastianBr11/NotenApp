@@ -1,17 +1,19 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Link, Tabs } from 'expo-router'
 import React from 'react'
-import { Pressable } from 'react-native'
 
 import { useClientOnlyValue } from '@/components/useClientOnlyValue'
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
-	name: React.ComponentProps<typeof FontAwesome>['name']
+	name: React.ComponentProps<typeof MaterialCommunityIcons>['name']
 	color: string
 }) {
-	return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />
+	return (
+		<MaterialCommunityIcons size={28} style={{ marginBottom: -3 }} {...props} />
+	)
 }
 
 export default function TabLayout() {
@@ -39,29 +41,31 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name='index'
 				options={{
-					title: 'Tab One',
-					tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+					title: 'Grades',
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name='notebook-edit' color={color} />
+					),
 					headerRight: () => (
-						<Link href='/modal' asChild>
-							<Pressable>
-								{({ pressed }) => (
-									<FontAwesome
-										name='info-circle'
-										size={25}
-										color={theme.colors.text1}
-										style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-									/>
-								)}
-							</Pressable>
+						<Link href='/settings' asChild>
+							<TouchableOpacity activeOpacity={0.5}>
+								<Feather
+									name='settings'
+									size={25}
+									color={theme.colors.text1}
+									style={{ marginRight: theme.spacing['2xl'] }}
+								/>
+							</TouchableOpacity>
 						</Link>
 					),
 				}}
 			/>
 			<Tabs.Screen
-				name='two'
+				name='calendar'
 				options={{
-					title: 'Tab Two',
-					tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+					title: 'Calendar',
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name='calendar-month' color={color} />
+					),
 				}}
 			/>
 		</Tabs>

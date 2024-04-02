@@ -67,8 +67,18 @@ function RootLayoutNav() {
 						}}
 					/>
 					<Stack.Screen
-						name='modal'
-						options={{ presentation: 'transparentModal' }}
+						name='settings'
+						options={{
+							headerTitle: 'Settings',
+							presentation: 'modal',
+						}}
+					/>
+					<Stack.Screen
+						name='addSubject'
+						options={{
+							headerTitle: 'Add new subject',
+							presentation: 'modal',
+						}}
 					/>
 				</Stack>
 			</BottomSheetModalProvider>

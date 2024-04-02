@@ -6,11 +6,13 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 type SubjectCardProps = {
-	subject: GradesType['school']['subjects']['0']
+	subject: GradesType['classes']['0']['subjects']['0']
+	selectedClass: number
 }
 
 export default function SubjectCard({
-	subject: { name, semesters },
+	subject: { name, id, semesters },
+	selectedClass,
 }: SubjectCardProps) {
 	const { styles } = useStyles(stylesheet)
 
@@ -22,12 +24,12 @@ export default function SubjectCard({
 		<Link
 			href={{
 				pathname: '/subjects/[subject]',
-				params: { subject: name },
+				params: { subject: id, selectedClass },
 			}}
 			onPress={dismissAll}
 			asChild
 		>
-			<TouchableOpacity activeOpacity={0.8} style={styles.card}>
+			<TouchableOpacity activeOpacity={0.75} style={styles.card}>
 				<Text style={styles.subjectName}>{name}</Text>
 				<View style={styles.semesterBadge}>
 					<Text style={styles.semesterBadgeText}>{avg}</Text>
@@ -39,7 +41,6 @@ export default function SubjectCard({
 
 const stylesheet = createStyleSheet(theme => ({
 	card: {
-		flex: 1,
 		borderRadius: theme.spacing.xl,
 		padding: theme.spacing['4xl'],
 		flexDirection: 'row',
@@ -66,5 +67,6 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	semesterBadgeText: {
 		color: theme.colors.mainText2,
+		fontWeight: '500',
 	},
 }))

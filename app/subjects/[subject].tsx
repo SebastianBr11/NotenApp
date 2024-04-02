@@ -1,5 +1,5 @@
 import GradeView from '@/components/GradeView'
-import { grades } from '@/storage/grades'
+import { schools } from '@/storage/grades'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
 import { FlatList, Text, View } from 'react-native'
@@ -8,13 +8,15 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 export default function SubjectScreen() {
 	const { styles } = useStyles(stylesheet)
 
-	const { subject: slug } = useLocalSearchParams()
-	const school = grades.school.get()
+	const { subject: subjectId, selectedClass } = useLocalSearchParams()
+	const classes = schools.classes.get()
 
 	const {
 		name,
 		semesters: [semesterOne, semesterTwo],
-	} = school.subjects.find(subject => subject.name === slug)!
+	} = classes[Number(selectedClass)].subjects.find(
+		subject => subject.id === Number(subjectId),
+	)!
 
 	// console.log(subject, slug)
 

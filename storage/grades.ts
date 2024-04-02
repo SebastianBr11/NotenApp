@@ -15,12 +15,10 @@ export type GradesType = {
 		name?: string
 		year: number
 		type: 'FOS' | never
-		subjects: [
-			{
-				name: string
-				semesters: [SemesterType, SemesterType]
-			},
-		]
+		subjects: Array<{
+			name: string
+			semesters: [SemesterType, SemesterType]
+		}>
 	}
 }
 
@@ -31,6 +29,20 @@ export const grades = observable<GradesType>({
 		subjects: [
 			{
 				name: 'Deutsch',
+				semesters: [
+					{ singleGrades: [{ type: 'Schulaufgabe', points: 15, grade: 1 }] },
+					{ singleGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }] },
+				],
+			},
+			{
+				name: 'Mathe',
+				semesters: [
+					{ singleGrades: [{ type: 'Schulaufgabe', points: 15, grade: 1 }] },
+					{ singleGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }] },
+				],
+			},
+			{
+				name: 'Englisch',
 				semesters: [
 					{ singleGrades: [{ type: 'Schulaufgabe', points: 15, grade: 1 }] },
 					{ singleGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }] },

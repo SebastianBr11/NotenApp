@@ -2,7 +2,7 @@ import { GradesType } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { Link } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 type SubjectCardProps = {
@@ -27,12 +27,12 @@ export default function SubjectCard({
 			onPress={dismissAll}
 			asChild
 		>
-			<View style={styles.card}>
+			<TouchableOpacity activeOpacity={0.8} style={styles.card}>
 				<Text style={styles.subjectName}>{name}</Text>
 				<View style={styles.semesterBadge}>
 					<Text style={styles.semesterBadgeText}>{avg}</Text>
 				</View>
-			</View>
+			</TouchableOpacity>
 		</Link>
 	)
 }
@@ -41,12 +41,15 @@ const stylesheet = createStyleSheet(theme => ({
 	card: {
 		flex: 1,
 		borderRadius: theme.spacing.xl,
-		padding: 25,
+		padding: theme.spacing['4xl'],
 		flexDirection: 'row',
-		gap: 10,
+		gap: theme.spacing.xl,
 		alignItems: 'center',
 		backgroundColor: theme.colors.bg2,
 		color: theme.colors.text1,
+		borderWidth: 1,
+		borderColor: theme.colors.mainBg4,
+		borderStyle: 'dashed',
 	},
 	subjectName: {
 		color: theme.colors.text3,

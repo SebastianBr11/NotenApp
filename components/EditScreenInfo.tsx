@@ -24,6 +24,12 @@ export default function EditScreenInfo() {
 	const { subjects: yearGrades, year, type } = grades.school.get()
 	return (
 		<View style={styles.mainView}>
+			<FlatList
+				contentContainerStyle={styles.list}
+				data={yearGrades}
+				keyExtractor={item => item.name}
+				renderItem={({ item }) => <SubjectCard subject={item} />}
+			/>
 			<Pressable onPress={handlePresentModalPress}>
 				<View style={styles.headerContainer}>
 					<Feather
@@ -62,12 +68,6 @@ export default function EditScreenInfo() {
 					<Text>Hi</Text>
 				</BottomSheetView>
 			</BottomSheetModal>
-			<FlatList
-				contentContainerStyle={styles.list}
-				data={yearGrades}
-				keyExtractor={item => item.name}
-				renderItem={({ item }) => <SubjectCard subject={item} />}
-			/>
 		</View>
 	)
 }
@@ -75,9 +75,10 @@ export default function EditScreenInfo() {
 const stylesheet = createStyleSheet(theme => ({
 	mainView: {
 		width: '100%',
-		paddingTop: theme.spacing.lg,
+		paddingVertical: theme.spacing['5xl'],
 		flex: 1,
 		backgroundColor: theme.colors.bg1,
+		gap: theme.spacing['4xl'],
 	},
 	headerContainer: {
 		flexDirection: 'row',
@@ -85,7 +86,6 @@ const stylesheet = createStyleSheet(theme => ({
 		paddingHorizontal: theme.spacing.sm,
 		paddingVertical: theme.spacing['2xl'],
 		backgroundColor: theme.colors.mainBg3,
-		marginBottom: theme.spacing['4xl'],
 	},
 	headerTextContainer: {
 		flex: 1,

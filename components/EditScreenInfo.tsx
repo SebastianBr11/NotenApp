@@ -1,14 +1,15 @@
 import React, { useCallback, useMemo, useRef } from 'react'
-import { FlatList, Pressable, StyleSheet } from 'react-native'
-
-import { Text, View } from './Themed'
+import { FlatList, Pressable, Text, View } from 'react-native'
 
 import { grades } from '@/storage/grades'
 import { Feather } from '@expo/vector-icons'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import SubjectCard from './SubjectCard'
 
 export default function EditScreenInfo() {
+	const { styles, theme } = useStyles(stylesheet)
+
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
 	const snapPoints = useMemo(() => ['25%', '50%'], [])
@@ -22,14 +23,26 @@ export default function EditScreenInfo() {
 
 	const { subjects: yearGrades, year, type } = grades.school.get()
 	return (
-		<View style={styles.mainView} darkColor='#111'>
+		<View style={styles.mainView}>
 			<Pressable onPress={handlePresentModalPress}>
-				<View style={styles.headerContainer} darkColor='#111'>
-					<View style={styles.headerYearContainer}>
-						<Text style={styles.header}>Jahr {year}</Text>
-						<Feather name='edit' size={32} color='#fff' />
+				<View style={styles.headerContainer}>
+					<Feather
+						name='chevron-left'
+						size={32}
+						color={theme.colors.mainText3}
+					/>
+					<View style={styles.headerTextContainer}>
+						<View style={styles.headerYearContainer}>
+							<Text style={styles.header}>Jahr {year}</Text>
+							<Feather name='edit' size={24} color={theme.colors.mainText1} />
+						</View>
+						<Text style={styles.subHeader}>{type}</Text>
 					</View>
-					<Text style={styles.subHeader}>{type}</Text>
+					<Feather
+						name='chevron-right'
+						size={32}
+						color={theme.colors.mainText3}
+					/>
 				</View>
 			</Pressable>
 			<BottomSheetModal
@@ -37,10 +50,15 @@ export default function EditScreenInfo() {
 				index={1}
 				snapPoints={snapPoints}
 				onChange={handleSheetChanges}
-				handleIndicatorStyle={{ backgroundColor: '#fff' }}
-				handleStyle={{ backgroundColor: '#222' }}
+				handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
+				handleStyle={{
+					backgroundColor: theme.colors.bg2,
+					borderTopStartRadius: 20,
+					borderTopEndRadius: 20,
+				}}
+				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			>
-				<BottomSheetView style={{ backgroundColor: 'black', flex: 1 }}>
+				<BottomSheetView>
 					<Text>Hi</Text>
 				</BottomSheetView>
 			</BottomSheetModal>
@@ -54,36 +72,49 @@ export default function EditScreenInfo() {
 	)
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
 	mainView: {
 		width: '100%',
-		paddingTop: 5,
+		paddingTop: theme.spacing.lg,
 		flex: 1,
+		backgroundColor: theme.colors.bg1,
 	},
 	headerContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		paddingHorizontal: theme.spacing.sm,
+		paddingVertical: theme.spacing['2xl'],
+		backgroundColor: theme.colors.mainBg3,
+		marginBottom: theme.spacing['4xl'],
+	},
+	headerTextContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
 		justifyContent: 'space-around',
-		paddingVertical: 15,
 	},
 	headerYearContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		gap: 10,
+		gap: theme.spacing.xl,
 	},
 	header: {
-		fontSize: 40,
+		fontSize: theme.fontSizes['4xl'],
 		fontWeight: '900',
 		letterSpacing: -1.2,
+		color: theme.colors.text2,
 	},
 	subHeader: {
-		fontSize: 30,
+		fontSize: theme.fontSizes['2xl'],
+		letterSpacing: -1.2,
+		color: theme.colors.mainText3,
+		fontWeight: '600',
 	},
 	list: {
 		// borderColor: 'red',
 		// borderWidth: 5,
-		gap: 8,
+		gap: theme.spacing['3xl'],
 		flexDirection: 'column',
-		alignItems: 'center',
+		marginHorizontal: theme.spacing['3xl'],
 	},
-})
+}))

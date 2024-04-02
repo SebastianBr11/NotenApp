@@ -1,9 +1,10 @@
-import { StyleSheet } from 'react-native'
-
 import EditScreenInfo from '@/components/EditScreenInfo'
-import { View } from '@/components/Themed'
+import { View } from 'react-native'
+import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 export default function TabOneScreen() {
+	const { styles } = useStyles(stylesheet)
+
 	return (
 		<View style={styles.container}>
 			<EditScreenInfo />
@@ -11,7 +12,7 @@ export default function TabOneScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet({
 	container: {
 		flex: 1,
 		alignItems: 'center',

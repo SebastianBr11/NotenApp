@@ -1,13 +1,15 @@
 import { SingleGradeType } from '@/storage/grades'
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Text, View } from './Themed'
+import { Text, View } from 'react-native'
+import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 type GradeViewType = {
 	singleGrade: SingleGradeType
 }
 
 export default function GradeView({ singleGrade }: GradeViewType) {
+	const { styles } = useStyles(stylesheet)
+
 	return (
 		<View>
 			<Text>{singleGrade.type}</Text>
@@ -16,4 +18,4 @@ export default function GradeView({ singleGrade }: GradeViewType) {
 	)
 }
 
-const styles = StyleSheet.create({})
+const stylesheet = createStyleSheet({})

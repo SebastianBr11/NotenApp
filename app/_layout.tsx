@@ -1,17 +1,13 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome'
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 
-import { useColorScheme } from '@/components/useColorScheme'
+import '@/constants/unistyles'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { useStyles } from 'react-native-unistyles'
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -51,21 +47,31 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-	const colorScheme = useColorScheme()
+	const { theme } = useStyles()
 
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<GestureHandlerRootView style={{ flex: 1 }}>
-				<BottomSheetModalProvider>
-					<Stack>
-						<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-						<Stack.Screen
-							name='modal'
-							options={{ presentation: 'transparentModal' }}
-						/>
-					</Stack>
-				</BottomSheetModalProvider>
-			</GestureHandlerRootView>
-		</ThemeProvider>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			<BottomSheetModalProvider>
+				<Stack
+					screenOptions={{
+						headerStyle: {
+							backgroundColor: theme.colors.bg1,
+						},
+						headerTintColor: theme.colors.text1,
+					}}
+				>
+					<Stack.Screen
+						name='(tabs)'
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen
+						name='modal'
+						options={{ presentation: 'transparentModal' }}
+					/>
+				</Stack>
+			</BottomSheetModalProvider>
+		</GestureHandlerRootView>
 	)
 }

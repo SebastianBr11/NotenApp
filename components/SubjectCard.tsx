@@ -2,8 +2,8 @@ import { GradesType } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { Link } from 'expo-router'
-import { StyleSheet } from 'react-native'
-import { Text, View } from './Themed'
+import { Text, View } from 'react-native'
+import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 type SubjectCardProps = {
 	subject: GradesType['school']['subjects']['0']
@@ -12,6 +12,8 @@ type SubjectCardProps = {
 export default function SubjectCard({
 	subject: { name, semesters },
 }: SubjectCardProps) {
+	const { styles } = useStyles(stylesheet)
+
 	const { dismissAll } = useBottomSheetModal()
 
 	const avg = calculateAverageOfSemesters(semesters)
@@ -23,30 +25,33 @@ export default function SubjectCard({
 				params: { subject: name },
 			}}
 			onPress={dismissAll}
+			asChild
 		>
-			<View style={styles.card} lightColor='#eee' darkColor='#222'>
+			<View style={styles.card}>
 				<Text style={styles.subjectName}>{name}</Text>
-				<View style={styles.semesterBadge} lightColor='blue' darkColor='blue'>
-					<Text lightColor='#fff'>{}</Text>
+				<View style={styles.semesterBadge}>
+					<Text style={styles.semesterBadgeText}>{avg}</Text>
 				</View>
-				<Text>{avg}</Text>
 			</View>
 		</Link>
 	)
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
 	card: {
-		width: 300,
-		// borderColor: 'blue',
-		// borderWidth: 2,
-		borderRadius: 4,
-		padding: 20,
-		alignItems: 'flex-start',
+		flex: 1,
+		borderRadius: theme.spacing.xl,
+		padding: 25,
+		flexDirection: 'row',
+		gap: 10,
+		alignItems: 'center',
+		backgroundColor: theme.colors.bg2,
+		color: theme.colors.text1,
 	},
 	subjectName: {
+		color: theme.colors.text3,
 		fontSize: 23,
-		fontWeight: '800',
+		fontWeight: '700',
 	},
 	semesterBadge: {
 		fontSize: 14,
@@ -54,5 +59,9 @@ const styles = StyleSheet.create({
 		paddingVertical: 4,
 		borderRadius: 100,
 		elevation: 1,
+		backgroundColor: theme.colors.mainBg3,
 	},
-})
+	semesterBadgeText: {
+		color: theme.colors.mainText2,
+	},
+}))

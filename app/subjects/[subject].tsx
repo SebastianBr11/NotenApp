@@ -1,11 +1,13 @@
 import GradeView from '@/components/GradeView'
-import { Text, View } from '@/components/Themed'
 import { grades } from '@/storage/grades'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
+import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 export default function SubjectScreen() {
+	const { styles } = useStyles(stylesheet)
+
 	const { subject: slug } = useLocalSearchParams()
 	const school = grades.school.get()
 
@@ -28,7 +30,7 @@ export default function SubjectScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet({
 	container: {
 		flex: 1,
 		alignItems: 'center',

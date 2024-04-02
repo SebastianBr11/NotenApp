@@ -1,3 +1,5 @@
+import { UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/types'
+
 const spacing = {
 	xs: 2,
 	sm: 4,
@@ -71,6 +73,7 @@ const fontSizes = {
 } as const
 
 export const lightTheme = {
+	isDark: false,
 	colors: {
 		text1: colors.gray[950],
 		text2: colors.gray[900],
@@ -110,6 +113,7 @@ export const lightTheme = {
 } as const
 
 export const darkTheme = {
+	isDark: true,
 	colors: {
 		text1: colors.white,
 		text2: colors.gray[50],
@@ -146,3 +150,15 @@ export const darkTheme = {
 	spacing,
 	fontSizes,
 } as const
+
+export const ifDarkElse = (
+	theme: UnistylesTheme,
+	ifDark: any,
+	ifNotDark: any,
+) => {
+	if (theme.isDark) {
+		return ifDark
+	} else {
+		return ifNotDark
+	}
+}

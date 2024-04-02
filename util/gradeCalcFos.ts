@@ -7,7 +7,8 @@ import { GradesType, SemesterType, SingleGradeType } from '@/storage/grades'
  * whole average
  */
 
-type CalculateAverageProps = GradesType['school']['subjects']['0']['semesters']
+type CalculateAverageProps =
+	GradesType['classes']['0']['subjects']['0']['semesters']
 
 export const calculateAverageOfSemesters = ([
 	...semesters

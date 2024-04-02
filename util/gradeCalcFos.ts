@@ -13,14 +13,19 @@ export const calculateAverageOfSemesters = ([
 	...semesters
 ]: CalculateAverageProps) => {
 	const averageOfFirstSemester = calculateAverageOfSemester(semesters['0'])
-	const averageOfSecondSemester = calculateAverageOfSemester(semesters['1'])
 
-	const average = calculateAverage({
-		points: averageOfFirstSemester + averageOfSecondSemester,
-		amount: 2,
-	})
+	if (semesters[1]) {
+		const averageOfSecondSemester = calculateAverageOfSemester(semesters['1'])
 
-	return average
+		const average = calculateAverage({
+			points: averageOfFirstSemester + averageOfSecondSemester,
+			amount: 2,
+		})
+
+		return average
+	}
+
+	return averageOfFirstSemester
 }
 
 export const calculateAverageOfSemester = (semester: SemesterType) => {
@@ -44,10 +49,20 @@ export const calculateAverageOfSemester = (semester: SemesterType) => {
 		return acc
 	}, 0)
 
+	// If there's no secondary grades, try to use the primary grade
+	// else return 0
+	if (sumOfSecondaryPoints === 0) {
+		if (primaryGrade === 0) {
+			return 0
+		}
+		return primaryGrade
+	}
+
 	const averageOfSecondaryGrades = calculateAverage({
 		points: sumOfSecondaryPoints,
 		amount: calculateAmountOfSecondaryGrades(semester),
 	})
+
 	// If there's no primary grade, just use the secondary average
 	if (primaryGrade === 0) {
 		return averageOfSecondaryGrades

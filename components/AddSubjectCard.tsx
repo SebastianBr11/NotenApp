@@ -22,7 +22,7 @@ export default function AddSubjectCard({ classNumber }: AddSubjectCardProps) {
 			onPress={dismissAll}
 			asChild
 		>
-			<TouchableOpacity activeOpacity={0.75} style={styles.card}>
+			<TouchableOpacity activeOpacity={0.5} style={styles.card}>
 				<Text style={styles.subjectName}>Add new subject</Text>
 			</TouchableOpacity>
 		</Link>

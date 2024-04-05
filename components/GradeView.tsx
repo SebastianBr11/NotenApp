@@ -13,10 +13,14 @@ export default function GradeView({ singleGrade }: GradeViewType) {
 
 	return (
 		<View>
-			<Text>{singleGrade.type}</Text>
+			<Text style={styles.text}>{singleGrade.type}</Text>
 			<Text>{singleGrade.points}</Text>
 		</View>
 	)
 }
 
-const stylesheet = createStyleSheet({})
+const stylesheet = createStyleSheet(theme => ({
+	text: {
+		fontSize: theme.fontSizes['4xl'],
+	},
+}))

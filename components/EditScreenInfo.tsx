@@ -155,7 +155,7 @@ function EditScreenInfo() {
 const stylesheet = createStyleSheet(theme => ({
 	mainView: {
 		width: '100%',
-		paddingVertical: theme.spacing['5xl'],
+		paddingVertical: theme.spacing['2xl'],
 		flex: 1,
 		flexDirection: 'column',
 		backgroundColor: theme.colors.bg1,

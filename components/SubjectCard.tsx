@@ -3,6 +3,7 @@ import { Link } from 'expo-router'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import { ifDarkElse } from '@/constants/themes'
 import { GradesType } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 
@@ -30,7 +31,7 @@ export default function SubjectCard({
 			onPress={dismissAll}
 			asChild
 		>
-			<TouchableOpacity activeOpacity={0.75} style={styles.card}>
+			<TouchableOpacity activeOpacity={0.5} style={styles.card}>
 				<Text style={styles.subjectName}>{name}</Text>
 				<View style={styles.semesterBadge}>
 					<Text style={styles.semesterBadgeText}>{avg}</Text>
@@ -47,11 +48,14 @@ const stylesheet = createStyleSheet(theme => ({
 		flexDirection: 'row',
 		gap: theme.spacing.xl,
 		alignItems: 'center',
-		backgroundColor: theme.colors.bg2,
+		backgroundColor: ifDarkElse(
+			theme,
+			theme.colors.gray[800],
+			theme.colors.gray[100],
+		),
 		color: theme.colors.text1,
 		borderWidth: 1,
-		borderColor: theme.colors.mainBg4,
-		borderStyle: 'dashed',
+		borderColor: ifDarkElse(theme, theme.colors.gray[600], theme.colors.white),
 	},
 	subjectName: {
 		color: theme.colors.text3,

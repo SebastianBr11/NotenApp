@@ -1,7 +1,8 @@
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
-import React, { useCallback, useMemo, useRef } from 'react'
-import { Text, View } from 'react-native'
+import { useFocusEffect } from 'expo-router'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { BackHandler, Text, View } from 'react-native'
 import Animated, {
 	FadingTransition,
 	SlideInDown,
@@ -32,6 +33,8 @@ function EditScreenInfo() {
 
 	const hasPreviousClass = () => selectedClass > 0
 
+	const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
+
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
 	const snapPoints = useMemo(() => ['25%', '50%'], [])
@@ -41,7 +44,31 @@ function EditScreenInfo() {
 	}, [])
 	const handleSheetChanges = useCallback((index: number) => {
 		console.log('handleSheetChanges', index)
+		if (index > -1) {
+			setIsBottomSheetOpen(true)
+		} else {
+			setIsBottomSheetOpen(false)
+		}
 	}, [])
+
+	useFocusEffect(
+		useCallback(() => {
+			const onBackPress = () => {
+				if (isBottomSheetOpen) {
+					bottomSheetModalRef.current?.close()
+					return true // Tell React Native that the event was handled
+				}
+				return false
+			}
+
+			const subscription = BackHandler.addEventListener(
+				'hardwareBackPress',
+				onBackPress,
+			)
+
+			return () => subscription.remove()
+		}, [isBottomSheetOpen]),
+	)
 
 	return (
 		<View style={styles.mainView}>

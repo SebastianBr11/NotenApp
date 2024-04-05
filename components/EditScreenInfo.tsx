@@ -1,10 +1,8 @@
-import React, { useCallback, useMemo, useRef } from 'react'
-import { Pressable, Text, View } from 'react-native'
-
-import { lastUsedClass, schools } from '@/storage/grades'
 import { Feather } from '@expo/vector-icons'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
+import React, { useCallback, useMemo, useRef } from 'react'
+import { Pressable, Text, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Animated, {
 	Extrapolation,
@@ -17,8 +15,11 @@ import Animated, {
 	withSpring,
 } from 'react-native-reanimated'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
 import AddSubjectCard from './AddSubjectCard'
 import SubjectCard from './SubjectCard'
+
+import { lastUsedClass, schools } from '@/storage/grades'
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 

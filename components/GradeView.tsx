@@ -1,7 +1,8 @@
-import { SingleGradeType } from '@/storage/grades'
 import React from 'react'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
+import { SingleGradeType } from '@/storage/grades'
 
 type GradeViewType = {
 	singleGrade: SingleGradeType

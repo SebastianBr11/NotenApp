@@ -1,9 +1,10 @@
-import { SemesterType } from '@/storage/grades'
 import {
 	calculateAmountOfSecondaryGrades,
 	calculateAverage,
 	calculateAverageOfSemester,
 } from '../gradeCalcFos'
+
+import { SemesterType } from '@/storage/grades'
 
 describe('calculateAmountOfSecondaryGrades()', () => {
 	it('calculates the correct amount of grades for a mix of grade types', () => {

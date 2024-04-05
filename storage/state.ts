@@ -4,6 +4,7 @@ import {
 } from '@legendapp/state/persist'
 import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { schools } from './grades'
 
 // Global configuration

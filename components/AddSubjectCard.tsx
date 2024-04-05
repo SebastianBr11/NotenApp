@@ -1,8 +1,9 @@
-import { ifDarkElse } from '@/constants/themes'
 import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { Link } from 'expo-router'
 import { Text, TouchableOpacity } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
+import { ifDarkElse } from '@/constants/themes'
 
 type AddSubjectCardProps = {
 	classNumber: number

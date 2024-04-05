@@ -7,20 +7,20 @@ export type SingleGradeType = {
 }
 
 export type SemesterType = {
-	singleGrades: Array<SingleGradeType>
+	singleGrades: SingleGradeType[]
 }
 
 export type GradesType = {
-	classes: Array<{
+	classes: {
 		name?: string
 		year: number
 		type: 'FOS' | never
-		subjects: Array<{
+		subjects: {
 			name: string
 			id: number
 			semesters: [SemesterType, SemesterType]
-		}>
-	}>
+		}[]
+	}[]
 }
 
 export const lastUsedClass = observable(0)

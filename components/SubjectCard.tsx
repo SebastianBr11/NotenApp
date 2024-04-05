@@ -1,9 +1,10 @@
-import { GradesType } from '@/storage/grades'
-import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { Link } from 'expo-router'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
+import { GradesType } from '@/storage/grades'
+import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 
 type SubjectCardProps = {
 	subject: GradesType['classes']['0']['subjects']['0']

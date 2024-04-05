@@ -1,6 +1,7 @@
-import EditScreenInfo from '@/components/EditScreenInfo'
 import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
+import EditScreenInfo from '@/components/EditScreenInfo'
 
 export default function TabOneScreen() {
 	const { styles } = useStyles(stylesheet)

@@ -1,11 +1,10 @@
+import '@/constants/unistyles'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
-
-import '@/constants/unistyles'
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 

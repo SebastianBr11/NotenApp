@@ -1,10 +1,10 @@
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Link, Tabs } from 'expo-router'
 import React from 'react'
-
-import { useClientOnlyValue } from '@/components/useClientOnlyValue'
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
+
+import { useClientOnlyValue } from '@/components/useClientOnlyValue'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {

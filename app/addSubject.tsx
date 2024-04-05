@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
 import { Platform, Text, View } from 'react-native'
-
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 export default function ModalScreen() {

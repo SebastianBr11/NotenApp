@@ -73,7 +73,9 @@ export default function SchoolClassSelector({
 							name='chevron-left'
 							size={32}
 							color={theme.colors.mainText3}
+							disabled={!hasPreviousClass()}
 							style={{ opacity: hasPreviousClass() ? 1 : 0 }}
+							onPress={() => setSelectedClass(selectedClass - 1)}
 						/>
 						<View style={styles.headerTextContainer}>
 							<View style={styles.headerYearContainer}>
@@ -86,9 +88,11 @@ export default function SchoolClassSelector({
 							name='chevron-right'
 							size={32}
 							color={theme.colors.mainText3}
+							disabled={!hasNextClass()}
 							style={{
 								opacity: hasNextClass() ? 1 : 0,
 							}}
+							onPress={() => setSelectedClass(selectedClass + 1)}
 						/>
 					</View>
 				</AnimatedPressable>

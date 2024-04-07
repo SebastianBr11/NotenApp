@@ -1,9 +1,10 @@
-import GradeView from '@/components/GradeView'
-import { schools } from '@/storage/grades'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+
+import GradeView from '@/components/GradeView'
+import { schools } from '@/storage/grades'
 
 export default function SubjectScreen() {
 	const { styles } = useStyles(stylesheet)

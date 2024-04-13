@@ -25,10 +25,6 @@ function EditScreenInfo() {
 	const classes = schools.classes.get()
 	const { subjects: yearGrades, year, type } = classes[selectedClass]
 
-	const setSelectedClass = (selectedClass: number) => {
-		lastUsedClass.set(selectedClass)
-	}
-
 	const hasNextClass = () => selectedClass < classes.length - 1
 
 	const hasPreviousClass = () => selectedClass > 0
@@ -97,7 +93,7 @@ function EditScreenInfo() {
 				class={{ type, year }}
 				onPress={handlePresentModalPress}
 				selectedClass={selectedClass}
-				setSelectedClass={setSelectedClass}
+				setSelectedClass={lastUsedClass.set}
 				hasNextClass={hasNextClass}
 				hasPreviousClass={hasPreviousClass}
 				numOfClasses={classes.length}

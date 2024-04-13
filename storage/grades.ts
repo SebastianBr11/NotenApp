@@ -14,8 +14,9 @@ export type SemesterType = {
 
 export type GradesType = {
 	amountOfSubjects: number
+	amountOfClasses: number
 	classes: {
-		name?: string
+		id: number
 		year: number
 		type: 'FOS' | never
 		subjects: {
@@ -30,8 +31,10 @@ export const lastUsedClass = observable(0)
 
 export const schools: ObservableObject<GradesType> = observable<GradesType>({
 	amountOfSubjects: computed(() => calculateAmountOfSubjects(schools.get())),
+	amountOfClasses: computed(() => schools.classes.length),
 	classes: [
 		{
+			id: 1,
 			year: 11,
 			type: 'FOS',
 			subjects: [
@@ -62,6 +65,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 			],
 		},
 		{
+			id: 2,
 			year: 12,
 			type: 'FOS',
 			subjects: [
@@ -76,6 +80,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 			],
 		},
 		{
+			id: 3,
 			year: 13,
 			type: 'FOS',
 			subjects: [

@@ -2,7 +2,7 @@ import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
 import { useFocusEffect } from 'expo-router'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { BackHandler, Text, View } from 'react-native'
+import { BackHandler, View } from 'react-native'
 import Animated, {
 	FadingTransition,
 	SlideInDown,
@@ -11,6 +11,7 @@ import Animated, {
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import AddSubjectCard from './AddSubjectCard'
+import ClassesView from './ClassesView'
 import SchoolClassSelector from './SchoolClassSelector'
 import SubjectCard from './SubjectCard'
 
@@ -112,7 +113,7 @@ function EditScreenInfo() {
 				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			>
 				<BottomSheetView>
-					<Text>Hi</Text>
+					<ClassesView />
 				</BottomSheetView>
 			</BottomSheetModal>
 		</View>

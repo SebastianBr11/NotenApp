@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams, useNavigation } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { Controller, useForm } from 'react-hook-form'
 import { Platform, Text, View } from 'react-native'
@@ -15,7 +15,6 @@ type FormData = {
 export default function AddSubjectScreen() {
 	const { styles, theme } = useStyles(stylesheet)
 	const { classNumber } = useLocalSearchParams()
-	const navigator = useNavigation()
 
 	const {
 		control,

@@ -60,7 +60,7 @@ const stylesheet = createStyleSheet(theme => ({
 	subjectName: {
 		color: theme.colors.text3,
 		fontSize: 23,
-		fontWeight: '700',
+		fontWeight: theme.fontWeights.regular,
 	},
 	semesterBadge: {
 		fontSize: 14,
@@ -72,6 +72,6 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	semesterBadgeText: {
 		color: theme.colors.mainText2,
-		fontWeight: '500',
+		fontWeight: theme.fontWeights.black,
 	},
 }))

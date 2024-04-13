@@ -96,13 +96,13 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	headerTitle: {
 		fontSize: theme.fontSizes['5xl'],
-		fontWeight: 'bold',
+		fontWeight: theme.fontWeights.bold,
 		color: theme.colors.text4,
 		letterSpacing: -1,
 	},
 	inputLabel: {
 		fontSize: theme.fontSizes.base,
-		fontWeight: '500',
+		fontWeight: theme.fontWeights.regular,
 		color: theme.colors.text4,
 		marginBottom: theme.spacing.lg,
 		marginLeft: theme.spacing.md,
@@ -125,7 +125,7 @@ const stylesheet = createStyleSheet(theme => ({
 		alignSelf: 'flex-start',
 	},
 	submitText: {
-		fontWeight: '800',
+		fontWeight: theme.fontWeights.regular,
 		fontSize: theme.fontSizes.xl,
 		color: theme.colors.mainText2,
 	},

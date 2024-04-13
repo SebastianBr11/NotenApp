@@ -18,7 +18,7 @@ export default function NotFoundScreen() {
 	)
 }
 
-const stylesheet = createStyleSheet({
+const stylesheet = createStyleSheet(theme => ({
 	container: {
 		flex: 1,
 		alignItems: 'center',
@@ -27,7 +27,7 @@ const stylesheet = createStyleSheet({
 	},
 	title: {
 		fontSize: 20,
-		fontWeight: 'bold',
+		fontWeight: theme.fontWeights.bold,
 	},
 	link: {
 		marginTop: 15,
@@ -37,4 +37,4 @@ const stylesheet = createStyleSheet({
 		fontSize: 14,
 		color: '#2e78b7',
 	},
-})
+}))

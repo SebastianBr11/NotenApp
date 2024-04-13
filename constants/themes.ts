@@ -72,6 +72,13 @@ const fontSizes = {
 	'6xl': 60,
 } as const
 
+const fontWeights = {
+	thin: '300',
+	regular: '500',
+	bold: '700',
+	black: '900',
+} as const
+
 export const lightTheme = {
 	isDark: false,
 	colors: {
@@ -110,6 +117,7 @@ export const lightTheme = {
 	},
 	spacing,
 	fontSizes,
+	fontWeights,
 } as const
 
 export const darkTheme = {
@@ -149,6 +157,7 @@ export const darkTheme = {
 	},
 	spacing,
 	fontSizes,
+	fontWeights,
 } as const
 
 export const ifDarkElse = (

@@ -44,7 +44,7 @@ const stylesheet = createStyleSheet(theme => ({
 		borderRadius: theme.spacing.lg,
 		fontSize: theme.fontSizes.lg,
 		color: theme.colors.text2,
-		fontWeight: '500',
+		fontWeight: theme.fontWeights.thin,
 	},
 	inputErrored: {
 		borderColor: 'red',

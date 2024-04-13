@@ -54,6 +54,6 @@ const stylesheet = createStyleSheet(theme => ({
 			theme.colors.secondary[600],
 		),
 		fontSize: theme.fontSizes.lg,
-		fontWeight: '700',
+		fontWeight: theme.fontWeights.bold,
 	},
 }))

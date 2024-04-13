@@ -125,7 +125,7 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	header: {
 		fontSize: theme.fontSizes['4xl'],
-		fontWeight: '900',
+		fontWeight: theme.fontWeights.thin,
 		letterSpacing: -1.2,
 		color: theme.colors.text2,
 	},
@@ -133,6 +133,6 @@ const stylesheet = createStyleSheet(theme => ({
 		fontSize: theme.fontSizes['2xl'],
 		letterSpacing: -1.2,
 		color: theme.colors.mainText3,
-		fontWeight: '600',
+		fontWeight: theme.fontWeights.bold,
 	},
 }))

@@ -80,7 +80,11 @@ export default function SchoolClassSelector({
 						<View style={styles.headerTextContainer}>
 							<View style={styles.headerYearContainer}>
 								<Text style={styles.header}>Jahr {year}</Text>
-								<Feather name='edit' size={24} color={theme.colors.mainText1} />
+								<Feather
+									name='compass'
+									size={24}
+									color={theme.colors.mainText1}
+								/>
 							</View>
 							<Text style={styles.subHeader}>{type}</Text>
 						</View>

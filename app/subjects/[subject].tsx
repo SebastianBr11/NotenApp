@@ -1,3 +1,4 @@
+import { observer } from '@legendapp/state/react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
 import { FlatList, Text, View } from 'react-native'
@@ -6,7 +7,9 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import GradeView from '@/components/GradeView'
 import { schools } from '@/storage/grades'
 
-export default function SubjectScreen() {
+export default observer(SubjectScreen)
+
+function SubjectScreen() {
 	const { styles } = useStyles(stylesheet)
 
 	const { subject: subjectId, selectedClass } = useLocalSearchParams()

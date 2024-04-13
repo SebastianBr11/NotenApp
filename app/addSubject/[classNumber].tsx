@@ -29,13 +29,16 @@ export default function AddSubjectScreen() {
 
 	const onSubmit = (data: FormData) => {
 		console.log(data)
+
+		const newId = schools.amountOfSubjects.get() + 1
+
 		schools.classes[Number(classNumber)].subjects.push({
-			id: 8,
+			id: newId,
 			name: data.subjectName,
 			semesters: [{ singleGrades: [] }, { singleGrades: [] }],
 		})
 
-		router.replace(`/subjects/${'8'}?selectedClass=${classNumber}`)
+		router.replace(`/subjects/${newId}?selectedClass=${classNumber}`)
 	}
 
 	return (

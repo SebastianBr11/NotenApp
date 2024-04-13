@@ -1,4 +1,6 @@
-import { observable } from '@legendapp/state'
+import { ObservableObject, computed, observable } from '@legendapp/state'
+
+import { calculateAmountOfSubjects } from '@/util/school'
 
 export type SingleGradeType = {
 	type: 'Schulaufgabe' | 'Kurzarbeit' | 'Mündlich'
@@ -11,6 +13,7 @@ export type SemesterType = {
 }
 
 export type GradesType = {
+	amountOfSubjects: number
 	classes: {
 		name?: string
 		year: number
@@ -25,7 +28,8 @@ export type GradesType = {
 
 export const lastUsedClass = observable(0)
 
-export const schools = observable<GradesType>({
+export const schools: ObservableObject<GradesType> = observable<GradesType>({
+	amountOfSubjects: computed(() => calculateAmountOfSubjects(schools.get())),
 	classes: [
 		{
 			year: 11,

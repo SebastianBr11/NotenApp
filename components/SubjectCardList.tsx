@@ -1,3 +1,4 @@
+import { observer } from '@legendapp/state/react'
 import React from 'react'
 import Animated, {
 	FadingTransition,
@@ -6,16 +7,23 @@ import Animated, {
 } from 'react-native-reanimated'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import AddSubjectPrompt from './AddSubjectPrompt'
 import SubjectCard from './SubjectCard'
 
 import { lastUsedClass, schools } from '@/storage/grades'
 
-export default function SubjectCardList() {
+export default observer(SubjectCardView)
+
+function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
 	const classes = schools.classes.get()
-	const selectedClass = lastUsedClass.get()
 
+	if (classes.length === 0) {
+		return <AddSubjectPrompt />
+	}
+
+	const selectedClass = lastUsedClass.get()
 	const { subjects: yearGrades } = classes[selectedClass]
 
 	return (

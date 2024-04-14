@@ -1,4 +1,5 @@
 import { Feather } from '@expo/vector-icons'
+import { observer } from '@legendapp/state/react'
 import React from 'react'
 import { Pressable, Text, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
@@ -19,7 +20,9 @@ type SchoolClassSelectorProps = {
 	onPress: () => void
 }
 
-export default function SchoolClassSelector({
+export default observer(SchoolClassSelector)
+
+function SchoolClassSelector({
 	onPress: handlePresentModalPress,
 }: SchoolClassSelectorProps) {
 	const { styles, theme } = useStyles(stylesheet)

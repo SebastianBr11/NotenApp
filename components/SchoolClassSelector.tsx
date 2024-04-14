@@ -30,7 +30,7 @@ function SchoolClassSelector({
 	const classes = schools.classes.get()
 	const numOfClasses = classes.length
 	const selectedClass = lastUsedClass.get()
-	const { year, type } = classes[selectedClass]
+	const { year, type } = classes[selectedClass] ?? { year: 0, type: 'FOS' } // Necessary as a fallback for some reason
 
 	const setSelectedClass = lastUsedClass.set
 

@@ -1,5 +1,6 @@
 import { observer } from '@legendapp/state/react'
 import React from 'react'
+import { View } from 'react-native'
 import Animated, {
 	FadingTransition,
 	SlideInDown,
@@ -18,13 +19,16 @@ function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
 	const classes = schools.classes.get()
-
-	if (classes.length === 0) {
-		return <AddSubjectPrompt />
-	}
-
 	const selectedClass = lastUsedClass.get()
-	const { subjects: yearGrades } = classes[selectedClass]
+	const { subjects: yearGrades } = classes[selectedClass] ?? { subjects: [] }
+
+	if (yearGrades.length === 0) {
+		return (
+			<View style={styles.wrapper}>
+				<AddSubjectPrompt />
+			</View>
+		)
+	}
 
 	return (
 		<Animated.FlatList
@@ -49,6 +53,9 @@ function SubjectCardView() {
 }
 
 const stylesheet = createStyleSheet(theme => ({
+	wrapper: {
+		flexGrow: 1,
+	},
 	list: {
 		gap: theme.spacing['3xl'],
 		flexGrow: 1,

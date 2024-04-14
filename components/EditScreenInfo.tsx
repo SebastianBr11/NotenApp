@@ -5,12 +5,13 @@ import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { BackHandler, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import AddClassPrompt from './AddClassPrompt'
 import AddSubjectCard from './AddSubjectCard'
 import ClassesView from './ClassesView'
 import SchoolClassSelector from './SchoolClassSelector'
-import SubjectCardList from './SubjectCardList'
+import SubjectCardView from './SubjectCardView'
 
-import { lastUsedClass } from '@/storage/grades'
+import { lastUsedClass, schools } from '@/storage/grades'
 
 export default observer(EditScreenInfo)
 
@@ -58,11 +59,17 @@ function EditScreenInfo() {
 
 	return (
 		<View style={styles.mainView}>
-			<View style={styles.listWrapper}>
-				<SubjectCardList />
-				<AddSubjectCard classNumber={selectedClass} />
-			</View>
-			<SchoolClassSelector onPress={handlePresentModalPress} />
+			{schools.classes.length > 0 ? (
+				<>
+					<View style={styles.listWrapper}>
+						<SubjectCardView />
+						<AddSubjectCard classNumber={selectedClass} />
+					</View>
+					<SchoolClassSelector onPress={handlePresentModalPress} />
+				</>
+			) : (
+				<AddClassPrompt />
+			)}
 			<BottomSheetModal
 				ref={bottomSheetModalRef}
 				index={1}

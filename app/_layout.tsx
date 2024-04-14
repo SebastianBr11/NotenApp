@@ -80,6 +80,12 @@ function RootLayoutNav() {
 							presentation: 'modal',
 						}}
 					/>
+					<Stack.Screen
+						name='addClass'
+						options={{
+							headerTitle: 'Add new class',
+						}}
+					/>
 				</Stack>
 			</BottomSheetModalProvider>
 		</GestureHandlerRootView>

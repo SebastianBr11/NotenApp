@@ -13,9 +13,9 @@ import SubjectCardView from './SubjectCardView'
 
 import { lastUsedClass, schools } from '@/storage/grades'
 
-export default observer(EditScreenInfo)
+export default observer(GradesOverview)
 
-function EditScreenInfo() {
+function GradesOverview() {
 	const { styles, theme } = useStyles(stylesheet)
 
 	const selectedClass = lastUsedClass.get()

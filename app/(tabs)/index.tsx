@@ -1,14 +1,14 @@
 import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import EditScreenInfo from '@/components/EditScreenInfo'
+import GradesOverview from '@/components/GradesOverview'
 
 export default function TabOneScreen() {
 	const { styles } = useStyles(stylesheet)
 
 	return (
 		<View style={styles.container}>
-			<EditScreenInfo />
+			<GradesOverview />
 		</View>
 	)
 }

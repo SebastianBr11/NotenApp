@@ -55,7 +55,11 @@ const stylesheet = createStyleSheet(theme => ({
 		),
 		color: theme.colors.text1,
 		borderWidth: 1,
-		borderColor: ifDarkElse(theme, theme.colors.gray[600], theme.colors.white),
+		borderColor: ifDarkElse(
+			theme,
+			theme.colors.gray[600],
+			theme.colors.gray[300],
+		),
 	},
 	subjectName: {
 		color: theme.colors.text3,

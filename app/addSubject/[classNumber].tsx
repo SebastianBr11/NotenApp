@@ -5,7 +5,8 @@ import { Platform, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import TextInput from '@/components/TextInput'
+import TextInput from '@/components/form/TextInput'
+import TextInputLabel from '@/components/form/TextInputLabel'
 import { schools } from '@/storage/grades'
 
 type FormData = {
@@ -47,7 +48,7 @@ export default function AddSubjectScreen() {
 			</View>
 			<View style={styles.formWrapper}>
 				<View>
-					<Text style={styles.inputLabel}>Subject Name</Text>
+					<TextInputLabel>Subject Name</TextInputLabel>
 					<Controller
 						control={control}
 						rules={{ required: true }}
@@ -102,13 +103,7 @@ const stylesheet = createStyleSheet(theme => ({
 		color: theme.colors.text4,
 		letterSpacing: -1,
 	},
-	inputLabel: {
-		fontSize: theme.fontSizes.base,
-		fontWeight: theme.fontWeights.regular,
-		color: theme.colors.text4,
-		marginBottom: theme.spacing.lg,
-		marginLeft: theme.spacing.md,
-	},
+
 	formWrapper: {
 		gap: theme.spacing['2xl'],
 		flex: 2,
@@ -120,7 +115,7 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	submitButton: {
 		backgroundColor: theme.colors.mainBg3,
-		padding: theme.spacing.xl,
+		paddingVertical: theme.spacing.xl,
 		paddingHorizontal: theme.spacing['4xl'],
 		marginTop: theme.spacing['2xl'],
 		borderRadius: theme.spacing['2xl'],

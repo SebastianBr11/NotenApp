@@ -11,30 +11,28 @@ import Animated, {
 } from 'react-native-reanimated'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import { GradesType } from '@/storage/grades'
+import { lastUsedClass, schools } from '@/storage/grades'
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
 type SchoolClassSelectorProps = {
 	onPress: () => void
-	selectedClass: number
-	setSelectedClass: (selectedClass: number) => void
-	hasNextClass: (selectedClass?: number) => boolean
-	hasPreviousClass: () => boolean
-	numOfClasses: number
-	class: { year: number; type: GradesType['classes']['0']['type'] }
 }
 
 export default function SchoolClassSelector({
 	onPress: handlePresentModalPress,
-	selectedClass,
-	setSelectedClass,
-	hasNextClass,
-	hasPreviousClass,
-	numOfClasses,
-	class: { year, type },
 }: SchoolClassSelectorProps) {
 	const { styles, theme } = useStyles(stylesheet)
+
+	const classes = schools.classes.get()
+	const numOfClasses = classes.length
+	const selectedClass = lastUsedClass.get()
+	const { year, type } = classes[selectedClass]
+
+	const setSelectedClass = lastUsedClass.set
+
+	const hasNextClass = () => selectedClass < numOfClasses - 1
+	const hasPreviousClass = () => selectedClass > 0
 
 	const translateX = useSharedValue(0)
 

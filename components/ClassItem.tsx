@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons'
+import { Feather, MaterialIcons } from '@expo/vector-icons'
 import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import React from 'react'
 import { Text } from 'react-native'
@@ -13,6 +13,7 @@ type ClassItemProps = {
 	drag: () => void
 	isActive: boolean
 	getIndex: () => number | undefined
+	onDelete: (classId: number) => void
 }
 
 export default function ClassItem({
@@ -20,6 +21,7 @@ export default function ClassItem({
 	drag,
 	isActive,
 	getIndex,
+	onDelete,
 }: ClassItemProps) {
 	const { styles, theme } = useStyles(stylesheet)
 
@@ -43,9 +45,16 @@ export default function ClassItem({
 					name='drag-indicator'
 					color={theme.colors.text6}
 					size={24}
-					style={styles.icon}
+					style={styles.leftIcon}
 				/>
 				<Text style={styles.text}>Jahr {item.year}</Text>
+				<Feather
+					name='x-circle'
+					size={24}
+					color='red'
+					style={styles.rightIcon}
+					onPress={() => onDelete(item.id)}
+				/>
 			</TouchableOpacity>
 		</OpacityDecorator>
 	)
@@ -62,9 +71,13 @@ const stylesheet = createStyleSheet(theme => ({
 		borderRadius: theme.spacing.lg,
 		position: 'relative',
 	},
-	icon: {
+	leftIcon: {
 		position: 'absolute',
 		left: theme.spacing['3xl'],
+	},
+	rightIcon: {
+		position: 'absolute',
+		right: theme.spacing['3xl'],
 	},
 	text: {
 		color: theme.colors.text2,

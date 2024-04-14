@@ -57,6 +57,7 @@ function RootLayoutNav() {
 							backgroundColor: theme.colors.bg1,
 						},
 						headerTintColor: theme.colors.text1,
+						animation: 'ios',
 					}}
 				>
 					<Stack.Screen

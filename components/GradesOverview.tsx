@@ -1,10 +1,15 @@
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import {
+	BottomSheetFooter,
+	BottomSheetModal,
+	BottomSheetView,
+} from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
 import { useFocusEffect } from 'expo-router'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { BackHandler, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import AddClassButton from './AddClassButton'
 import AddClassPrompt from './AddClassPrompt'
 import AddSubjectCard from './AddSubjectCard'
 import ClassesView from './ClassesView'
@@ -82,6 +87,11 @@ function GradesOverview() {
 					borderTopEndRadius: 20,
 				}}
 				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
+				footerComponent={props => (
+					<BottomSheetFooter {...props}>
+						<AddClassButton />
+					</BottomSheetFooter>
+				)}
 			>
 				<BottomSheetView>
 					<ClassesView />

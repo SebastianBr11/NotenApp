@@ -17,7 +17,7 @@ export type GradesType = {
 	amountOfClasses: number
 	classes: {
 		id: number
-		year: number
+		year: string
 		type: 'FOS' | never
 		subjects: {
 			name: string
@@ -35,7 +35,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 	classes: [
 		{
 			id: 1,
-			year: 11,
+			year: '11',
 			type: 'FOS',
 			subjects: [
 				{
@@ -66,7 +66,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 		},
 		{
 			id: 2,
-			year: 12,
+			year: '12',
 			type: 'FOS',
 			subjects: [
 				{
@@ -81,7 +81,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 		},
 		{
 			id: 3,
-			year: 13,
+			year: '13',
 			type: 'FOS',
 			subjects: [
 				{

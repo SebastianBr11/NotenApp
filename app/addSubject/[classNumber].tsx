@@ -118,7 +118,7 @@ const stylesheet = createStyleSheet(theme => ({
 		paddingVertical: theme.spacing.xl,
 		paddingHorizontal: theme.spacing['4xl'],
 		marginTop: theme.spacing['2xl'],
-		borderRadius: theme.spacing['2xl'],
+		borderRadius: theme.spacing.sm,
 		alignSelf: 'flex-start',
 	},
 	submitText: {

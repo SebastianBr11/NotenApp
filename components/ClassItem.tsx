@@ -77,7 +77,8 @@ const stylesheet = createStyleSheet(theme => ({
 	},
 	rightIcon: {
 		position: 'absolute',
-		right: theme.spacing['3xl'],
+		right: 0,
+		padding: theme.spacing['3xl'],
 	},
 	text: {
 		color: theme.colors.text2,

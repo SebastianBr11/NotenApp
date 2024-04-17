@@ -47,7 +47,7 @@ const stylesheet = createStyleSheet(theme => ({
 		flex: 1,
 	},
 	button: {
-		backgroundColor: theme.colors.mainBg4,
+		backgroundColor: theme.colors.mainBg3,
 		paddingVertical: theme.spacing['2xl'],
 		paddingHorizontal: theme.spacing['2xl'] * 2,
 		borderRadius: theme.spacing.lg,

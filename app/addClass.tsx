@@ -5,6 +5,7 @@ import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
 
+import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
@@ -57,9 +58,7 @@ export default function AddClassScreen() {
 						)}
 					/>
 					{errors.year && (
-						<Text style={styles.errorMessage}>
-							The year is required and has to be a number.
-						</Text>
+						<ErrorText>The year is required and has to be a number.</ErrorText>
 					)}
 				</View>
 				<SubmitButton onPress={handleSubmit(onSubmit)}>Add class</SubmitButton>
@@ -93,11 +92,6 @@ const stylesheet = createStyleSheet(theme => ({
 	formWrapper: {
 		gap: theme.spacing['2xl'],
 		flex: 2,
-	},
-	errorMessage: {
-		color: 'red',
-		marginLeft: theme.spacing.md,
-		marginTop: theme.spacing.md,
 	},
 	submitButton: {
 		backgroundColor: theme.colors.mainBg3,

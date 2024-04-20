@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { Platform, Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
@@ -64,9 +65,7 @@ export default function AddSubjectScreen() {
 						)}
 					/>
 					{errors.subjectName && (
-						<Text style={styles.errorMessage}>
-							The subject name is required.
-						</Text>
+						<ErrorText>The subject name is required.</ErrorText>
 					)}
 				</View>
 
@@ -103,10 +102,5 @@ const stylesheet = createStyleSheet(theme => ({
 	formWrapper: {
 		gap: theme.spacing['2xl'],
 		flex: 2,
-	},
-	errorMessage: {
-		color: 'red',
-		marginLeft: theme.spacing.md,
-		marginTop: theme.spacing.md,
 	},
 }))

@@ -2,9 +2,9 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { Controller, useForm } from 'react-hook-form'
 import { Platform, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
 import { schools } from '@/storage/grades'
@@ -70,13 +70,9 @@ export default function AddSubjectScreen() {
 					)}
 				</View>
 
-				<TouchableOpacity
-					style={styles.submitButton}
-					onPress={handleSubmit(onSubmit)}
-					activeOpacity={0.5}
-				>
-					<Text style={styles.submitText}>Add subject</Text>
-				</TouchableOpacity>
+				<SubmitButton onPress={handleSubmit(onSubmit)}>
+					Add subject
+				</SubmitButton>
 			</View>
 			{/* Use a light status bar on iOS to account for the black space above the modal */}
 			<StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
@@ -112,18 +108,5 @@ const stylesheet = createStyleSheet(theme => ({
 		color: 'red',
 		marginLeft: theme.spacing.md,
 		marginTop: theme.spacing.md,
-	},
-	submitButton: {
-		backgroundColor: theme.colors.mainBg3,
-		paddingVertical: theme.spacing.xl,
-		paddingHorizontal: theme.spacing['4xl'],
-		marginTop: theme.spacing['2xl'],
-		borderRadius: theme.spacing.sm,
-		alignSelf: 'flex-start',
-	},
-	submitText: {
-		fontWeight: theme.fontWeights.regular,
-		fontSize: theme.fontSizes.xl,
-		color: theme.colors.mainText2,
 	},
 }))

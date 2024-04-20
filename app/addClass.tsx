@@ -2,10 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
 
+import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
 
@@ -62,13 +62,7 @@ export default function AddClassScreen() {
 						</Text>
 					)}
 				</View>
-				<TouchableOpacity
-					style={styles.submitButton}
-					onPress={handleSubmit(onSubmit)}
-					activeOpacity={0.5}
-				>
-					<Text style={styles.submitText}>Add subject</Text>
-				</TouchableOpacity>
+				<SubmitButton onPress={handleSubmit(onSubmit)}>Add class</SubmitButton>
 			</View>
 		</View>
 	)

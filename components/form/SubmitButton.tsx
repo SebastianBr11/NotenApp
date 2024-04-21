@@ -2,6 +2,8 @@ import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import { ifDarkElse } from '@/constants/themes'
+
 type SubmitButtonProps = React.ComponentProps<typeof TouchableOpacity> & {
 	children: React.ReactNode
 }
@@ -25,7 +27,7 @@ export default function SubmitButton({
 
 const stylesheet = createStyleSheet(theme => ({
 	submitButton: {
-		backgroundColor: theme.colors.mainBg3,
+		backgroundColor: theme.colors.main[500],
 		paddingVertical: theme.spacing.xl,
 		paddingHorizontal: theme.spacing['4xl'],
 		marginTop: theme.spacing['2xl'],
@@ -33,8 +35,8 @@ const stylesheet = createStyleSheet(theme => ({
 		alignSelf: 'flex-start',
 	},
 	submitText: {
-		fontWeight: theme.fontWeights.regular,
+		fontWeight: theme.fontWeights.bold,
 		fontSize: theme.fontSizes.xl,
-		color: theme.colors.mainText2,
+		color: ifDarkElse(theme, theme.colors.main[950], theme.colors.main[100]),
 	},
 }))

@@ -1,14 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { observer } from '@legendapp/state/react'
+import { router } from 'expo-router'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
 
+import ClassTypeSelector from '@/components/ClassTypeSelector'
 import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
+import { schools } from '@/storage/grades'
 
 const formSchema = z.object({
 	year: z.string().regex(/^\d+$/),
@@ -20,17 +24,40 @@ type FormData = {
 	type: 'FOS'
 }
 
-export default function AddClassScreen() {
+export default observer(AddClassScreen)
+
+function AddClassScreen() {
 	const { styles } = useStyles(stylesheet)
 
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({ resolver: zodResolver(formSchema) })
+	} = useForm<FormData>({
+		resolver: zodResolver(formSchema),
+		defaultValues: { type: 'FOS' },
+	})
 
 	const onSubmit = (data: FormData) => {
 		console.log(data)
+
+		const newId = schools.amountOfClasses.get() + 1
+
+		schools.addClass({
+			id: newId,
+			year: data.year,
+			type: data.type,
+			subjects: [],
+		})
+
+		// This shouldn't be necessary, but in case there's
+		// some kind of deeplink in the future, ensure that we
+		// navigate to the home screen correctly
+		if (router.canGoBack()) {
+			router.back()
+		} else {
+			router.replace('/(tabs)/')
+		}
 	}
 
 	return (
@@ -61,6 +88,19 @@ export default function AddClassScreen() {
 						<ErrorText>The year is required and has to be a number.</ErrorText>
 					)}
 				</View>
+				<View>
+					<TextInputLabel>Class Type</TextInputLabel>
+					<Controller
+						control={control}
+						rules={{
+							required: true,
+						}}
+						name='type'
+						render={({ field: { onChange, value } }) => (
+							<ClassTypeSelector onChange={onChange} value={value} />
+						)}
+					/>
+				</View>
 				<SubmitButton onPress={handleSubmit(onSubmit)}>Add class</SubmitButton>
 			</View>
 		</View>
@@ -74,7 +114,7 @@ const stylesheet = createStyleSheet(theme => ({
 		paddingHorizontal: theme.spacing['4xl'],
 		paddingVertical: theme.spacing['4xl'],
 		gap: theme.spacing['5xl'],
-		backgroundColor: theme.colors.bg2,
+		backgroundColor: theme.colors.bg1,
 	},
 	header: {
 		flex: 1,

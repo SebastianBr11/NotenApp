@@ -24,6 +24,7 @@ export type ClassType = {
 }
 
 export type GradesType = {
+	addClass: (newClass: ClassType) => void
 	amountOfSubjects: number
 	amountOfClasses: number
 	classes: ClassType[]
@@ -32,6 +33,10 @@ export type GradesType = {
 export const lastUsedClass = observable(0)
 
 export const schools: ObservableObject<GradesType> = observable<GradesType>({
+	addClass: newClass => {
+		schools.classes.set(oldClasses => [...oldClasses, newClass])
+	},
+
 	amountOfSubjects: computed(() => calculateAmountOfSubjects(schools.get())),
 	amountOfClasses: computed(() => schools.classes.length),
 	classes: [

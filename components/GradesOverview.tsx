@@ -29,7 +29,7 @@ function GradesOverview() {
 
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
-	const snapPoints = useMemo(() => ['25%', '50%'], [])
+	const snapPoints = useMemo(() => ['35%', '45%'], [])
 
 	const handlePresentModalPress = useCallback(() => {
 		bottomSheetModalRef.current?.present()
@@ -93,7 +93,7 @@ function GradesOverview() {
 					</BottomSheetFooter>
 				)}
 			>
-				<BottomSheetView>
+				<BottomSheetView style={styles.bottomSheetContainer}>
 					<ClassesView />
 				</BottomSheetView>
 			</BottomSheetModal>
@@ -115,5 +115,8 @@ const stylesheet = createStyleSheet(theme => ({
 		flex: 1,
 		gap: theme.spacing['3xl'],
 		marginHorizontal: theme.spacing['3xl'],
+	},
+	bottomSheetContainer: {
+		flex: 1,
 	},
 }))

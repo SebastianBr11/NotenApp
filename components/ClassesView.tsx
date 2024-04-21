@@ -10,15 +10,22 @@ export default function ClassesView() {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.headerText}>Manage Classes</Text>
-			<ClassList />
+			<View style={styles.listWrapper}>
+				<ClassList />
+			</View>
 		</View>
 	)
 }
 
 const stylesheet = createStyleSheet(theme => ({
 	container: {
+		flex: 1,
 		gap: theme.spacing['3xl'],
 		paddingVertical: theme.spacing['3xl'],
+		position: 'relative',
+	},
+	listWrapper: {
+		marginBottom: 140,
 	},
 	headerText: {
 		fontSize: theme.fontSizes['2xl'],

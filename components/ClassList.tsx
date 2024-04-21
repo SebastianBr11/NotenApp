@@ -1,6 +1,6 @@
 import { observer } from '@legendapp/state/react'
 import React from 'react'
-import { Alert, View } from 'react-native'
+import { Alert } from 'react-native'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
@@ -41,26 +41,23 @@ function ClassList() {
 	}
 
 	return (
-		<View>
-			<DraggableFlatList
-				data={classes}
-				keyExtractor={item => item.id.toString()}
-				renderItem={({ item, drag, isActive, getIndex }) => (
-					<ClassItem
-						{...{ item, drag, isActive, getIndex, onDelete: onDeleteClass }}
-					/>
-				)}
-				contentContainerStyle={styles.list}
-				onDragEnd={({ data }) => schools.classes.set(data)}
-			/>
-		</View>
+		<DraggableFlatList
+			data={classes}
+			keyExtractor={item => item.id.toString()}
+			renderItem={({ item, drag, isActive, getIndex }) => (
+				<ClassItem
+					{...{ item, drag, isActive, getIndex, onDelete: onDeleteClass }}
+				/>
+			)}
+			contentContainerStyle={styles.list}
+			onDragEnd={({ data }) => schools.classes.set(data)}
+		/>
 	)
 }
 
 const stylesheet = createStyleSheet(theme => ({
 	list: {
 		gap: theme.spacing['3xl'],
-		flexGrow: 1,
 		marginHorizontal: theme.spacing['3xl'],
 	},
 }))

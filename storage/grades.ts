@@ -12,19 +12,21 @@ export type SemesterType = {
 	singleGrades: SingleGradeType[]
 }
 
+export type ClassType = {
+	id: number
+	year: string
+	type: 'FOS' | 'Gymnasium'
+	subjects: {
+		name: string
+		id: number
+		semesters: [SemesterType, SemesterType]
+	}[]
+}
+
 export type GradesType = {
 	amountOfSubjects: number
 	amountOfClasses: number
-	classes: {
-		id: number
-		year: string
-		type: 'FOS' | 'Gymnasium'
-		subjects: {
-			name: string
-			id: number
-			semesters: [SemesterType, SemesterType]
-		}[]
-	}[]
+	classes: ClassType[]
 }
 
 export const lastUsedClass = observable(0)

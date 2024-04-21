@@ -18,7 +18,7 @@ export type GradesType = {
 	classes: {
 		id: number
 		year: string
-		type: 'FOS' | never
+		type: 'FOS' | 'Gymnasium'
 		subjects: {
 			name: string
 			id: number

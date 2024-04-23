@@ -4471,6 +4471,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bignumber.js@npm:*":
+  version: 9.1.2
+  resolution: "bignumber.js@npm:9.1.2"
+  checksum: 10c0/e17786545433f3110b868725c449fa9625366a6e675cd70eb39b60938d6adbd0158cb4b3ad4f306ce817165d37e63f4aa3098ba4110db1d9a3b9f66abfbaf10d
+  languageName: node
+  linkType: hard
+
 "bl@npm:^4.1.0":
   version: 4.1.0
   resolution: "bl@npm:4.1.0"
@@ -7424,6 +7431,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18n-js@npm:^4.4.3":
+  version: 4.4.3
+  resolution: "i18n-js@npm:4.4.3"
+  dependencies:
+    bignumber.js: "npm:*"
+    lodash: "npm:*"
+    make-plural: "npm:*"
+  checksum: 10c0/545ce16b5fe9323d1a92637c91c6cd503c1065577fcbe96dabb34cae822a9da6642e2953eeb0e9e610a912b92f98c885c4c9717163e351593aaf0c2e5695442d
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.6.3, iconv-lite@npm:^0.6.2":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
@@ -9124,7 +9142,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.13, lodash@npm:^4.17.19, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
+"lodash@npm:*, lodash@npm:^4.17.13, lodash@npm:^4.17.19, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -9234,6 +9252,13 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^10.0.0"
   checksum: 10c0/43b9f6dcbc6fe8b8604cb6396957c3698857a15ba4dbc38284f7f0e61f248300585ef1eb8cc62df54e9c724af977e45b5cdfd88320ef7f53e45070ed3488da55
+  languageName: node
+  linkType: hard
+
+"make-plural@npm:*":
+  version: 7.3.0
+  resolution: "make-plural@npm:7.3.0"
+  checksum: 10c0/e04eaebffe0fdb9d551ef1566df8dfdf101152ad99fd510666f476038eb144f07849749a09b7054b6469a72be2dbbe966a80590f2dc382495492bd9c510de46d
   languageName: node
   linkType: hard
 
@@ -9994,6 +10019,7 @@ __metadata:
     expo-status-bar: "npm:~1.11.1"
     expo-system-ui: "npm:~2.9.3"
     expo-web-browser: "npm:~12.8.2"
+    i18n-js: "npm:^4.4.3"
     jest: "npm:^29.2.1"
     jest-expo: "npm:~50.0.4"
     prettier: "npm:^3.2.5"

@@ -1,11 +1,12 @@
 import { observer } from '@legendapp/state/react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import GradeView from '@/components/GradeView'
+import SemesterView from '@/components/SemesterView'
 import { schools } from '@/storage/grades'
+import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 
 export default observer(SubjectScreen)
 
@@ -27,18 +28,61 @@ function SubjectScreen() {
 	return (
 		<View style={styles.container}>
 			<Stack.Screen options={{ headerTitle: name }} />
-			<Text>Semester One</Text>
-			<FlatList
-				data={semesterOne.singleGrades}
-				renderItem={({ item }) => <GradeView singleGrade={item} />}
-			/>
+
+			<View style={styles.averageContainer}>
+				<Text style={styles.averageText}>Average</Text>
+				<Text style={styles.average}>
+					{calculateAverageOfSemesters([semesterOne, semesterTwo])}{' '}
+					<Text style={styles.averagePointsText}>points</Text>
+				</Text>
+			</View>
+
+			<View style={styles.semesterContainer}>
+				<SemesterView semesterNumber={1} semester={semesterOne} />
+				<SemesterView semesterNumber={2} semester={semesterTwo} />
+			</View>
 		</View>
 	)
 }
 
-const stylesheet = createStyleSheet({
+const stylesheet = createStyleSheet(theme => ({
 	container: {
 		flex: 1,
-		alignItems: 'center',
+		backgroundColor: theme.colors.bg1,
+		paddingTop: theme.spacing['2xl'],
+		gap: theme.spacing['3xl'],
 	},
-})
+	averageContainer: {
+		paddingHorizontal: theme.spacing['6xl'],
+		paddingTop: theme.spacing['4xl'],
+		paddingBottom: theme.spacing['3xl'],
+		backgroundColor: theme.colors.bg2,
+		gap: theme.spacing['xl'],
+		borderRadius: theme.spacing['6xl'],
+	},
+	averageText: {
+		color: theme.colors.text5,
+		fontSize: theme.fontSizes.base,
+		fontWeight: theme.fontWeights.regular,
+		lineHeight: theme.fontSizes.base,
+		textTransform: 'uppercase',
+	},
+	average: {
+		fontSize: theme.fontSizes['6xl'],
+		fontWeight: theme.fontWeights.black,
+		lineHeight: theme.fontSizes['6xl'],
+		letterSpacing: -1.2,
+		color: theme.colors.text1,
+	},
+	averagePointsText: {
+		color: theme.colors.text2,
+		fontWeight: theme.fontWeights.regular,
+		fontSize: theme.fontSizes['2xl'],
+	},
+	semesterContainer: {
+		width: '100%',
+		paddingHorizontal: theme.spacing['6xl'],
+		paddingVertical: theme.spacing['4xl'],
+		gap: theme.spacing['5xl'],
+	},
+}))

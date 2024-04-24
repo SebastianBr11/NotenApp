@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { GradesType, lastUsedClass } from '@/storage/grades'
+import { t } from '@/util/localization'
 
 type ClassItemProps = {
 	item: GradesType['classes'][0]
@@ -47,7 +48,9 @@ export default function ClassItem({
 					size={24}
 					style={styles.leftIcon}
 				/>
-				<Text style={styles.text}>Jahr {item.year}</Text>
+				<Text style={styles.text}>
+					{t('screen-grades:class-year')} {item.year}
+				</Text>
 				<Feather
 					name='x-circle'
 					size={24}

@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
+import { t } from '@/util/localization'
 
 export default function AddClassButton() {
 	const { styles } = useStyles(stylesheet)
@@ -15,7 +16,9 @@ export default function AddClassButton() {
 		<View style={styles.buttonWrapper}>
 			<Link href='/addClass' onPress={dismissAll} asChild>
 				<TouchableOpacity activeOpacity={0.5} style={styles.button}>
-					<Text style={styles.buttonText}>ADD NEW CLASS</Text>
+					<Text style={styles.buttonText}>
+						{t('screen-grades:add-new-class')}
+					</Text>
 				</TouchableOpacity>
 			</Link>
 		</View>

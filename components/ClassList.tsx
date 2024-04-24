@@ -7,6 +7,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import ClassItem from './ClassItem'
 
 import { lastUsedClass, schools } from '@/storage/grades'
+import { t } from '@/util/localization'
 
 export default observer(ClassList)
 
@@ -19,15 +20,18 @@ function ClassList() {
 		const classToDelete = classes.find(c => c.id === classId)
 
 		Alert.alert(
-			'Delete Class?',
-			`Are you sure you want to delete the class ${classToDelete?.type} ${classToDelete?.year}?`,
+			t('screen-grades:delete-class'),
+			t('screen-grades:delete-class-prompt', {
+				type: classToDelete?.type,
+				year: classToDelete?.year,
+			}),
 			[
 				{
-					text: 'Cancel',
+					text: t('screen-grades:delete-class-cancel'),
 					style: 'cancel',
 				},
 				{
-					text: 'Delete',
+					text: t('screen-grades:delete-class-confirm'),
 					style: 'destructive',
 					onPress: () => {
 						schools.classes.set(oldClasses =>

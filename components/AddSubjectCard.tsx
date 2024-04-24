@@ -4,6 +4,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
+import { t } from '@/util/localization'
 
 type AddSubjectCardProps = {
 	classNumber: number
@@ -24,7 +25,7 @@ export default function AddSubjectCard({ classNumber }: AddSubjectCardProps) {
 			asChild
 		>
 			<TouchableOpacity activeOpacity={0.5} style={styles.card}>
-				<Text style={styles.subjectName}>Add new subject</Text>
+				<Text style={styles.subjectName}>{t('screen-grades:add-subject')}</Text>
 			</TouchableOpacity>
 		</Link>
 	)

@@ -9,6 +9,7 @@ import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
 import { schools } from '@/storage/grades'
+import { t } from '@/util/localization'
 
 type FormData = {
 	subjectName: string
@@ -45,18 +46,22 @@ export default function AddSubjectScreen() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Text style={styles.headerTitle}>New Subject</Text>
+				<Text style={styles.headerTitle}>
+					{t('screen-new-subject:new-subject')}
+				</Text>
 			</View>
 			<View style={styles.formWrapper}>
 				<View>
-					<TextInputLabel>Subject Name</TextInputLabel>
+					<TextInputLabel>
+						{t('screen-new-subject:subject-name')}
+					</TextInputLabel>
 					<Controller
 						control={control}
 						rules={{ required: true }}
 						name='subjectName'
 						render={({ field: { onChange, onBlur, value } }) => (
 							<TextInput
-								placeholder='e.g. German'
+								placeholder={t('screen-new-subject:subject-name-placeholder')}
 								onBlur={onBlur}
 								onChangeText={onChange}
 								value={value}
@@ -65,12 +70,12 @@ export default function AddSubjectScreen() {
 						)}
 					/>
 					{errors.subjectName && (
-						<ErrorText>The subject name is required.</ErrorText>
+						<ErrorText>{t('screen-new-subject:subject-name-error')}</ErrorText>
 					)}
 				</View>
 
 				<SubmitButton onPress={handleSubmit(onSubmit)}>
-					Add subject
+					{t('screen-new-subject:add-subject')}
 				</SubmitButton>
 			</View>
 			{/* Use a light status bar on iOS to account for the black space above the modal */}

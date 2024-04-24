@@ -4,6 +4,8 @@ import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import { t } from '@/util/localization'
+
 export default function AddClassPrompt() {
 	const { styles } = useStyles(stylesheet)
 
@@ -11,13 +13,15 @@ export default function AddClassPrompt() {
 		<View style={styles.container}>
 			<View style={styles.header}>
 				<Text style={styles.headerText}>
-					You haven't created any classes yet
+					{t('screen-grades:no-classes-created')}
 				</Text>
 			</View>
 			<View style={styles.buttonContainer}>
 				<Link href='/addClass' asChild>
 					<TouchableOpacity activeOpacity={0.5} style={styles.button}>
-						<Text style={styles.buttonText}>Create new class</Text>
+						<Text style={styles.buttonText}>
+							{t('screen-grades:create-class')}
+						</Text>
 					</TouchableOpacity>
 				</Link>
 			</View>

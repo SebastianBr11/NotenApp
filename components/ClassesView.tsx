@@ -4,12 +4,14 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import ClassList from './ClassList'
 
+import { t } from '@/util/localization'
+
 export default function ClassesView() {
 	const { styles } = useStyles(stylesheet)
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.headerText}>Manage Classes</Text>
+			<Text style={styles.headerText}>{t('screen-grades:manage-classes')}</Text>
 			<View style={styles.listWrapper}>
 				<ClassList />
 			</View>

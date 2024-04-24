@@ -13,6 +13,7 @@ import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
 import { schools } from '@/storage/grades'
+import { t } from '@/util/localization'
 
 const formSchema = z.object({
 	year: z.string().regex(/^\d+$/),
@@ -63,11 +64,11 @@ function AddClassScreen() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Text style={styles.headerText}>New class</Text>
+				<Text style={styles.headerText}>{t('screen-new-class:new-class')}</Text>
 			</View>
 			<View style={styles.formWrapper}>
 				<View>
-					<TextInputLabel>Year</TextInputLabel>
+					<TextInputLabel>{t('screen-new-class:year')}</TextInputLabel>
 					<Controller
 						control={control}
 						rules={{
@@ -76,7 +77,7 @@ function AddClassScreen() {
 						name='year'
 						render={({ field: { onChange, value } }) => (
 							<TextInput
-								placeholder='e.g. 10'
+								placeholder={t('screen-new-class:year-placeholder')}
 								onChangeText={onChange}
 								value={value}
 								inputMode='numeric'
@@ -85,11 +86,11 @@ function AddClassScreen() {
 						)}
 					/>
 					{errors.year && (
-						<ErrorText>The year is required and has to be a number.</ErrorText>
+						<ErrorText>{t('screen-new-class:year-error')}</ErrorText>
 					)}
 				</View>
 				<View>
-					<TextInputLabel>Class Type</TextInputLabel>
+					<TextInputLabel>{t('screen-new-class:class-type')}</TextInputLabel>
 					<Controller
 						control={control}
 						rules={{
@@ -101,7 +102,9 @@ function AddClassScreen() {
 						)}
 					/>
 				</View>
-				<SubmitButton onPress={handleSubmit(onSubmit)}>Add class</SubmitButton>
+				<SubmitButton onPress={handleSubmit(onSubmit)}>
+					{t('screen-new-subject:add-class')}
+				</SubmitButton>
 			</View>
 		</View>
 	)

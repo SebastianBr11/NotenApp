@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
+import { t } from '@/util/localization'
+
 export {
 	// Catch any errors thrown by the Layout component.
 	ErrorBoundary,
@@ -70,21 +72,21 @@ function RootLayoutNav() {
 					<Stack.Screen
 						name='settings'
 						options={{
-							headerTitle: 'Settings',
+							headerTitle: t('screen-settings'),
 							presentation: 'modal',
 						}}
 					/>
 					<Stack.Screen
 						name='addSubject/[classNumber]'
 						options={{
-							headerTitle: 'Add new subject',
+							headerTitle: t('screen-new-subject'),
 							presentation: 'modal',
 						}}
 					/>
 					<Stack.Screen
 						name='addClass'
 						options={{
-							headerTitle: 'Add new class',
+							headerTitle: t('screen-new-class'),
 						}}
 					/>
 				</Stack>

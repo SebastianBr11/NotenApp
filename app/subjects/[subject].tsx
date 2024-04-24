@@ -7,6 +7,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import SemesterView from '@/components/SemesterView'
 import { schools } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
+import { t } from '@/util/localization'
 
 export default observer(SubjectScreen)
 
@@ -30,10 +31,12 @@ function SubjectScreen() {
 			<Stack.Screen options={{ headerTitle: name }} />
 
 			<View style={styles.averageContainer}>
-				<Text style={styles.averageText}>Average</Text>
+				<Text style={styles.averageText}>{t('screen-subject:average')}</Text>
 				<Text style={styles.average}>
 					{calculateAverageOfSemesters([semesterOne, semesterTwo])}{' '}
-					<Text style={styles.averagePointsText}>points</Text>
+					<Text style={styles.averagePointsText}>
+						{t('screen-subject:points')}
+					</Text>
 				</Text>
 			</View>
 

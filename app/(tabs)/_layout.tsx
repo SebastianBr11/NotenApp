@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
 import { useClientOnlyValue } from '@/components/useClientOnlyValue'
+import { t } from '@/util/localization'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -41,7 +42,7 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name='index'
 				options={{
-					title: 'Grades',
+					title: t('screen-grades'),
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name='notebook-edit' color={color} />
 					),
@@ -62,7 +63,7 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name='calendar'
 				options={{
-					title: 'Calendar',
+					title: t('screen-calendar'),
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name='calendar-month' color={color} />
 					),

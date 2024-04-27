@@ -12,19 +12,22 @@ export type SemesterType = {
 	singleGrades: SingleGradeType[]
 }
 
+export type SubjectType = {
+	name: string
+	id: number
+	semesters: [SemesterType, SemesterType]
+}
+
 export type ClassType = {
 	id: number
 	year: string
 	type: 'FOS' | 'Gymnasium'
-	subjects: {
-		name: string
-		id: number
-		semesters: [SemesterType, SemesterType]
-	}[]
+	subjects: SubjectType[]
 }
 
 export type GradesType = {
 	addClass: (newClass: ClassType) => void
+	addSubject: (classNumber: number, newSubject: SubjectType) => void
 	amountOfSubjects: number
 	amountOfClasses: number
 	classes: ClassType[]
@@ -35,6 +38,12 @@ export const lastUsedClass = observable(0)
 export const schools: ObservableObject<GradesType> = observable<GradesType>({
 	addClass: newClass => {
 		schools.classes.set(oldClasses => [...oldClasses, newClass])
+	},
+	addSubject: (classNumber, newSubject) => {
+		schools.classes[classNumber].subjects.set(oldSubjects => [
+			...oldSubjects,
+			newSubject,
+		])
 	},
 
 	amountOfSubjects: computed(() => calculateAmountOfSubjects(schools.get())),

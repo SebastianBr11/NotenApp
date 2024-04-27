@@ -37,7 +37,7 @@ export default function AddSubjectScreen() {
 
 		const newId = schools.amountOfSubjects.get() + 1
 
-		schools.classes[Number(classNumber)].subjects.push({
+		schools.addSubject(Number(classNumber), {
 			id: newId,
 			name: data.subjectName,
 			semesters: [{ singleGrades: [] }, { singleGrades: [] }],

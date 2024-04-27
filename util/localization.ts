@@ -86,3 +86,9 @@ export function t(
 ) {
 	return i18n.t(resource, options)
 }
+
+const numberFormatter = new Intl.NumberFormat(i18n.locale)
+
+export function formatNumber(number: number) {
+	return numberFormatter.format(number)
+}

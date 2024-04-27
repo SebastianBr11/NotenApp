@@ -6,7 +6,7 @@ import GradeView from './GradeView'
 
 import { SemesterType } from '@/storage/grades'
 import { calculateAverageOfSemester } from '@/util/gradeCalcFos'
-import { t } from '@/util/localization'
+import { formatNumber, t } from '@/util/localization'
 
 type SemesterViewProps = {
 	semester: SemesterType
@@ -28,7 +28,8 @@ export default function SemesterView({
 					{t('screen-subject:semester')} {semesterNumberText}
 				</Text>
 				<Text style={styles.semesterHeaderAverage}>
-					{calculateAverageOfSemester(semester)} {t('screen-subject:points')}
+					{formatNumber(calculateAverageOfSemester(semester))}{' '}
+					{t('screen-subject:points')}
 				</Text>
 			</View>
 			<FlatList

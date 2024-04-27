@@ -18,15 +18,17 @@ export const calculateAverageOfSemesters = ([
 	if (semesters[1]) {
 		const averageOfSecondSemester = calculateAverageOfSemester(semesters['1'])
 
+		console.log(averageOfFirstSemester, averageOfSecondSemester)
+
 		const average = calculateAverage({
 			points: averageOfFirstSemester + averageOfSecondSemester,
 			amount: 2,
 		})
 
-		return average
+		return Math.round(average)
 	}
 
-	return averageOfFirstSemester
+	return Math.round(averageOfFirstSemester)
 }
 
 export const calculateAverageOfSemester = (semester: SemesterType) => {
@@ -82,7 +84,7 @@ export const calculateAverage = ({
 	points: number
 	amount: number
 }) => {
-	return Math.round(points / amount)
+	return points / amount
 }
 
 export const calculateAmountOfSecondaryGrades = (semester: SemesterType) => {

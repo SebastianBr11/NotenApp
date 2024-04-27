@@ -13,7 +13,8 @@ export default function FormScreenForm({ children }: FormScreenContainerProps) {
 
 const stylesheet = createStyleSheet(theme => ({
 	formWrapper: {
+		flexGrow: 1,
+		flexBasis: 'auto',
 		gap: theme.spacing['2xl'],
-		flex: 2,
 	},
 }))

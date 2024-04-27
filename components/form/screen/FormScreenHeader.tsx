@@ -18,7 +18,8 @@ export default function FormScreenHeader({ children }: FormScreenHeaderProps) {
 
 const stylesheet = createStyleSheet(theme => ({
 	headerContainer: {
-		flex: 1,
+		flexBasis: 'auto',
+		flexGrow: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

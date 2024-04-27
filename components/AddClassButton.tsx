@@ -14,7 +14,7 @@ export default function AddClassButton() {
 
 	return (
 		<View style={styles.buttonWrapper}>
-			<Link href='/addClass' onPress={dismissAll} asChild>
+			<Link href='/add-class' onPress={dismissAll} asChild>
 				<TouchableOpacity activeOpacity={0.5} style={styles.button}>
 					<Text style={styles.buttonText}>
 						{t('screen-grades:add-new-class')}

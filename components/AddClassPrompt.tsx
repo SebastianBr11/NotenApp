@@ -17,7 +17,7 @@ export default function AddClassPrompt() {
 				</Text>
 			</View>
 			<View style={styles.buttonContainer}>
-				<Link href='/addClass' asChild>
+				<Link href='/add-class' asChild>
 					<TouchableOpacity activeOpacity={0.5} style={styles.button}>
 						<Text style={styles.buttonText}>
 							{t('screen-grades:create-class')}

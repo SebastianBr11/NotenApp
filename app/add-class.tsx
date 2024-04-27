@@ -3,7 +3,7 @@ import { observer } from '@legendapp/state/react'
 import { router } from 'expo-router'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
 
@@ -12,6 +12,10 @@ import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
+import FormScreen, {
+	FormScreenForm,
+	FormScreenHeader,
+} from '@/components/form/screen'
 import { schools } from '@/storage/grades'
 import { t } from '@/util/localization'
 
@@ -62,11 +66,10 @@ function AddClassScreen() {
 	}
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.header}>
-				<Text style={styles.headerText}>{t('screen-new-class:new-class')}</Text>
-			</View>
-			<View style={styles.formWrapper}>
+		<FormScreen>
+			<FormScreenHeader>{t('screen-new-class:new-class')}</FormScreenHeader>
+
+			<FormScreenForm>
 				<View>
 					<TextInputLabel>{t('screen-new-class:year')}</TextInputLabel>
 					<Controller
@@ -105,48 +108,9 @@ function AddClassScreen() {
 				<SubmitButton onPress={handleSubmit(onSubmit)}>
 					{t('screen-new-subject:add-class')}
 				</SubmitButton>
-			</View>
-		</View>
+			</FormScreenForm>
+		</FormScreen>
 	)
 }
 
-const stylesheet = createStyleSheet(theme => ({
-	container: {
-		flex: 1,
-		// alignItems: 'center',
-		paddingHorizontal: theme.spacing['4xl'],
-		paddingVertical: theme.spacing['4xl'],
-		gap: theme.spacing['5xl'],
-		backgroundColor: theme.colors.bg1,
-	},
-	header: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	headerText: {
-		fontSize: theme.fontSizes['6xl'],
-		lineHeight: theme.fontSizes['6xl'],
-		fontWeight: theme.fontWeights.black,
-		letterSpacing: -1.2,
-		color: theme.colors.text4,
-		textAlign: 'center',
-	},
-	formWrapper: {
-		gap: theme.spacing['2xl'],
-		flex: 2,
-	},
-	submitButton: {
-		backgroundColor: theme.colors.mainBg3,
-		paddingVertical: theme.spacing.xl,
-		paddingHorizontal: theme.spacing['4xl'],
-		marginTop: theme.spacing['2xl'],
-		borderRadius: theme.spacing.sm,
-		alignSelf: 'flex-start',
-	},
-	submitText: {
-		fontWeight: theme.fontWeights.regular,
-		fontSize: theme.fontSizes.xl,
-		color: theme.colors.mainText2,
-	},
-}))
+const stylesheet = createStyleSheet(theme => ({}))

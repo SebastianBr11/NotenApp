@@ -18,7 +18,7 @@ export default function AddSubjectCard({ classNumber }: AddSubjectCardProps) {
 	return (
 		<Link
 			href={{
-				pathname: '/addSubject/[classNumber]',
+				pathname: '/add-subject/[classNumber]',
 				params: { classNumber },
 			}}
 			onPress={dismissAll}

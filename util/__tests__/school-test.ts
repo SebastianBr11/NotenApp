@@ -7,7 +7,8 @@ describe('calculateAmountOfSubjects', () => {
 		const schools: GradesType = {
 			classes: [
 				{
-					year: 11,
+					id: 1,
+					year: '11',
 					type: 'FOS',
 					subjects: [
 						{
@@ -70,6 +71,7 @@ describe('calculateAmountOfSubjects', () => {
 				},
 			],
 			amountOfSubjects: 4,
+			amountOfClasses: 1,
 		}
 
 		expect(calculateAmountOfSubjects(schools)).toBe(schools.amountOfSubjects)

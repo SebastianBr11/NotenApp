@@ -6,10 +6,14 @@
 		"dev": "APP_VARIANT=development npx expo start",
 		"build:eas-local-prod": "eas build --local --profile production --platform android",
 		"build:eas-local-dev": "eas build --local --profile development --platform android",
+		"prebuild:dev": "APP_VARIANT=development npx expo prebuild",
 		"build:dev": "APP_VARIANT=development npx expo run:android",
+		"prebuild:prod": "npx expo prebuild",
 		"build:prod": "npx expo run:android --variant release",
 		"test": "jest --watchAll",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"android": "expo run:android",
+		"ios": "expo run:ios"
 	},
 	"jest": {
 		"preset": "jest-expo"

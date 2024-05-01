@@ -27,7 +27,11 @@ export default function SubmitButton({
 
 const stylesheet = createStyleSheet(theme => ({
 	submitButton: {
-		backgroundColor: theme.colors.main[500],
+		backgroundColor: ifDarkElse(
+			theme,
+			theme.colors.main[800],
+			theme.colors.main[500],
+		),
 		paddingVertical: theme.spacing.xl,
 		paddingHorizontal: theme.spacing['4xl'],
 		marginTop: theme.spacing['2xl'],
@@ -37,6 +41,6 @@ const stylesheet = createStyleSheet(theme => ({
 	submitText: {
 		fontWeight: theme.fontWeights.bold,
 		fontSize: theme.fontSizes.xl,
-		color: ifDarkElse(theme, theme.colors.main[950], theme.colors.main[100]),
+		color: ifDarkElse(theme, theme.colors.main[200], theme.colors.main[100]),
 	},
 }))

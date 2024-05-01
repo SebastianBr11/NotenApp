@@ -32,6 +32,7 @@ const translations: TranslationsType = {
 		'Bist du dir sicher, dass du die Klasse %{type} %{year} löschen willst?',
 	'screen-grades:delete-class-cancel': 'Abbrechen',
 	'screen-grades:delete-class-confirm': 'Löschen',
+	'screen-grades:no-subject-added': 'Du hast noch kein Fach hinzugefügt',
 }
 
 export default translations

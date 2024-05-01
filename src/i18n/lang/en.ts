@@ -29,6 +29,7 @@ const translations = {
 		'Are you sure you want to delete the class %{type} %{year}?',
 	'screen-grades:delete-class-cancel': 'Cancel',
 	'screen-grades:delete-class-confirm': 'Delete',
+	'screen-grades:no-subject-added': "You haven't added any Subjects yet",
 }
 
 export default translations

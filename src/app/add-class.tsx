@@ -15,9 +15,9 @@ import FormScreen, {
 	FormScreenForm,
 	FormScreenHeader,
 } from '@/components/form/screen'
+import { t } from '@/i18n/util'
 import ClassTypeSelector from '@/modules/add-class/components/ClassTypeSelector'
 import { schools } from '@/storage/grades'
-import { t } from '@/util/localization'
 
 const formSchema = z.object({
 	year: z.string().regex(/^\d+$/),

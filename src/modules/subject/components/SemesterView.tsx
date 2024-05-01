@@ -4,9 +4,9 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import GradeView from './GradeView'
 
+import { formatNumber, t } from '@/i18n/util'
 import { SemesterType } from '@/storage/grades'
 import { calculateAverageOfSemester } from '@/util/gradeCalcFos'
-import { formatNumber, t } from '@/util/localization'
 
 type SemesterViewProps = {
 	semester: SemesterType

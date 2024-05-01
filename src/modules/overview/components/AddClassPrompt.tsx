@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import { t } from '@/util/localization'
+import { t } from '@/i18n/util'
 
 export default function AddClassPrompt() {
 	const { styles } = useStyles(stylesheet)

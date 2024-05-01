@@ -4,7 +4,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
-import { t } from '@/util/localization'
+import { t } from '@/i18n/util'
 
 type AddSubjectCardProps = {
 	classNumber: number

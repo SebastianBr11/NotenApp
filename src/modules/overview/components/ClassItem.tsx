@@ -6,8 +6,8 @@ import { OpacityDecorator } from 'react-native-draggable-flatlist'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import { t } from '@/i18n/util'
 import { GradesType, lastUsedClass } from '@/storage/grades'
-import { t } from '@/util/localization'
 
 type ClassItemProps = {
 	item: GradesType['classes'][0]

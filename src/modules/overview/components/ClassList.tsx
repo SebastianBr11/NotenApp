@@ -6,8 +6,8 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import ClassItem from './ClassItem'
 
+import { t } from '@/i18n/util'
 import { lastUsedClass, schools } from '@/storage/grades'
-import { t } from '@/util/localization'
 
 export default observer(ClassList)
 

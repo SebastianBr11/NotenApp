@@ -4,7 +4,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import ClassList from './ClassList'
 
-import { t } from '@/util/localization'
+import { t } from '@/i18n/util'
 
 export default function ClassesView() {
 	const { styles } = useStyles(stylesheet)

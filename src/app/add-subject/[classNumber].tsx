@@ -12,8 +12,8 @@ import FormScreen, {
 	FormScreenForm,
 	FormScreenHeader,
 } from '@/components/form/screen'
+import { t } from '@/i18n/util'
 import { schools } from '@/storage/grades'
-import { t } from '@/util/localization'
 
 type FormData = {
 	subjectName: string

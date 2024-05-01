@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
 import { useClientOnlyValue } from '@/components/useClientOnlyValue'
-import { t } from '@/util/localization'
+import { t } from '@/i18n/util'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {

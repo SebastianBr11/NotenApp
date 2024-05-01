@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
-import { t } from '@/util/localization'
+import { t } from '@/i18n/util'
 
 export {
 	// Catch any errors thrown by the Layout component.

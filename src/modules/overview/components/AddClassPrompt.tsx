@@ -40,8 +40,8 @@ const stylesheet = createStyleSheet(theme => ({
 		justifyContent: 'center',
 	},
 	headerText: {
-		fontSize: theme.fontSizes['6xl'],
-		lineHeight: theme.fontSizes['6xl'],
+		fontSize: theme.fontSizes['5xl'],
+		lineHeight: 1.1 * theme.fontSizes['5xl'],
 		fontWeight: theme.fontWeights.black,
 		letterSpacing: -1.2,
 		color: theme.colors.text4,

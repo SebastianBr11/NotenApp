@@ -7,7 +7,6 @@ import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
 
-import ClassTypeSelector from '@/components/ClassTypeSelector'
 import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
@@ -16,6 +15,7 @@ import FormScreen, {
 	FormScreenForm,
 	FormScreenHeader,
 } from '@/components/form/screen'
+import ClassTypeSelector from '@/modules/add-class/components/ClassTypeSelector'
 import { schools } from '@/storage/grades'
 import { t } from '@/util/localization'
 

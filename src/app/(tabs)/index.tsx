@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import GradesOverview from '@/components/GradesOverview'
+import GradesOverview from '@/modules/overview/components/GradesOverview'
 
 export default function TabOneScreen() {
 	const { styles } = useStyles(stylesheet)

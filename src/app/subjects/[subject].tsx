@@ -4,7 +4,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import SemesterView from '@/components/SemesterView'
+import SemesterView from '@/modules/subject/components/SemesterView'
 import { schools } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 import { t } from '@/util/localization'

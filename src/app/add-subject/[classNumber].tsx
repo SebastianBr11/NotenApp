@@ -40,7 +40,7 @@ export default function AddSubjectScreen() {
 		schools.addSubject(Number(classNumber), {
 			id: newId,
 			name: data.subjectName,
-			semesters: [{ singleGrades: [] }, { singleGrades: [] }],
+			semesters: [{ secondaryGrades: [] }, { secondaryGrades: [] }],
 		})
 
 		router.replace(`/subjects/${newId}?selectedClass=${classNumber}`)

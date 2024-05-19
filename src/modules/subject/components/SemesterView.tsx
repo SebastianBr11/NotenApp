@@ -34,7 +34,7 @@ export default function SemesterView({
 			</View>
 			<FlatList
 				contentContainerStyle={styles.gradesList}
-				data={semester.singleGrades}
+				data={semester.secondaryGrades}
 				renderItem={({ item }) => <GradeView singleGrade={item} />}
 			/>
 		</View>

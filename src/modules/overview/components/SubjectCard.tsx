@@ -4,11 +4,11 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
-import { GradesType } from '@/storage/grades'
+import { ClassType } from '@/storage/grades'
 import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 
 type SubjectCardProps = {
-	subject: GradesType['classes']['0']['subjects']['0']
+	subject: ClassType['subjects'][0]
 	selectedClass: number
 }
 

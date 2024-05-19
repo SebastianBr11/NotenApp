@@ -3,11 +3,11 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
-import { GradesType } from '@/storage/grades'
+import { ClassType } from '@/storage/grades'
 
 type ClassTypeSelectorProps = {
 	onChange: () => void
-	value: GradesType['classes'][0]['type']
+	value: ClassType['type']
 }
 
 export default function ClassTypeSelector({

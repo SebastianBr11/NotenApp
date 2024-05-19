@@ -1,4 +1,6 @@
-import { GradesType, SemesterType, SingleGradeType } from '@/storage/grades'
+import { toTwoSignificantFigures } from './number'
+
+import { SemesterType, SingleGradeType } from '@/storage/grades'
 
 /*
  * FOS Calculation first calculates the average of secondary
@@ -7,74 +9,68 @@ import { GradesType, SemesterType, SingleGradeType } from '@/storage/grades'
  * whole average
  */
 
-type CalculateAverageProps =
-	GradesType['classes']['0']['subjects']['0']['semesters']
+type CalculateAverageProps = SemesterType[]
 
 export const calculateAverageOfSemesters = ([
 	...semesters
 ]: CalculateAverageProps) => {
-	const averageOfFirstSemester = calculateAverageOfSemester(semesters['0'])
+	const firstSemester = semesters[0]
+	const secondSemester = semesters[1]
 
-	if (semesters[1]) {
-		const averageOfSecondSemester = calculateAverageOfSemester(semesters['1'])
-
-		console.log(averageOfFirstSemester, averageOfSecondSemester)
-
-		const average = calculateAverage({
-			points: averageOfFirstSemester + averageOfSecondSemester,
-			amount: 2,
-		})
-
-		return Math.round(average)
+	if (semesterHasGrades(firstSemester) && !semesterHasGrades(secondSemester)) {
+		return toTwoSignificantFigures(calculateAverageOfSemester(firstSemester))
+	} else if (
+		!semesterHasGrades(firstSemester) &&
+		semesterHasGrades(secondSemester)
+	) {
+		return toTwoSignificantFigures(calculateAverageOfSemester(secondSemester))
 	}
 
-	return Math.round(averageOfFirstSemester)
+	const averageOfFirstSemester = calculateAverageOfSemester(firstSemester)
+	const averageOfSecondSemester = calculateAverageOfSemester(secondSemester)
+
+	const average = calculateAverage({
+		points:
+			Math.round(averageOfFirstSemester) + Math.round(averageOfSecondSemester),
+		amount: 2,
+	})
+
+	return toTwoSignificantFigures(average)
 }
 
 export const calculateAverageOfSemester = (semester: SemesterType) => {
-	let primaryGrade = 0
-	const sumOfSecondaryPoints = semester.singleGrades.reduce((acc, grade) => {
-		if (grade.type !== 'Schulaufgabe') {
-			return acc + getSecondaryGradeFactor(grade) * grade.points
-		}
+	const primaryGrade = semester.primaryGrade?.points
+	const hasPrimaryGrade = primaryGrade !== undefined && primaryGrade !== null
+	const hasSecondaryGrade = semester.secondaryGrades.length > 0
 
-		// Even though there should only be one Schulaufgabe per semester
-		// Gracefully handle the case of there being multiple by
-		// continuously calculating the average
-		if (primaryGrade !== 0) {
-			primaryGrade = calculateAverage({
-				points: primaryGrade + grade.points,
-				amount: 2,
-			})
-		} else {
-			primaryGrade = grade.points
-		}
-		return acc
-	}, 0)
+	const weightedAmountOfSecondaryGrades =
+		calculateWeightedAmountOfSecondaryGrades(semester)
 
-	// If there's no secondary grades, try to use the primary grade
-	// else return 0
-	if (sumOfSecondaryPoints === 0) {
-		if (primaryGrade === 0) {
-			return 0
-		}
+	if (!hasPrimaryGrade && !hasSecondaryGrade) {
+		return 0
+	}
+
+	if (hasPrimaryGrade && !hasSecondaryGrade) {
 		return primaryGrade
 	}
 
+	const sumOfSecondaryPoints = semester.secondaryGrades.reduce((acc, grade) => {
+		return acc + getSecondaryGradeFactor(grade) * grade.points
+	}, 0)
+
 	const averageOfSecondaryGrades = calculateAverage({
 		points: sumOfSecondaryPoints,
-		amount: calculateAmountOfSecondaryGrades(semester),
+		amount: weightedAmountOfSecondaryGrades,
 	})
 
-	// If there's no primary grade, just use the secondary average
-	if (primaryGrade === 0) {
+	if (!hasPrimaryGrade && hasSecondaryGrade) {
 		return averageOfSecondaryGrades
-	} else {
-		return calculateAverage({
-			points: averageOfSecondaryGrades + primaryGrade,
-			amount: 2,
-		})
 	}
+
+	return calculateAverage({
+		points: averageOfSecondaryGrades + primaryGrade!,
+		amount: 2,
+	})
 }
 
 export const calculateAverage = ({
@@ -87,13 +83,11 @@ export const calculateAverage = ({
 	return points / amount
 }
 
-export const calculateAmountOfSecondaryGrades = (semester: SemesterType) => {
-	return semester.singleGrades.reduce((acc, grade) => {
-		let addAmount = 0
-		if (grade.type !== 'Schulaufgabe') {
-			addAmount = getSecondaryGradeFactor(grade)
-		}
-		return acc + addAmount
+export const calculateWeightedAmountOfSecondaryGrades = (
+	semester: SemesterType,
+) => {
+	return semester.secondaryGrades.reduce((acc, grade) => {
+		return acc + getSecondaryGradeFactor(grade)
 	}, 0)
 }
 
@@ -106,4 +100,8 @@ export const getSecondaryGradeFactor = (singleGrade: SingleGradeType) => {
 		case 'Mündlich':
 			return 1
 	}
+}
+
+const semesterHasGrades = (semester: SemesterType) => {
+	return !!semester.primaryGrade || semester.secondaryGrades.length !== 0
 }

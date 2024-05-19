@@ -2630,17 +2630,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/state@npm:^2.1.9":
-  version: 2.1.9
-  resolution: "@legendapp/state@npm:2.1.9"
+"@legendapp/state@npm:2.2.0-next.92":
+  version: 2.2.0-next.92
+  resolution: "@legendapp/state@npm:2.2.0-next.92"
   dependencies:
     use-sync-external-store: "npm:^1.2.0"
-  peerDependencies:
-    react: ">=16.8.0"
-  peerDependenciesMeta:
-    react:
-      optional: true
-  checksum: 10c0/ea8486ed7b42acaa3c4b679922c28c1303fe69b9443fd4ffa4c17c530e7538b8796cbc0cbd25e6838cb92dceb3a7c3cc396c2900325c19c53a9df4d692ad2193
+  checksum: 10c0/7578721d519145abc5dcf4d7267d8143e718e6e3352af48f2e0f6927894a24435bf9036da56a53d2ea8d3b9dca2b4bba257da37271136b39e98e9d046e1bde07
   languageName: node
   linkType: hard
 
@@ -10001,7 +9996,7 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.0"
     "@gorhom/bottom-sheet": "npm:^4"
     "@hookform/resolvers": "npm:^3.3.4"
-    "@legendapp/state": "npm:^2.1.9"
+    "@legendapp/state": "npm:2.2.0-next.92"
     "@react-native-async-storage/async-storage": "npm:1.21.0"
     "@react-navigation/native": "npm:^6.0.2"
     "@types/eslint": "npm:^8"

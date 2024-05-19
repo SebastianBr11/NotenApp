@@ -1,25 +1,24 @@
 import {
-	calculateAmountOfSecondaryGrades,
 	calculateAverage,
 	calculateAverageOfSemester,
+	calculateWeightedAmountOfSecondaryGrades,
 } from '../gradeCalcFos'
 
 import { SemesterType } from '@/storage/grades'
-
-describe('calculateAmountOfSecondaryGrades()', () => {
-	it('calculates the correct amount of grades for a mix of grade types', () => {
+describe('calculateWeightedAmountOfSecondaryGrades()', () => {
+	it('calculates the correct weighted amount of grades for a mix of grade types', () => {
 		const semester: SemesterType = {
-			singleGrades: [
-				{ grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			secondaryGrades: [
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
 				{ grade: 3, points: 9, type: 'Mündlich' },
 			],
 		}
 
-		expect(calculateAmountOfSecondaryGrades(semester)).toBe(3)
+		expect(calculateWeightedAmountOfSecondaryGrades(semester)).toBe(3)
 
 		const semester2: SemesterType = {
-			singleGrades: [
+			secondaryGrades: [
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
@@ -27,7 +26,7 @@ describe('calculateAmountOfSecondaryGrades()', () => {
 			],
 		}
 
-		expect(calculateAmountOfSecondaryGrades(semester2)).toBe(8)
+		expect(calculateWeightedAmountOfSecondaryGrades(semester2)).toBe(8)
 	})
 })
 
@@ -45,41 +44,41 @@ describe('calculateAverage()', () => {
 				points: 30,
 				amount: 12,
 			}),
-		).toBe(3)
+		).toBe(2.5)
 
 		expect(
 			calculateAverage({
 				points: 35,
 				amount: 3,
 			}),
-		).toBe(12)
+		).toBe(35 / 3)
 
 		expect(
 			calculateAverage({
 				points: 34,
 				amount: 3,
 			}),
-		).toBe(11)
+		).toBe(34 / 3)
 	})
 })
 
 describe('calculateAverageOfSemester()', () => {
 	it('calculates the correct average points of a semester', () => {
 		const semester: SemesterType = {
-			singleGrades: [
-				{ grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			secondaryGrades: [
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
 				{ grade: 3, points: 9, type: 'Mündlich' },
 			],
 		}
 
 		expect(calculateAverageOfSemester(semester)).toBe(
-			Math.round((15 + Math.round((10 + 10 + 9) / 3)) / 2),
+			(15 + (10 + 10 + 9) / 3) / 2,
 		)
 
 		const semester2: SemesterType = {
-			singleGrades: [
-				{ grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			secondaryGrades: [
 				{ grade: 2, points: 10, type: 'Kurzarbeit' },
 				{ grade: 2, points: 12, type: 'Kurzarbeit' },
 				{ grade: 3, points: 9, type: 'Mündlich' },
@@ -87,11 +86,13 @@ describe('calculateAverageOfSemester()', () => {
 			],
 		}
 
+		// Secondary Grades:
 		// 10*2 + 12*2 + 9 + 5
 		// = 20 + 24 + 14
 		// = 44 + 14 = 58
 		// 58 / (2*2 + 2) = 58 / 6
-		// (15 + 10) / 2 = 13
-		expect(calculateAverageOfSemester(semester2)).toBe(13)
+		// Primary and Secondary Grades:
+		// (15 + 58/6) / 2
+		expect(calculateAverageOfSemester(semester2)).toBe((15 + 58 / 6) / 2)
 	})
 })

@@ -7,6 +7,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { schools } from './grades'
 
+// TODO: Adjust imports for persisting states
+// This may have been renamed to sync for some reason
+// at least in the current non-release version
+
 // Global configuration
 configureObservablePersistence({
 	// Use AsyncStorage in React Native

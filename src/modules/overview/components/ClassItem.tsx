@@ -30,7 +30,7 @@ export default function ClassItem({
 
 	const onPress = () => {
 		dismissAll()
-		lastUsedClass.set(getIndex())
+		lastUsedClass.set(getIndex() ?? 0)
 	}
 
 	return (

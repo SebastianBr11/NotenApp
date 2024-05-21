@@ -33,8 +33,6 @@ export default function AddSubjectScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		console.log(data)
-
 		const newId = schools.amountOfSubjects.get() + 1
 
 		schools.addSubject(Number(classNumber), {

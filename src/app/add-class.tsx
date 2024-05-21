@@ -44,8 +44,6 @@ function AddClassScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		console.log(data)
-
 		const newId = schools.amountOfClasses.get() + 1
 
 		schools.addClass({

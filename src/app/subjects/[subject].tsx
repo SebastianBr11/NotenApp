@@ -24,8 +24,6 @@ function SubjectScreen() {
 		subject => subject.id === Number(subjectId),
 	)!
 
-	// console.log(subject, slug)
-
 	return (
 		<View style={styles.container}>
 			<Stack.Screen options={{ headerTitle: name }} />

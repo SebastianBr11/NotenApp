@@ -9,12 +9,12 @@ import {
 	FosClassType,
 	SingleGradeType as FosSingleGradeType,
 	SubjectType as FosSubjectType,
-} from './classTypes/fos'
+} from './types/fos'
 import {
 	GymnasiumClassType,
 	SingleGradeType as GymnasiumSingleGradeType,
 	SubjectType as GymnasiumSubjectType,
-} from './classTypes/gymnasium'
+} from './types/gymnasium'
 
 import { calculateAmountOfSubjects } from '@/util/school'
 

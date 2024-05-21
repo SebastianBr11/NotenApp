@@ -35,7 +35,6 @@ function GradesOverview() {
 		bottomSheetModalRef.current?.present()
 	}, [])
 	const handleSheetChanges = useCallback((index: number) => {
-		console.log('handleSheetChanges', index)
 		if (index > -1) {
 			setIsBottomSheetOpen(true)
 		} else {

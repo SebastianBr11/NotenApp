@@ -1,3 +1,5 @@
+import { Grade } from './grade'
+
 export type FosClassType = {
 	id: number
 	year: string
@@ -5,16 +7,12 @@ export type FosClassType = {
 	subjects: SubjectType[]
 }
 
-type PrimaryGradeType = {
+type PrimaryGradeType = Grade & {
 	type: 'Schulaufgabe'
-	points: number
-	grade: 1 | 2 | 3 | 4 | 5 | 6
 }
 
-type SecondaryGradeType = {
+type SecondaryGradeType = Grade & {
 	type: 'Kurzarbeit' | 'Mündlich'
-	points: number
-	grade: 1 | 2 | 3 | 4 | 5 | 6
 }
 
 export type SingleGradeType = PrimaryGradeType | SecondaryGradeType

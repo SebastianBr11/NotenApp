@@ -63,14 +63,14 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 						{
 							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
 							secondaryGrades: [
-								{ type: 'Kurzarbeit', points: 12, grade: 1 },
+								{ type: 'Kurzarbeit', points: 12, grade: 2 },
 								{ type: 'Kurzarbeit', points: 15, grade: 1 },
 							],
 						},
 						{
 							secondaryGrades: [
 								{ type: 'Kurzarbeit', points: 15, grade: 1 },
-								{ type: 'Kurzarbeit', points: 12, grade: 1 },
+								{ type: 'Kurzarbeit', points: 12, grade: 2 },
 							],
 						},
 					],

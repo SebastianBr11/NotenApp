@@ -35,7 +35,7 @@ function SubjectCardView() {
 			layout={FadingTransition}
 			contentContainerStyle={styles.list}
 			data={yearGrades}
-			keyExtractor={item => item.id}
+			keyExtractor={item => String(item.id)}
 			renderItem={({ item, index }) => (
 				<Animated.View
 					entering={SlideInDown.springify()

@@ -34,6 +34,11 @@ export default function SemesterView({
 			</View>
 			<FlatList
 				contentContainerStyle={styles.gradesList}
+				ListHeaderComponent={
+					semester.primaryGrade ? (
+						<GradeView singleGrade={semester.primaryGrade} />
+					) : null
+				}
 				data={semester.secondaryGrades}
 				renderItem={({ item }) => <GradeView singleGrade={item} />}
 			/>

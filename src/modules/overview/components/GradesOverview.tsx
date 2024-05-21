@@ -4,9 +4,8 @@ import {
 	BottomSheetView,
 } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
-import { useFocusEffect } from 'expo-router'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { BackHandler, View } from 'react-native'
+import React from 'react'
+import { View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import AddClassButton from './AddClassButton'
@@ -16,6 +15,7 @@ import ClassesView from './ClassesView'
 import SchoolClassSelector from './SchoolClassSelector'
 import SubjectCardView from './SubjectCardView'
 
+import { useSetupBottomSheetModal } from '@/modules/overview/components/useSetupBottomSheetModal'
 import { lastUsedClass, schools } from '@/storage/grades'
 
 export default observer(GradesOverview)
@@ -25,41 +25,12 @@ function GradesOverview() {
 
 	const selectedClass = lastUsedClass.get()
 
-	const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
-
-	const bottomSheetModalRef = useRef<BottomSheetModal>(null)
-
-	const snapPoints = useMemo(() => ['35%', '45%'], [])
-
-	const handlePresentModalPress = useCallback(() => {
-		bottomSheetModalRef.current?.present()
-	}, [])
-	const handleSheetChanges = useCallback((index: number) => {
-		if (index > -1) {
-			setIsBottomSheetOpen(true)
-		} else {
-			setIsBottomSheetOpen(false)
-		}
-	}, [])
-
-	useFocusEffect(
-		useCallback(() => {
-			const onBackPress = () => {
-				if (isBottomSheetOpen) {
-					bottomSheetModalRef.current?.close()
-					return true // Tell React Native that the event was handled
-				}
-				return false
-			}
-
-			const subscription = BackHandler.addEventListener(
-				'hardwareBackPress',
-				onBackPress,
-			)
-
-			return () => subscription.remove()
-		}, [isBottomSheetOpen]),
-	)
+	const {
+		bottomSheetModalRef,
+		handlePresentModalPress,
+		handleSheetChanges,
+		snapPoints,
+	} = useSetupBottomSheetModal()
 
 	return (
 		<View style={styles.mainView}>

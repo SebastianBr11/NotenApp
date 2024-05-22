@@ -14,6 +14,16 @@ const translations: TranslationsType = {
 	'screen-subject:average': 'Durchschnitt',
 	'screen-subject:points': 'Punkte',
 	'screen-subject:semester': 'Halbjahr',
+	'screen-subject:add-grade': 'Note hinzufügen',
+	'screen-subject:form-grade-type': 'Notentyp',
+	'screen-subject:form-points': 'Punkte',
+	'screen-subject:form-points-placeholder': 'z. B. 10',
+	'screen-subject:form-points-error-message':
+		'Punkte sind erforderlich und müssen eine Zahl zwischen 0 und 15 sein.',
+	'screen-subject:form-semester': 'Halbjahr',
+	'screen-subject:error-title': 'Ein Fehler ist aufgetreten',
+	'screen-subject:error-message':
+		'Dieses Halbjahr hat bereits eine Schulaufgabennote.',
 	'screen-new-class:new-class': 'Neue Klasse',
 	'screen-new-class:year': 'Jahr',
 	'screen-new-class:year-placeholder': 'z. B. 10',

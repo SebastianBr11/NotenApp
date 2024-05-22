@@ -2,6 +2,7 @@ import ErrorText from '@/components/form/ErrorText'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
+import { t } from '@/i18n/util'
 import { SingleGradeType } from '@/storage/grades'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
@@ -45,10 +46,10 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.header}>Add Grade</Text>
+			<Text style={styles.header}>{t('screen-subject:add-grade')}</Text>
 
 			<View>
-				<TextInputLabel>Type</TextInputLabel>
+				<TextInputLabel>{t('screen-subject:form-grade-type')}</TextInputLabel>
 				<Controller
 					control={control}
 					rules={{
@@ -61,7 +62,7 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 				/>
 			</View>
 			<View>
-				<TextInputLabel>Points</TextInputLabel>
+				<TextInputLabel>{t('screen-subject:form-points')}</TextInputLabel>
 				<Controller
 					control={control}
 					rules={{
@@ -73,18 +74,18 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 							formState={{ error: errors.points }}
 							onChangeText={onChange}
 							value={value}
-							placeholder='z. B. 15'
+							placeholder={t('screen-subject:form-points-placeholder')}
 							inputMode='numeric'
 						/>
 					)}
 				/>
 				{errors.points && (
-					<ErrorText>Points must be a number between 0 and 15</ErrorText>
+					<ErrorText>{t('screen-subject:form-points-error-message')}</ErrorText>
 				)}
 			</View>
 
 			<View>
-				<TextInputLabel>Semester</TextInputLabel>
+				<TextInputLabel>{t('screen-subject:form-semester')}</TextInputLabel>
 				<Controller
 					control={control}
 					rules={{
@@ -97,7 +98,9 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 				/>
 			</View>
 
-			<SubmitButton onPress={handleSubmit(onSubmit)}>Add Grade</SubmitButton>
+			<SubmitButton onPress={handleSubmit(onSubmit)}>
+				{t('screen-subject:add-grade')}
+			</SubmitButton>
 		</View>
 	)
 }

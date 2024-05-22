@@ -53,8 +53,8 @@ function SubjectScreen() {
 			bottomSheetModalRef.current?.dismiss()
 		} else {
 			Alert.alert(
-				'Es ist ein Fehler aufgetreten!',
-				'Es gibt bereits eine Schulaufgabe in diesem Schuljahr',
+				t('screen-subject:error-title'),
+				t('screen-subject:error-message'),
 			)
 		}
 	}

@@ -19,12 +19,8 @@ export default observer(SubjectScreen)
 
 function SubjectScreen() {
 	const { styles, theme } = useStyles(stylesheet)
-	const {
-		bottomSheetModalRef,
-		handlePresentModalPress,
-		handleSheetChanges,
-		snapPoints,
-	} = useSetupBottomSheetModal({ snapPoints: ['80%'] })
+	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
+		useSetupBottomSheetModal()
 
 	const { subject: subjectId, selectedClass } = useLocalSearchParams()
 	const classes = schools.classes.get()
@@ -63,7 +59,7 @@ function SubjectScreen() {
 
 			<BottomSheetModal
 				ref={bottomSheetModalRef}
-				snapPoints={snapPoints}
+				enableDynamicSizing
 				onChange={handleSheetChanges}
 				handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
 				handleStyle={{
@@ -89,7 +85,5 @@ const stylesheet = createStyleSheet(theme => ({
 		backgroundColor: theme.colors.bg1,
 		paddingTop: theme.spacing['2xl'],
 	},
-	bottomSheetContainer: {
-		flex: 1,
-	},
+	bottomSheetContainer: {},
 }))

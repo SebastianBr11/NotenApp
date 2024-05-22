@@ -107,7 +107,6 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 
 const stylesheet = createStyleSheet(theme => ({
 	container: {
-		flex: 1,
 		paddingVertical: theme.spacing['4xl'],
 		paddingHorizontal: theme.spacing['5xl'],
 		gap: theme.spacing['3xl'],

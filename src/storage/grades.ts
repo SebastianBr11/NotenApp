@@ -31,6 +31,12 @@ export type GradesType = {
 		classNumber: number,
 		newSubject: FosSubjectType | GymnasiumSubjectType,
 	) => void
+	addGrade: (
+		classNumber: number,
+		subjectNumber: number,
+		semester: 1 | 2,
+		newGrade: SingleGradeType,
+	) => boolean
 }
 
 export const lastUsedClass = observable(0)
@@ -44,6 +50,28 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 			...oldSubjects,
 			newSubject,
 		])
+	},
+	addGrade: (classNumber, subjectNumber, semester, newGrade) => {
+		const subject = schools.classes[classNumber].subjects.find(
+			subject => subject.id.get() === subjectNumber,
+		)
+		if (!subject) {
+			return false
+		}
+
+		const subjectSemester = subject.semesters[semester - 1]
+		const alreadyHasPrimaryGrade = !!subjectSemester.primaryGrade.get()
+
+		if (alreadyHasPrimaryGrade) {
+			return false
+		}
+
+		if (newGrade.type === 'Schulaufgabe') {
+			subjectSemester.primaryGrade.set(newGrade)
+			return true
+		} else {
+			return true
+		}
 	},
 
 	amountOfSubjects: computed(() =>

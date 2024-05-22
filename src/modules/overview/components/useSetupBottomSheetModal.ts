@@ -1,14 +1,20 @@
-import { BottomSheetModal } from '@gorhom/bottom-sheet'
+import { BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet'
 import { useFocusEffect } from 'expo-router'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { BackHandler } from 'react-native'
 
-export const useSetupBottomSheetModal = () => {
+type UseSetupBottomSheetModalProps = {
+	snapPoints?: BottomSheetModalProps['snapPoints']
+}
+
+export const useSetupBottomSheetModal = (
+	{ snapPoints }: UseSetupBottomSheetModalProps = {
+		snapPoints: ['35%', '45%'],
+	},
+) => {
 	const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
 
 	const bottomSheetModalRef = useRef<BottomSheetModal>(null)
-
-	const snapPoints = useMemo(() => ['35%', '45%'], [])
 
 	const handlePresentModalPress = useCallback(() => {
 		bottomSheetModalRef.current?.present()

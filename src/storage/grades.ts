@@ -55,6 +55,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 		const subject = schools.classes[classNumber].subjects.find(
 			subject => subject.id.get() === subjectNumber,
 		)
+
 		if (!subject) {
 			return false
 		}
@@ -62,7 +63,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 		const subjectSemester = subject.semesters[semester - 1]
 		const alreadyHasPrimaryGrade = !!subjectSemester.primaryGrade.get()
 
-		if (alreadyHasPrimaryGrade) {
+		if (newGrade.type === 'Schulaufgabe' && alreadyHasPrimaryGrade) {
 			return false
 		}
 
@@ -70,6 +71,7 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 			subjectSemester.primaryGrade.set(newGrade)
 			return true
 		} else {
+			subjectSemester.secondaryGrades.set(oldGrades => [...oldGrades, newGrade])
 			return true
 		}
 	},

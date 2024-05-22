@@ -38,11 +38,10 @@ function SubjectScreen() {
 	)!
 
 	const handleAddGrade = (data: FormData) => {
-		console.log('adding')
 		const didSucceed = schools.addGrade(
 			Number(selectedClass),
 			Number(subjectId),
-			1,
+			data.semester,
 			{
 				grade: calculateGradeFromPoints(Number(data.points)),
 				type: data.type,
@@ -50,9 +49,9 @@ function SubjectScreen() {
 			},
 		)
 
-		console.log(didSucceed)
-
-		if (!didSucceed) {
+		if (didSucceed) {
+			bottomSheetModalRef.current?.dismiss()
+		} else {
 			Alert.alert(
 				'Es ist ein Fehler aufgetreten!',
 				'Es gibt bereits eine Schulaufgabe in diesem Schuljahr',

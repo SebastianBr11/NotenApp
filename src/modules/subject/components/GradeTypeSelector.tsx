@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
@@ -6,21 +6,18 @@ import { ifDarkElse } from '@/constants/themes'
 import { SingleGradeType } from '@/storage/grades'
 
 type GradeTypeSelectorProps = {
-	onChange: () => void
+	onChange: (...event: any[]) => void
 	value: SingleGradeType['type']
 }
 
 export default function GradeTypeSelector({
 	onChange,
-	value,
+	value: selectedType,
 }: GradeTypeSelectorProps) {
 	const { styles } = useStyles(stylesheet)
 
-	const [selectedType, setSelectedType] = useState(value)
-
 	const onSelectType = (type: GradeTypeSelectorProps['value']) => {
-		onChange()
-		setSelectedType(type)
+		onChange(type)
 	}
 
 	return (

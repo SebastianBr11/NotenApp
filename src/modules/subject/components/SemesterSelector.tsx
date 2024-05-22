@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { ifDarkElse } from '@/constants/themes'
 
 type SemesterSelectorProps = {
-	onChange: () => void
+	onChange: (...event: any[]) => void
 	value: 1 | 2
 }
 
 export default function SemesterSelector({
 	onChange,
-	value,
+	value: selectedType,
 }: SemesterSelectorProps) {
 	const { styles } = useStyles(stylesheet)
 
-	const [selectedType, setSelectedType] = useState(value)
-
 	const onSelectType = (type: SemesterSelectorProps['value']) => {
-		onChange()
-		setSelectedType(type)
+		onChange(type)
 	}
 
 	return (

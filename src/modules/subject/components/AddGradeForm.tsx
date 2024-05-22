@@ -38,13 +38,10 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 		control,
 		handleSubmit,
 		formState: { errors },
-		getValues,
 	} = useForm<FormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: { type: 'Schulaufgabe', semester: 1 },
 	})
-
-	console.log(getValues())
 
 	return (
 		<View style={styles.container}>

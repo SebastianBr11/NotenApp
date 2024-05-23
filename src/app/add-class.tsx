@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { observer } from '@legendapp/state/react'
 import { router } from 'expo-router'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -18,6 +17,7 @@ import FormScreen, {
 import { t } from '@/i18n/util'
 import ClassTypeSelector from '@/modules/add-class/components/ClassTypeSelector'
 import { schools } from '@/storage/grades'
+import { observer } from '@legendapp/state/react'
 
 const formSchema = z.object({
 	year: z.string().regex(/^\d+$/),

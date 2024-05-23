@@ -1,8 +1,5 @@
-import {
-	configureObservablePersistence,
-	persistObservable,
-} from '@legendapp/state/persist'
 import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage'
+import { configureObservableSync, syncObservable } from '@legendapp/state/sync'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { schools } from './grades'
@@ -12,15 +9,18 @@ import { schools } from './grades'
 // at least in the current non-release version
 
 // Global configuration
-configureObservablePersistence({
+configureObservableSync({
 	// Use AsyncStorage in React Native
-	pluginLocal: ObservablePersistAsyncStorage,
-	localOptions: {
-		asyncStorage: {
-			// The AsyncStorage plugin needs to be given the implementation of AsyncStorage
-			AsyncStorage,
-		},
+	persist: {
+		plugin: ObservablePersistAsyncStorage,
+		asyncStorage: { AsyncStorage },
 	},
 })
 
-persistObservable(schools, { local: 'schools' })
+const status$ = syncObservable(schools, {
+	persist: {
+		name: 'schools',
+	},
+})
+
+// await when(status$.isPersistLoaded)

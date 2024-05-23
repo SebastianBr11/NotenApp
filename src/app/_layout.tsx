@@ -1,4 +1,6 @@
 import '@/constants/unistyles'
+import { t } from '@/i18n/util'
+import '@/storage/state'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { useFonts } from 'expo-font'
@@ -7,8 +9,6 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
-
-import { t } from '@/i18n/util'
 
 export {
 	// Catch any errors thrown by the Layout component.

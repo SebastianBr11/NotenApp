@@ -1,10 +1,4 @@
-import {
-	Observable,
-	ObservableObject,
-	computed,
-	observable,
-} from '@legendapp/state'
-
+import { Observable, ObservableObject, observable } from '@legendapp/state'
 import {
 	FosClassType,
 	SingleGradeType as FosSingleGradeType,
@@ -76,10 +70,10 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 		}
 	},
 
-	amountOfSubjects: computed(() =>
+	amountOfSubjects: observable(() =>
 		calculateAmountOfSubjects(schools.classes.get()),
 	),
-	amountOfClasses: computed(() => schools.classes.length),
+	amountOfClasses: observable(() => schools.classes.length),
 	classes: [
 		{
 			id: 1,

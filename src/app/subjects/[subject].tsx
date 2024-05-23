@@ -1,4 +1,3 @@
-import { observer } from '@legendapp/state/react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import React from 'react'
 import { Alert, View } from 'react-native'
@@ -14,6 +13,7 @@ import GradesList from '@/modules/subject/components/GradesList'
 import { schools } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { observer } from '@legendapp/state/react'
 
 export default observer(SubjectScreen)
 

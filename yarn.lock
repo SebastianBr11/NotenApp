@@ -2121,12 +2121,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/state@npm:2.2.0-next.92":
-  version: 2.2.0-next.92
-  resolution: "@legendapp/state@npm:2.2.0-next.92"
+"@legendapp/state@npm:3.0.0-alpha.1":
+  version: 3.0.0-alpha.1
+  resolution: "@legendapp/state@npm:3.0.0-alpha.1"
   dependencies:
     use-sync-external-store: "npm:^1.2.0"
-  checksum: 10c0/7578721d519145abc5dcf4d7267d8143e718e6e3352af48f2e0f6927894a24435bf9036da56a53d2ea8d3b9dca2b4bba257da37271136b39e98e9d046e1bde07
+  checksum: 10c0/c3b7ac5359a6be6733455f11f309160e9f452a587aa3cdcb9f0399496c964f1bd5ec94555dec17a4d543e9e00e3ddc932ae1d0ebfb2570aff662db324c725229
   languageName: node
   linkType: hard
 
@@ -9340,7 +9340,7 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.0"
     "@gorhom/bottom-sheet": "npm:^4"
     "@hookform/resolvers": "npm:^3.3.4"
-    "@legendapp/state": "npm:2.2.0-next.92"
+    "@legendapp/state": "npm:3.0.0-alpha.1"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@react-navigation/native": "npm:^6.0.2"
     "@types/eslint": "npm:^8"

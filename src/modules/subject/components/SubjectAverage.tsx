@@ -1,4 +1,4 @@
-import { t } from '@/i18n/util'
+import { formatNumber, t } from '@/i18n/util'
 import React from 'react'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
@@ -14,7 +14,7 @@ export default function SubjectAverage({ average }: SubjectAverageProps) {
 		<View style={styles.averageContainer}>
 			<Text style={styles.averageText}>{t('screen-subject:average')}</Text>
 			<Text style={styles.average}>
-				{average}{' '}
+				{formatNumber(average)}{' '}
 				<Text style={styles.averagePointsText}>
 					{t('screen-subject:points')}
 				</Text>

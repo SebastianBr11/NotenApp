@@ -4,8 +4,8 @@ import React from 'react'
 import { Alert, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
 import { t } from '@/i18n/util'
-import { useSetupBottomSheetModal } from '@/modules/overview/components/useSetupBottomSheetModal'
 import AddGradeButton from '@/modules/subject/components/AddGradeButton'
 import AddGradeForm, {
 	FormData,
@@ -69,7 +69,7 @@ function SubjectScreen() {
 				}}
 				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			>
-				<BottomSheetView style={styles.bottomSheetContainer}>
+				<BottomSheetView>
 					<AddGradeForm onSubmit={handleAddGrade} />
 				</BottomSheetView>
 			</BottomSheetModal>
@@ -85,5 +85,4 @@ const stylesheet = createStyleSheet(theme => ({
 		backgroundColor: theme.colors.bg1,
 		paddingTop: theme.spacing['2xl'],
 	},
-	bottomSheetContainer: {},
 }))

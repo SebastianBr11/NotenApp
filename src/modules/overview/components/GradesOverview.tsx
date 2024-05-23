@@ -8,9 +8,9 @@ import AddSubjectCard from './AddSubjectCard'
 import SchoolClassSelector from './SchoolClassSelector'
 import SubjectCardView from './SubjectCardView'
 
+import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
 import { lastUsedClass, schools } from '@/storage/grades'
 import ClassesModal from './ClassesModal'
-import { useSetupBottomSheetModal } from './useSetupBottomSheetModal'
 
 export default observer(GradesOverview)
 

@@ -23,6 +23,7 @@ export default function RadioButton<T extends string | number>({
 			activeOpacity={0.5}
 			onPress={() => onSelect(value)}
 			style={styles.radioButton(selected, disabled)}
+			disabled={disabled}
 		>
 			<Text style={styles.text(selected, disabled)}>{value}</Text>
 		</TouchableOpacity>

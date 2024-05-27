@@ -17,10 +17,8 @@ configureObservableSync({
 	},
 })
 
-const status$ = syncObservable(schools, {
+export const status$ = syncObservable(schools, {
 	persist: {
 		name: 'schools',
 	},
 })
-
-// await when(status$.isPersistLoaded)

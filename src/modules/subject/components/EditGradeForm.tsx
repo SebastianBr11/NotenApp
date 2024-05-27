@@ -1,69 +1,66 @@
+import DeleteButton from '@/components/form/DeleteButton'
 import ErrorText from '@/components/form/ErrorText'
-import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
 import { t } from '@/i18n/util'
+import { SingleGradeType } from '@/storage/grades'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { observer } from '@legendapp/state/react'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { z } from 'zod'
-import GradeTypeSelector from './GradeTypeSelector'
-import SemesterSelector from './SemesterSelector'
-
-export const zodPointsSchema = z.string().regex(/^([0-9]|1[0-5])$/)
+import { zodPointsSchema } from './AddGradeForm'
 
 const formSchema = z.object({
 	points: zodPointsSchema,
-	type: z
-		.literal('Schulaufgabe')
-		.or(z.literal('Mündlich'))
-		.or(z.literal('Kurzarbeit')),
-	semester: z.literal(1).or(z.literal(2)),
 })
 
-export type FormData = z.infer<typeof formSchema>
+type FormData = z.infer<typeof formSchema>
 
-type AddGradeFormProps = {
-	onSubmit: (data: FormData) => void
+type EditGradeFormProps = {
+	currentGrade: SingleGradeType
+	onChangePoints: (newPoints: number) => void
+	onDelete: () => void
 }
 
-export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
+export default observer(EditGradeForm)
+
+function EditGradeForm({
+	currentGrade,
+	onChangePoints,
+	onDelete,
+}: EditGradeFormProps) {
 	const { styles } = useStyles(stylesheet)
 
 	const {
 		control,
-		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
+		mode: 'onChange',
 		resolver: zodResolver(formSchema),
-		defaultValues: { type: 'Schulaufgabe', semester: 1 },
+		defaultValues: { points: currentGrade.points.toString() },
 	})
+
+	const handleChange = (newPoints: string) => {
+		onChangePoints(parseInt(newPoints))
+	}
+
+	const handleDelete = () => {
+		onDelete()
+	}
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.header}>{t('screen-subject:add-grade')}</Text>
-
+			<Text style={styles.header}>Edit Grade</Text>
 			<View>
-				<TextInputLabel>{t('screen-subject:form-grade-type')}</TextInputLabel>
+				<TextInputLabel>Points</TextInputLabel>
 				<Controller
 					control={control}
 					rules={{
 						required: true,
-					}}
-					name='type'
-					render={({ field: { onChange, value } }) => (
-						<GradeTypeSelector onChange={onChange} value={value} />
-					)}
-				/>
-			</View>
-			<View>
-				<TextInputLabel>{t('screen-subject:form-points')}</TextInputLabel>
-				<Controller
-					control={control}
-					rules={{
-						required: true,
+						onChange: (newValue: string) => handleChange(newValue),
 					}}
 					name='points'
 					render={({ field: { onChange, value } }) => (
@@ -81,23 +78,7 @@ export default function AddGradeForm({ onSubmit }: AddGradeFormProps) {
 				)}
 			</View>
 
-			<View>
-				<TextInputLabel>{t('screen-subject:form-semester')}</TextInputLabel>
-				<Controller
-					control={control}
-					rules={{
-						required: true,
-					}}
-					name='semester'
-					render={({ field: { onChange, value } }) => (
-						<SemesterSelector onChange={onChange} value={value} />
-					)}
-				/>
-			</View>
-
-			<SubmitButton onPress={handleSubmit(onSubmit)}>
-				{t('screen-subject:add-grade')}
-			</SubmitButton>
+			<DeleteButton onPress={handleDelete}>Delete Grade</DeleteButton>
 		</View>
 	)
 }

@@ -2,59 +2,30 @@ import React from 'react'
 import { Pressable, PressableStateCallbackType, Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import TextInputLabel from '@/components/form/TextInputLabel'
 import { ifDarkElse } from '@/constants/themes'
-import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
 import { SingleGradeType } from '@/storage/grades'
 import { Feather } from '@expo/vector-icons'
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 
 type GradeViewType = {
 	singleGrade: SingleGradeType
+	onPress: () => void
 }
 
-export default function GradeView({ singleGrade }: GradeViewType) {
+export default function GradeView({ singleGrade, onPress }: GradeViewType) {
 	const { styles, theme } = useStyles(stylesheet)
 
-	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
-		useSetupBottomSheetModal()
-
-	const handlePress = () => {
-		handlePresentModalPress()
-	}
-
 	return (
-		<>
-			<Pressable onPress={handlePress} style={styles.container}>
-				<View style={styles.typeWrapper}>
-					<Text style={styles.gradeTypeText}>{singleGrade.type}</Text>
-					<Feather
-						name='edit'
-						size={theme.spacing['2xl']}
-						color={theme.colors.text5}
-					/>
-				</View>
-				<Text style={styles.pointsText}>{singleGrade.points}</Text>
-			</Pressable>
-			<BottomSheetModal
-				ref={bottomSheetModalRef}
-				enableDynamicSizing
-				onChange={handleSheetChanges}
-				handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
-				handleStyle={{
-					backgroundColor: theme.colors.bg2,
-					borderTopStartRadius: 20,
-					borderTopEndRadius: 20,
-				}}
-				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
-			>
-				<BottomSheetView>
-					<Text>hi</Text>
-					<TextInputLabel>Points</TextInputLabel>
-					{/* <TextInput value={singleGrade.points} /> */}
-				</BottomSheetView>
-			</BottomSheetModal>
-		</>
+		<Pressable onPress={onPress} style={styles.container}>
+			<View style={styles.typeWrapper}>
+				<Text style={styles.gradeTypeText}>{singleGrade.type}</Text>
+				<Feather
+					name='edit'
+					size={theme.spacing['2xl']}
+					color={theme.colors.text5}
+				/>
+			</View>
+			<Text style={styles.pointsText}>{singleGrade.points}</Text>
+		</Pressable>
 	)
 }
 

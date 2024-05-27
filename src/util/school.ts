@@ -1,11 +1,13 @@
-import { ClassType } from '@/storage/grades'
+import { ClassType, SingleGradeType } from '@/storage/grades'
 
 export const calculateAmountOfSubjects = (classes: ClassType[]) => {
 	return classes.reduce((acc, cur) => acc + cur.subjects.length, 0)
 }
 
 // TODO: Add tests
-export const calculateGradeFromPoints = (points: number) => {
+export const calculateGradeFromPoints = (
+	points: SingleGradeType['points'],
+): SingleGradeType['grade'] => {
 	if (points === 0) {
 		return 6
 	} else if (points <= 3) {

@@ -34,6 +34,7 @@ function GradesList({ semesters }: GradesListProps) {
 		points: 15,
 		type: 'Schulaufgabe',
 		semester: 1,
+		id: 0,
 	})
 
 	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
@@ -47,7 +48,6 @@ function GradesList({ semesters }: GradesListProps) {
 		semester: 1 | 2
 	}) => {
 		setSelectedGrade({ semester, ...grade })
-		console.log(selectedGrade)
 		handlePresentModalPress()
 	}
 
@@ -62,6 +62,7 @@ function GradesList({ semesters }: GradesListProps) {
 					data: semester.secondaryGrades,
 					semesterNumber: (index + 1) as 1 | 2,
 				}))}
+				keyExtractor={item => String(item.id)}
 				contentContainerStyle={styles.gradesList}
 				ListHeaderComponent={
 					<SubjectAverage average={calculateAverageOfSemesters(semesters)} />
@@ -125,8 +126,7 @@ function GradesList({ semesters }: GradesListProps) {
 						// since the value of points is only supplied as
 						// a default in the form and rerenders
 						// wouldn't change it
-						// TODO: Replace key with specific id
-						key={selectedGrade.points}
+						key={selectedGrade.id}
 					/>
 				</BottomSheetView>
 			</BottomSheetModal>

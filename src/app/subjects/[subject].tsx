@@ -10,7 +10,7 @@ import AddGradeForm, {
 	FormData,
 } from '@/modules/subject/components/AddGradeForm'
 import GradesList from '@/modules/subject/components/GradesList'
-import { schools } from '@/storage/grades'
+import { SingleGradeType, schools } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
@@ -37,7 +37,8 @@ function SubjectScreen() {
 			{
 				grade: calculateGradeFromPoints(Number(data.points)),
 				type: data.type,
-				points: Number(data.points),
+				points: Number(data.points) as SingleGradeType['points'],
+				id: 0, // TODO: Generate ids instead of just using 0
 			},
 		)
 

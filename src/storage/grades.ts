@@ -85,16 +85,21 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 1,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 1,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [
-								{ type: 'Kurzarbeit', points: 12, grade: 2 },
-								{ type: 'Kurzarbeit', points: 15, grade: 1 },
+								{ id: 2, type: 'Kurzarbeit', points: 12, grade: 2 },
+								{ id: 3, type: 'Kurzarbeit', points: 15, grade: 1 },
 							],
 						},
 						{
 							secondaryGrades: [
-								{ type: 'Kurzarbeit', points: 15, grade: 1 },
-								{ type: 'Kurzarbeit', points: 12, grade: 2 },
+								{ id: 4, type: 'Kurzarbeit', points: 15, grade: 1 },
+								{ id: 5, type: 'Kurzarbeit', points: 12, grade: 2 },
 							],
 						},
 					],
@@ -107,7 +112,9 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 6, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -116,11 +123,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 3,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 7,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 8, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -136,11 +150,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 4,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 9,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 10, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -156,11 +177,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 5,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 11,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 12, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -169,11 +197,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 6,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 13,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 14, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -182,11 +217,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 7,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 15,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 16, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -195,11 +237,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 8,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 17,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 18, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -208,11 +257,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 9,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 19,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 20, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},
@@ -221,11 +277,18 @@ export const schools: ObservableObject<GradesType> = observable<GradesType>({
 					id: 10,
 					semesters: [
 						{
-							primaryGrade: { type: 'Schulaufgabe', points: 15, grade: 1 },
+							primaryGrade: {
+								id: 21,
+								type: 'Schulaufgabe',
+								points: 15,
+								grade: 1,
+							},
 							secondaryGrades: [],
 						},
 						{
-							secondaryGrades: [{ type: 'Kurzarbeit', points: 15, grade: 1 }],
+							secondaryGrades: [
+								{ id: 22, type: 'Kurzarbeit', points: 15, grade: 1 },
+							],
 						},
 					],
 				},

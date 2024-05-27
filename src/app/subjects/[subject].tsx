@@ -3,6 +3,7 @@ import React from 'react'
 import { Alert, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
+import BottomSheetModal from '@/components/BottomSheetModal'
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
 import { t } from '@/i18n/util'
 import AddGradeButton from '@/modules/subject/components/AddGradeButton'
@@ -12,13 +13,13 @@ import AddGradeForm, {
 import GradesList from '@/modules/subject/components/GradesList'
 import { SingleGradeType, schools } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
 
 export default observer(SubjectScreen)
 
 function SubjectScreen() {
-	const { styles, theme } = useStyles(stylesheet)
+	const { styles } = useStyles(stylesheet)
 	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
 		useSetupBottomSheetModal()
 
@@ -62,13 +63,6 @@ function SubjectScreen() {
 				ref={bottomSheetModalRef}
 				enableDynamicSizing
 				onChange={handleSheetChanges}
-				handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
-				handleStyle={{
-					backgroundColor: theme.colors.bg2,
-					borderTopStartRadius: 20,
-					borderTopEndRadius: 20,
-				}}
-				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			>
 				<BottomSheetView>
 					<AddGradeForm onSubmit={handleAddGrade} />

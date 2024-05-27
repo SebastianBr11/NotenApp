@@ -1,3 +1,4 @@
+import BottomSheetModal from '@/components/BottomSheetModal'
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
 import { SemesterType, SingleGradeType } from '@/storage/grades'
 import {
@@ -5,7 +6,7 @@ import {
 	calculateAverageOfSemesters,
 } from '@/util/gradeCalcFos'
 import { toTwoSignificantFigures } from '@/util/number'
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
 import React, { useState } from 'react'
 import { SectionList, View } from 'react-native'
@@ -26,7 +27,7 @@ type GradesListProps = {
 export default observer(GradesList)
 
 function GradesList({ semesters }: GradesListProps) {
-	const { styles, theme } = useStyles(stylesheet)
+	const { styles } = useStyles(stylesheet)
 
 	// Default value just to make typescript happy
 	const [selectedGrade, setSelectedGrade] = useState<SelectedGrade>({
@@ -109,13 +110,6 @@ function GradesList({ semesters }: GradesListProps) {
 				ref={bottomSheetModalRef}
 				enableDynamicSizing
 				onChange={handleSheetChanges}
-				handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
-				handleStyle={{
-					backgroundColor: theme.colors.bg2,
-					borderTopStartRadius: 20,
-					borderTopEndRadius: 20,
-				}}
-				backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			>
 				<BottomSheetView>
 					<EditGradeForm

@@ -1,9 +1,10 @@
+import BottomSheetModal from '@/components/BottomSheetModal'
 import {
 	BottomSheetFooter,
-	BottomSheetModal,
 	BottomSheetModalProps,
 	BottomSheetView,
 } from '@gorhom/bottom-sheet'
+import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types'
 import React from 'react'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import AddClassButton from './AddClassButton'
@@ -13,7 +14,7 @@ type ClassesModalProps = Pick<
 	BottomSheetModalProps,
 	'snapPoints' | 'onChange'
 > & {
-	bottomSheetModalRef: React.RefObject<BottomSheetModal>
+	bottomSheetModalRef: React.RefObject<BottomSheetModalMethods>
 }
 
 export default function ClassesModal({
@@ -21,7 +22,7 @@ export default function ClassesModal({
 	snapPoints,
 	onChange,
 }: ClassesModalProps) {
-	const { styles, theme } = useStyles(stylesheet)
+	const { styles } = useStyles(stylesheet)
 
 	return (
 		<BottomSheetModal
@@ -29,13 +30,6 @@ export default function ClassesModal({
 			index={1}
 			snapPoints={snapPoints}
 			onChange={onChange}
-			handleIndicatorStyle={{ backgroundColor: theme.colors.text1 }}
-			handleStyle={{
-				backgroundColor: theme.colors.bg2,
-				borderTopStartRadius: 20,
-				borderTopEndRadius: 20,
-			}}
-			backgroundStyle={{ backgroundColor: theme.colors.bg2 }}
 			footerComponent={props => (
 				<BottomSheetFooter {...props}>
 					<AddClassButton />

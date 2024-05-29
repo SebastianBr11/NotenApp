@@ -7,7 +7,6 @@ import {
 } from '@/util/gradeCalcFos'
 import { toTwoSignificantFigures } from '@/util/number'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
-import { observer } from '@legendapp/state/react'
 import React, { useState } from 'react'
 import { SectionList, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
@@ -24,9 +23,7 @@ type GradesListProps = {
 	semesters: [SemesterType, SemesterType]
 }
 
-export default observer(GradesList)
-
-function GradesList({ semesters }: GradesListProps) {
+export default function GradesList({ semesters }: GradesListProps) {
 	const { styles } = useStyles(stylesheet)
 
 	// Default value just to make typescript happy

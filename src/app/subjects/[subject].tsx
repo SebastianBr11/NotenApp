@@ -11,7 +11,7 @@ import AddGradeForm, {
 	FormData,
 } from '@/modules/subject/components/AddGradeForm'
 import GradesList from '@/modules/subject/components/GradesList'
-import { SingleGradeType, schools } from '@/storage/grades'
+import grades, { SingleGradeType } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
 import { observer } from '@legendapp/state/react'
@@ -24,14 +24,14 @@ function SubjectScreen() {
 		useSetupBottomSheetModal()
 
 	const { subject: subjectId, selectedClass } = useLocalSearchParams()
-	const classes = schools.classes.get()
+	const classes = grades.classes.get()
 
 	const { name, semesters } = classes[Number(selectedClass)].subjects.find(
 		subject => subject.id === Number(subjectId),
 	)!
 
 	const handleAddGrade = (data: FormData) => {
-		const didSucceed = schools.addGrade(
+		const didSucceed = grades.addGrade(
 			Number(selectedClass),
 			Number(subjectId),
 			data.semester,

@@ -7,14 +7,14 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import ClassItem from './ClassItem'
 
 import { t } from '@/i18n/util'
-import { lastUsedClass, schools } from '@/storage/grades'
+import grades from '@/storage/grades'
 
 export default observer(ClassList)
 
 function ClassList() {
 	const { styles } = useStyles(stylesheet)
 
-	const classes = schools.classes.get()
+	const classes = grades.classes.get()
 
 	const onDeleteClass = (classId: number) => {
 		const classToDelete = classes.find(c => c.id === classId)
@@ -34,10 +34,10 @@ function ClassList() {
 					text: t('screen-grades:delete-class-confirm'),
 					style: 'destructive',
 					onPress: () => {
-						schools.classes.set(oldClasses =>
+						grades.classes.set(oldClasses =>
 							oldClasses.filter(c => c.id !== classId),
 						)
-						lastUsedClass.set(0)
+						grades.lastUsedClass.set(0)
 					},
 				},
 			],
@@ -54,7 +54,7 @@ function ClassList() {
 				/>
 			)}
 			contentContainerStyle={styles.list}
-			onDragEnd={({ data }) => schools.classes.set(data)}
+			onDragEnd={({ data }) => grades.classes.set(data)}
 		/>
 	)
 }

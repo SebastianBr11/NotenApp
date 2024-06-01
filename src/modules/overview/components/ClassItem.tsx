@@ -7,10 +7,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import { t } from '@/i18n/util'
-import { GradesType, lastUsedClass } from '@/storage/grades'
+import grades, { ClassType } from '@/storage/grades'
 
 type ClassItemProps = {
-	item: GradesType['classes'][0]
+	item: ClassType
 	drag: () => void
 	isActive: boolean
 	getIndex: () => number | undefined
@@ -30,7 +30,7 @@ export default function ClassItem({
 
 	const onPress = () => {
 		dismissAll()
-		lastUsedClass.set(getIndex() ?? 0)
+		grades.lastUsedClass.set(getIndex() ?? 0)
 	}
 
 	return (

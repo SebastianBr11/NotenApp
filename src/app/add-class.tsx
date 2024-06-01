@@ -16,7 +16,7 @@ import FormScreen, {
 } from '@/components/form/screen'
 import { t } from '@/i18n/util'
 import ClassTypeSelector from '@/modules/add-class/components/ClassTypeSelector'
-import { schools } from '@/storage/grades'
+import grades from '@/storage/grades'
 import { observer } from '@legendapp/state/react'
 
 const formSchema = z.object({
@@ -44,9 +44,9 @@ function AddClassScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		const newId = schools.amountOfClasses.get() + 1
+		const newId = grades.amountOfClasses.get() + 1
 
-		schools.addClass({
+		grades.addClass({
 			id: newId,
 			year: data.year,
 			type: data.type,

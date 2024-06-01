@@ -13,7 +13,7 @@ import FormScreen, {
 	FormScreenHeader,
 } from '@/components/form/screen'
 import { t } from '@/i18n/util'
-import { schools } from '@/storage/grades'
+import grades from '@/storage/grades'
 
 type FormData = {
 	subjectName: string
@@ -33,9 +33,9 @@ export default function AddSubjectScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		const newId = schools.amountOfSubjects.get() + 1
+		const newId = grades.amountOfSubjects.get() + 1
 
-		schools.addSubject(Number(classNumber), {
+		grades.addSubject(Number(classNumber), {
 			id: newId,
 			name: data.subjectName,
 			semesters: [{ secondaryGrades: [] }, { secondaryGrades: [] }],

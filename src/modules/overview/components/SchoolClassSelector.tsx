@@ -1,3 +1,4 @@
+import grades from '@/storage/grades'
 import { Feather } from '@expo/vector-icons'
 import { observer } from '@legendapp/state/react'
 import React from 'react'
@@ -12,8 +13,6 @@ import Animated, {
 } from 'react-native-reanimated'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import { lastUsedClass, schools } from '@/storage/grades'
-
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
 type SchoolClassSelectorProps = {
@@ -27,12 +26,12 @@ function SchoolClassSelector({
 }: SchoolClassSelectorProps) {
 	const { styles, theme } = useStyles(stylesheet)
 
-	const classes = schools.classes.get()
-	const numOfClasses = classes.length
-	const selectedClass = lastUsedClass.get()
+	const classes = grades.classes.get()
+	const numOfClasses = grades.amountOfClasses.get()
+	const selectedClass = grades.lastUsedClass.get()
 	const { year, type } = classes[selectedClass] ?? { year: 0, type: 'FOS' } // Necessary as a fallback for some reason
 
-	const setSelectedClass = (value: number) => lastUsedClass.set(value)
+	const setSelectedClass = (value: number) => grades.lastUsedClass.set(value)
 
 	const hasNextClass = () => selectedClass < numOfClasses - 1
 	const hasPreviousClass = () => selectedClass > 0

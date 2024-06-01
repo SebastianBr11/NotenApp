@@ -9,7 +9,7 @@ import SchoolClassSelector from './SchoolClassSelector'
 import SubjectCardView from './SubjectCardView'
 
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
-import { lastUsedClass, schools } from '@/storage/grades'
+import grades from '@/storage/grades'
 import ClassesModal from './ClassesModal'
 
 export default observer(GradesOverview)
@@ -24,11 +24,11 @@ function GradesOverview() {
 		snapPoints,
 	} = useSetupBottomSheetModal()
 
-	const selectedClass = lastUsedClass.get()
+	const selectedClass = grades.lastUsedClass.get()
 
 	return (
 		<View style={styles.mainView}>
-			{schools.classes.length > 0 ? (
+			{grades.amountOfClasses.get() > 0 ? (
 				<>
 					<View style={styles.listWrapper}>
 						<SubjectCardView />

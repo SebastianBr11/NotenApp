@@ -17,7 +17,7 @@ export default function SubjectAverage({ average }: SubjectAverageProps) {
 				{formatNumber(average)}{' '}
 				<Text style={styles.averagePointsText}>
 					{t('screen-subject:points')}
-				</Text>
+				</Text>{' '}
 			</Text>
 		</View>
 	)
@@ -31,6 +31,7 @@ const stylesheet = createStyleSheet(theme => ({
 		backgroundColor: theme.colors.bg2,
 		gap: theme.spacing['xl'],
 		borderRadius: theme.spacing['6xl'],
+		flex: 0,
 	},
 	averageText: {
 		color: theme.colors.text5,
@@ -42,9 +43,9 @@ const stylesheet = createStyleSheet(theme => ({
 	average: {
 		fontSize: theme.fontSizes['6xl'],
 		fontWeight: theme.fontWeights.black,
+		color: theme.colors.text1,
 		lineHeight: theme.fontSizes['6xl'],
 		letterSpacing: -1.2,
-		color: theme.colors.text1,
 	},
 	averagePointsText: {
 		color: theme.colors.text2,

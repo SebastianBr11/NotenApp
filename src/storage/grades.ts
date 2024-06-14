@@ -87,8 +87,12 @@ function addGrade(
 		return true
 	} else {
 		// Here as well
+		// Also the same issue occurs as in the function `addClass` in line 37
 		// @ts-ignore
-		subjectSemester.secondaryGrades.push({ ...newGrade, id })
+		subjectSemester.secondaryGrades.set(oldGrades => [
+			...oldGrades,
+			{ ...newGrade, id },
+		])
 		return true
 	}
 }

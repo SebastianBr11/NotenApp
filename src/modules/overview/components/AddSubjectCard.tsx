@@ -7,10 +7,10 @@ import { ifDarkElse } from '@/constants/themes'
 import { t } from '@/i18n/util'
 
 type AddSubjectCardProps = {
-	classNumber: number
+	classId: string
 }
 
-export default function AddSubjectCard({ classNumber }: AddSubjectCardProps) {
+export default function AddSubjectCard({ classId }: AddSubjectCardProps) {
 	const { styles } = useStyles(stylesheet)
 
 	const { dismissAll } = useBottomSheetModal()
@@ -18,8 +18,8 @@ export default function AddSubjectCard({ classNumber }: AddSubjectCardProps) {
 	return (
 		<Link
 			href={{
-				pathname: '/add-subject/[classNumber]',
-				params: { classNumber },
+				pathname: '/add-subject/[classId]',
+				params: { classId },
 			}}
 			onPress={dismissAll}
 			asChild

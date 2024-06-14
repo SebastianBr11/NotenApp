@@ -20,7 +20,7 @@ type FormData = {
 }
 
 export default function AddSubjectScreen() {
-	const { classNumber } = useLocalSearchParams()
+	const { classId } = useLocalSearchParams()
 
 	const {
 		control,
@@ -33,15 +33,12 @@ export default function AddSubjectScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		const newId = grades.amountOfSubjects.get() + 1
-
-		grades.addSubject(Number(classNumber), {
-			id: newId,
+		const newId = grades.addSubject(classId + '', {
 			name: data.subjectName,
 			semesters: [{ secondaryGrades: [] }, { secondaryGrades: [] }],
 		})
 
-		router.replace(`/subjects/${newId}?selectedClass=${classNumber}`)
+		router.replace(`/subjects/${newId}?selectedClassId=${classId}`)
 	}
 
 	return (

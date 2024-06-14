@@ -44,10 +44,7 @@ function AddClassScreen() {
 	})
 
 	const onSubmit = (data: FormData) => {
-		const newId = grades.amountOfClasses.get() + 1
-
 		grades.addClass({
-			id: newId,
 			year: data.year,
 			type: data.type,
 			subjects: [],

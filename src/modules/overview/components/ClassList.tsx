@@ -16,7 +16,7 @@ function ClassList() {
 
 	const classes = grades.classes.get()
 
-	const onDeleteClass = (classId: number) => {
+	const onDeleteClass = (classId: string) => {
 		const classToDelete = classes.find(c => c.id === classId)
 
 		Alert.alert(
@@ -37,7 +37,7 @@ function ClassList() {
 						grades.classes.set(oldClasses =>
 							oldClasses.filter(c => c.id !== classId),
 						)
-						grades.lastUsedClass.set(0)
+						grades.lastUsedClass.setFromIndex(0)
 					},
 				},
 			],
@@ -47,11 +47,11 @@ function ClassList() {
 	return (
 		<DraggableFlatList
 			data={classes}
-			keyExtractor={item => item.id.toString()}
-			renderItem={({ item, drag, isActive, getIndex }) => (
-				<ClassItem
-					{...{ item, drag, isActive, getIndex, onDelete: onDeleteClass }}
-				/>
+			keyExtractor={item => {
+				return item.id
+			}}
+			renderItem={({ item, drag, isActive }) => (
+				<ClassItem {...{ item, drag, isActive, onDelete: onDeleteClass }} />
 			)}
 			contentContainerStyle={styles.list}
 			onDragEnd={({ data }) => grades.classes.set(data)}

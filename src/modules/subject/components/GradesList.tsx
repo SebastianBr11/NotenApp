@@ -32,7 +32,7 @@ export default function GradesList({ semesters }: GradesListProps) {
 		points: 15,
 		type: 'Schulaufgabe',
 		semester: 1,
-		id: 0,
+		id: '0',
 	})
 
 	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =

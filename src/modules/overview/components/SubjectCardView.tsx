@@ -18,8 +18,10 @@ function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
 	const classes = grades.classes.get()
-	const selectedClass = grades.lastUsedClass.get()
-	const { subjects: yearGrades } = classes[selectedClass] ?? { subjects: [] }
+	const selectedClassId = grades.lastUsedClass.value.id.get()
+	const { subjects: yearGrades } = classes.find(c => {
+		return c.id === selectedClassId
+	}) ?? { subjects: [] }
 
 	if (yearGrades.length === 0) {
 		return (
@@ -44,7 +46,7 @@ function SubjectCardView() {
 						.delay((index - 1) * 100)}
 					exiting={SlideOutDown}
 				>
-					<SubjectCard selectedClass={selectedClass} subject={item} />
+					<SubjectCard selectedClassId={selectedClassId} subject={item} />
 				</Animated.View>
 			)}
 		/>

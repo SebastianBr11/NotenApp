@@ -24,7 +24,7 @@ function GradesOverview() {
 		snapPoints,
 	} = useSetupBottomSheetModal()
 
-	const selectedClass = grades.lastUsedClass.get()
+	const selectedClassId = grades.lastUsedClass.value.id.get()
 
 	return (
 		<View style={styles.mainView}>
@@ -32,7 +32,7 @@ function GradesOverview() {
 				<>
 					<View style={styles.listWrapper}>
 						<SubjectCardView />
-						<AddSubjectCard classNumber={selectedClass} />
+						<AddSubjectCard classId={selectedClassId} />
 					</View>
 					<SchoolClassSelector onPress={handlePresentModalPress} />
 				</>

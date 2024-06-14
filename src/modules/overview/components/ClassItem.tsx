@@ -13,15 +13,13 @@ type ClassItemProps = {
 	item: ClassType
 	drag: () => void
 	isActive: boolean
-	getIndex: () => number | undefined
-	onDelete: (classId: number) => void
+	onDelete: (classId: string) => void
 }
 
 export default function ClassItem({
 	item,
 	drag,
 	isActive,
-	getIndex,
 	onDelete,
 }: ClassItemProps) {
 	const { styles, theme } = useStyles(stylesheet)
@@ -30,7 +28,7 @@ export default function ClassItem({
 
 	const onPress = () => {
 		dismissAll()
-		grades.lastUsedClass.set(getIndex() ?? 0)
+		grades.lastUsedClass.setFromId(item.id)
 	}
 
 	return (

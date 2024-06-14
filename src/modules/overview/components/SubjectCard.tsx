@@ -9,12 +9,12 @@ import { calculateAverageOfSemesters } from '@/util/gradeCalcFos'
 
 type SubjectCardProps = {
 	subject: ClassType['subjects'][0]
-	selectedClass: number
+	selectedClassId: string
 }
 
 export default function SubjectCard({
 	subject: { name, id, semesters },
-	selectedClass,
+	selectedClassId,
 }: SubjectCardProps) {
 	const { styles } = useStyles(stylesheet)
 
@@ -25,8 +25,8 @@ export default function SubjectCard({
 	return (
 		<Link
 			href={{
-				pathname: '/subjects/[subject]',
-				params: { subject: id, selectedClass },
+				pathname: '/subjects/[subjectId]',
+				params: { subjectId: id, selectedClassId },
 			}}
 			onPress={dismissAll}
 			asChild

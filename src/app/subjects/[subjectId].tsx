@@ -23,23 +23,22 @@ function SubjectScreen() {
 	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
 		useSetupBottomSheetModal()
 
-	const { subject: subjectId, selectedClass } = useLocalSearchParams()
+	const { subjectId, selectedClassId } = useLocalSearchParams()
 	const classes = grades.classes.get()
 
-	const { name, semesters } = classes[Number(selectedClass)].subjects.find(
-		subject => subject.id === Number(subjectId),
-	)!
+	const { name, semesters } = classes
+		.find(c => c.id === selectedClassId)
+		?.subjects.find(subject => subject.id === subjectId)!
 
 	const handleAddGrade = (data: FormData) => {
 		const didSucceed = grades.addGrade(
-			Number(selectedClass),
-			Number(subjectId),
+			selectedClassId + '',
+			subjectId + '',
 			data.semester,
 			{
 				grade: calculateGradeFromPoints(Number(data.points)),
 				type: data.type,
 				points: Number(data.points) as SingleGradeType['points'],
-				id: 0, // TODO: Generate ids instead of just using 0
 			},
 		)
 

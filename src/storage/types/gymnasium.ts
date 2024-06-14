@@ -1,7 +1,7 @@
 import { Grade } from './grade'
 
 export type GymnasiumClassType = {
-	id: number
+	id: string
 	year: string
 	type: 'Gymnasium'
 	subjects: SubjectType[]
@@ -24,7 +24,7 @@ type SemesterType = {
 
 export type SubjectType = {
 	name: string
-	id: number
+	id: string
 	semesters: [SemesterType, SemesterType]
 	scientificPaper?: {
 		points: number

@@ -26,15 +26,18 @@ function SchoolClassSelector({
 }: SchoolClassSelectorProps) {
 	const { styles, theme } = useStyles(stylesheet)
 
-	const classes = grades.classes.get()
 	const numOfClasses = grades.amountOfClasses.get()
-	const selectedClass = grades.lastUsedClass.get()
-	const { year, type } = classes[selectedClass] ?? { year: 0, type: 'FOS' } // Necessary as a fallback for some reason
+	const selectedClass = grades.lastUsedClass
+	const selectedClassIndex = selectedClass.index.get()
 
-	const setSelectedClass = (value: number) => grades.lastUsedClass.set(value)
+	const { year, type } = selectedClass.value.get()
 
-	const hasNextClass = () => selectedClass < numOfClasses - 1
-	const hasPreviousClass = () => selectedClass > 0
+	const setSelectedClassIndex = (classIndex: number) => {
+		selectedClass.setFromIndex(classIndex)
+	}
+
+	const hasNextClass = () => selectedClassIndex < numOfClasses - 1
+	const hasPreviousClass = () => selectedClassIndex > 0
 
 	const translateX = useSharedValue(0)
 
@@ -44,16 +47,21 @@ function SchoolClassSelector({
 		})
 		.onEnd(e => {
 			if (Math.abs(e.translationX) > 75) {
-				const newSelectedClass = Math.round(
+				console.log(selectedClassIndex)
+				const newSelectedClassIndex = Math.round(
 					interpolate(
 						translateX.value,
 						[-75, 75],
-						[selectedClass + 1, selectedClass - 1],
+						[selectedClassIndex + 1, selectedClassIndex - 1],
 						Extrapolation.CLAMP,
 					),
 				)
-				if (newSelectedClass >= 0 && newSelectedClass < numOfClasses) {
-					runOnJS(setSelectedClass)(newSelectedClass)
+
+				if (
+					newSelectedClassIndex >= 0 &&
+					newSelectedClassIndex < numOfClasses
+				) {
+					runOnJS(setSelectedClassIndex)(newSelectedClassIndex)
 				}
 			}
 			translateX.value = withSpring(0)
@@ -75,7 +83,7 @@ function SchoolClassSelector({
 							color={theme.colors.mainText3}
 							disabled={!hasPreviousClass()}
 							style={{ opacity: hasPreviousClass() ? 1 : 0 }}
-							onPress={() => setSelectedClass(selectedClass - 1)}
+							onPress={() => setSelectedClassIndex(selectedClassIndex - 1)}
 						/>
 						<View style={styles.headerTextContainer}>
 							<View style={styles.headerYearContainer}>
@@ -96,7 +104,7 @@ function SchoolClassSelector({
 							style={{
 								opacity: hasNextClass() ? 1 : 0,
 							}}
-							onPress={() => setSelectedClass(selectedClass + 1)}
+							onPress={() => setSelectedClassIndex(selectedClassIndex + 1)}
 						/>
 					</View>
 				</AnimatedPressable>

@@ -97,7 +97,7 @@ function RootLayoutNav({ onLayout }: { onLayout: () => void }) {
 						}}
 					/>
 					<Stack.Screen
-						name='add-subject/[classNumber]'
+						name='add-subject/[classId]'
 						options={{
 							headerTitle: t('screen-new-subject'),
 							presentation: 'modal',

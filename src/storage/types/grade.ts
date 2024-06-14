@@ -1,4 +1,4 @@
-export type Grade = { id: number } & (
+export type Grade = { id: string } & (
 	| {
 			grade: 1
 			points: 15 | 14 | 13

@@ -103,7 +103,7 @@ const amountOfSubjects = observable(() =>
 
 const amountOfClasses = observable(() => classes.length)
 
-const grades = {
+const grades = observable({
 	classes,
 	lastUsedClass,
 	amountOfSubjects,
@@ -111,6 +111,6 @@ const grades = {
 	addClass,
 	addSubject,
 	addGrade,
-}
+})
 
 export default grades

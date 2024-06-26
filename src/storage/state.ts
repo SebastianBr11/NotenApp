@@ -1,24 +1,17 @@
-import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage'
+import { ObservablePersistMMKV } from '@legendapp/state/persist-plugins/mmkv'
 import { configureObservableSync, syncObservable } from '@legendapp/state/sync'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
-import { schools } from './grades'
-
-// TODO: Adjust imports for persisting states
-// This may have been renamed to sync for some reason
-// at least in the current non-release version
+import grades from './grades'
 
 // Global configuration
 configureObservableSync({
-	// Use AsyncStorage in React Native
+	// Use react-native-mmkv in React Native
 	persist: {
-		plugin: ObservablePersistAsyncStorage,
-		asyncStorage: { AsyncStorage },
+		plugin: ObservablePersistMMKV,
 	},
 })
 
-export const status$ = syncObservable(schools, {
+syncObservable(grades, {
 	persist: {
-		name: 'schools',
+		name: 'grades',
 	},
 })

@@ -28,7 +28,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Make sure you have installed [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/).
+Make sure you have installed [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) using Corepack ([Good Guide](https://www.totaltypescript.com/how-to-use-corepack)).
+However when installing yarn with the guide linked above, don't run the command `corepack enable npm` because this will cause an issue when trying to build the app using Expo. If you have already run it, I see not other way besides reinstalling node unfortunately.
+
+In case you want to know the details: <br>
+Expo will try to run the command `npm view expo-template-bare-minimum@sdk-51 dist --json` which will fail because the project is setup to use yarn and not npm. This only occurs when running the command mentioned above.
+
 If you use VS Code, I recommend you add the [Expo Tools VS Code extension](https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools).
 
 If you want to generate the app builds using Expo EAS Build, you need to own an Expo Account and install the EAS CLI:
@@ -65,7 +70,6 @@ or:
 yarn build-dev # Uses Expo Prebuild
 ```
 
-
 Finally, start the development server (if it isn't already running):
 
 ```console
@@ -85,6 +89,7 @@ yarn test
 ## 🎈 Usage
 
 You can see your subjects and their grades at the center of the screen. At the bottom you can either add a new subject or swipe right on the grade to switch to another one.
+
 <p align="center">
 <img src="images/app_dark.png" width=300 >
 <img src="images/app_light.png" width=300 >

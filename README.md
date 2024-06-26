@@ -61,13 +61,13 @@ yarn
 Build a development build of the app:
 
 ```console
-yarn build-eas-local-dev # Uses EAS locally (only on Linux/MacOS)
+yarn build:eas-local-dev # Uses EAS locally (only on Linux/MacOS)
 ```
 
 or:
 
 ```console
-yarn build-dev # Uses Expo Prebuild
+yarn build:dev # Uses Expo Prebuild
 ```
 
 Finally, start the development server (if it isn't already running):

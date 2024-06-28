@@ -1,7 +1,11 @@
+permissions:
+  contents: write
+
 on:
   push:
     tags:
       - 'v*.*.*'
+
 jobs:
   update:
     runs-on: ubuntu-latest

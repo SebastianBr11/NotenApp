@@ -5,7 +5,7 @@ const IS_DEV = process.env.APP_VARIANT === 'development'
 export default {
 	name: IS_DEV ? 'NotenApp (Dev)' : 'NotenApp',
 	slug: 'NotenApp',
-	version: '1.0.0',
+	version: '0.1.0',
 	orientation: 'portrait',
 	icon: './assets/images/icon.png',
 	scheme: 'myapp',

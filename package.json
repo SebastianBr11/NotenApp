@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "APP_VARIANT=development npx expo start",
 		"build:eas-local-prod": "eas build --local --profile production --platform android",
+		"build:eas-local-prod-gh": "eas build --local --profile production2 --platform android",
 		"build:eas-local-preview": "eas build --local --profile preview --platform android",
 		"build:eas-local-dev": "eas build --local --profile development --platform android",
 		"build:dev": "APP_VARIANT=development npx expo prebuild --clean && npx expo run:android",

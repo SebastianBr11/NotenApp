@@ -7,7 +7,7 @@ on:
       - 'v*.*.*'
 
 jobs:
-  update:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Check for EXPO_TOKEN

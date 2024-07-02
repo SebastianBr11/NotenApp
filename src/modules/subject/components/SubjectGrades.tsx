@@ -70,11 +70,28 @@ export default function SubjectGrades({ subject }: SubjectGradesProps) {
 				.find(grade => grade.id.get() === selectedGrade.id)
 				?.points.set(newPoints)
 		}
-
-		console.log(newPoints)
 	}
 
-	const handleDeleteGrade = () => {}
+	const handleDeleteGrade = () => {
+		const semester$ = grades$.lastUsedClass$.value.subjects.find(
+			s => s.id.get() === subject.id,
+		)?.semesters[selectedGrade.semester - 1]
+
+		if (!semester$) {
+			console.log("No semester found for subject. This shouldn't be possible")
+			return
+		}
+
+		if (selectedGrade.isPrimary) {
+			semester$.primaryGrade.delete()
+		} else {
+			semester$.secondaryGrades
+				.find(grade => grade.id.get() === selectedGrade.id)
+				?.delete()
+		}
+
+		bottomSheetModalRef.current?.dismiss()
+	}
 
 	return (
 		<>

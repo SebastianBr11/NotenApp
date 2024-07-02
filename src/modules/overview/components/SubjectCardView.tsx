@@ -17,13 +17,9 @@ export default observer(SubjectCardView)
 function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
-	const classes = grades.classes.get()
-	const selectedClassId = grades.lastUsedClass.value.id.get()
-	const { subjects: yearGrades } = classes.find(c => {
-		return c.id === selectedClassId
-	}) ?? { subjects: [] }
+	const { subjects } = grades.lastUsedClass.value.get()
 
-	if (yearGrades.length === 0) {
+	if (subjects.length === 0) {
 		return (
 			<View style={styles.wrapper}>
 				<AddSubjectPrompt />
@@ -35,7 +31,7 @@ function SubjectCardView() {
 		<Animated.FlatList
 			layout={FadingTransition}
 			contentContainerStyle={styles.list}
-			data={yearGrades}
+			data={subjects}
 			keyExtractor={item => String(item.id)}
 			renderItem={({ item, index }) => (
 				<Animated.View
@@ -46,7 +42,7 @@ function SubjectCardView() {
 						.delay((index - 1) * 100)}
 					exiting={SlideOutDown}
 				>
-					<SubjectCard selectedClassId={selectedClassId} subject={item} />
+					<SubjectCard subject={item} />
 				</Animated.View>
 			)}
 		/>

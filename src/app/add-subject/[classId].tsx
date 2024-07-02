@@ -38,7 +38,7 @@ export default function AddSubjectScreen() {
 			semesters: [{ secondaryGrades: [] }, { secondaryGrades: [] }],
 		})
 
-		router.replace(`/subjects/${newId}?selectedClassId=${classId}`)
+		router.replace(`/subjects/${newId}`)
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import { IS_DEV } from '@/constants/isDev'
 import { ObservablePersistMMKV } from '@legendapp/state/persist-plugins/mmkv'
 import { configureObservableSync, syncObservable } from '@legendapp/state/sync'
-import grades from './grades'
+import grades$ from './grades'
 
 // Only enable state persistence in development
 if (!IS_DEV) {
@@ -13,7 +13,7 @@ if (!IS_DEV) {
 		},
 	})
 
-	syncObservable(grades, {
+	syncObservable(grades$, {
 		persist: {
 			name: 'grades',
 		},

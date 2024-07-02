@@ -20,17 +20,17 @@ export type SubjectType = FosSubjectType | GymnasiumSubjectType
 export type SemesterType = ClassType['subjects'][0]['semesters'][0]
 export type SingleGradeType = FosSingleGradeType | GymnasiumSingleGradeType
 
-const classes = observable<ClassType[]>(IS_DEV ? EXAMPLE_CLASSES : [])
+const classes$ = observable<ClassType[]>(IS_DEV ? EXAMPLE_CLASSES : [])
 
-const lastUsedClass = observable({
+const lastUsedClass$ = observable({
 	value: () => {
-		return classes.get()[lastUsedClass.index.get()]
+		return classes$.get()[lastUsedClass$.index.get()]
 	},
 	setFromIndex: (newIndex: number) => {
-		lastUsedClass.index.set(newIndex)
+		lastUsedClass$.index.set(newIndex)
 	},
 	setFromId: (newId: string) => {
-		lastUsedClass.index.set(classes.get().findIndex(c => c.id === newId))
+		lastUsedClass$.index.set(classes$.get().findIndex(c => c.id === newId))
 	},
 	index: 0, // Default Value
 })
@@ -39,7 +39,7 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 	// Setting the classes observable directly even though it's recommended
 	// by Legend State authors to mutate the state directly, since that causes an error
 	// for some reason
-	classes.set(oldClasses => [...oldClasses, { ...newClass, id: randomUUID() }])
+	classes$.set(oldClasses => [...oldClasses, { ...newClass, id: randomUUID() }])
 
 	// This would be the recommended approach, but it doesn't work:
 	// classes.push({ ...newClass, id: randomUUID() })
@@ -47,7 +47,7 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 
 function addSubject(classId: string, newSubject: Omit<SubjectType, 'id'>) {
 	const id = randomUUID()
-	classes
+	classes$
 		.find(c => c.id.peek() === classId)
 		?.subjects.push({ ...newSubject, id })
 
@@ -60,7 +60,7 @@ function addGrade(
 	semester: 1 | 2,
 	newGrade: Omit<SingleGradeType, 'id'>,
 ) {
-	const subject = classes
+	const subject = classes$
 		.find(c => c.id.peek() === classId)
 		?.subjects.find(subject => subject.id.peek() === subjectId)
 
@@ -95,20 +95,20 @@ function addGrade(
 	}
 }
 
-const amountOfSubjects = observable(() =>
-	calculateAmountOfSubjects(classes.get()),
+const amountOfSubjects$ = observable(() =>
+	calculateAmountOfSubjects(classes$.get()),
 )
 
-const amountOfClasses = observable(() => classes.length)
+const amountOfClasses$ = observable(() => classes$.length)
 
-const grades = observable({
-	classes,
-	lastUsedClass,
-	amountOfSubjects,
-	amountOfClasses,
+const grades$ = observable({
+	classes$,
+	lastUsedClass$,
+	amountOfSubjects$,
+	amountOfClasses$,
 	addClass,
 	addSubject,
 	addGrade,
 })
 
-export default grades
+export default grades$

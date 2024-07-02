@@ -1,4 +1,4 @@
-import grades from '@/storage/grades'
+import grades$ from '@/storage/grades'
 import { Feather } from '@expo/vector-icons'
 import { observer } from '@legendapp/state/react'
 import React from 'react'
@@ -26,8 +26,8 @@ function SchoolClassSelector({
 }: SchoolClassSelectorProps) {
 	const { styles, theme } = useStyles(stylesheet)
 
-	const numOfClasses = grades.amountOfClasses.get()
-	const selectedClass = grades.lastUsedClass
+	const numOfClasses = grades$.amountOfClasses$.get()
+	const selectedClass = grades$.lastUsedClass$
 	const selectedClassIndex = selectedClass.index.get()
 
 	const { year, type } = selectedClass.value.get()

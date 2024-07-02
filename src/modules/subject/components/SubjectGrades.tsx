@@ -1,6 +1,6 @@
 import BottomSheetModal from '@/components/BottomSheetModal'
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
-import grades, { SingleGradeType, SubjectType } from '@/storage/grades'
+import grades$, { SingleGradeType, SubjectType } from '@/storage/grades'
 import {
 	calculateAverageOfSemester,
 	calculateAverageOfSemesters,
@@ -54,7 +54,7 @@ export default function SubjectGrades({ subject }: SubjectGradesProps) {
 	}
 
 	const handleChangeGradePoints = (newPoints: number) => {
-		const semester$ = grades.lastUsedClass.value.subjects.find(
+		const semester$ = grades$.lastUsedClass$.value.subjects.find(
 			s => s.id.get() === subject.id,
 		)?.semesters[selectedGrade.semester - 1]
 

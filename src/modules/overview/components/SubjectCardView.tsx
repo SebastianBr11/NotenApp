@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-import grades from '@/storage/grades'
+import grades$ from '@/storage/grades'
 import AddSubjectPrompt from './AddSubjectPrompt'
 import SubjectCard from './SubjectCard'
 
@@ -17,7 +17,7 @@ export default observer(SubjectCardView)
 function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
-	const { subjects } = grades.lastUsedClass.value.get()
+	const { subjects } = grades$.lastUsedClass$.value.get()
 
 	if (subjects.length === 0) {
 		return (

@@ -16,6 +16,7 @@ import { randomUUID } from 'expo-crypto'
 import { EXAMPLE_CLASSES } from './dev-data'
 
 export type ClassType = FosClassType | GymnasiumClassType
+export type SubjectType = FosSubjectType | GymnasiumSubjectType
 export type SemesterType = ClassType['subjects'][0]['semesters'][0]
 export type SingleGradeType = FosSingleGradeType | GymnasiumSingleGradeType
 
@@ -44,10 +45,7 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 	// classes.push({ ...newClass, id: randomUUID() })
 }
 
-function addSubject(
-	classId: string,
-	newSubject: Omit<FosSubjectType | GymnasiumSubjectType, 'id'>,
-) {
+function addSubject(classId: string, newSubject: Omit<SubjectType, 'id'>) {
 	const id = randomUUID()
 	classes
 		.find(c => c.id.peek() === classId)

@@ -10,7 +10,7 @@ import AddGradeButton from '@/modules/subject/components/AddGradeButton'
 import AddGradeForm, {
 	FormData,
 } from '@/modules/subject/components/AddGradeForm'
-import GradesList from '@/modules/subject/components/GradesList'
+import SubjectGrades from '@/modules/subject/components/SubjectGrades'
 import grades, { SingleGradeType } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
@@ -26,9 +26,9 @@ function SubjectScreen() {
 	const { subjectId, selectedClassId } = useLocalSearchParams()
 	const classes = grades.classes.get()
 
-	const { name, semesters } = classes
+	const subject = classes
 		.find(c => c.id === selectedClassId)
-		?.subjects.find(subject => subject.id === subjectId)!
+		?.subjects.find(subj => subj.id === subjectId)!
 
 	const handleAddGrade = (data: FormData) => {
 		const didSucceed = grades.addGrade(
@@ -54,9 +54,9 @@ function SubjectScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ headerTitle: name }} />
+			<Stack.Screen options={{ headerTitle: subject.name }} />
 
-			<GradesList semesters={semesters} />
+			<SubjectGrades subject={subject} />
 
 			<BottomSheetModal
 				ref={bottomSheetModalRef}

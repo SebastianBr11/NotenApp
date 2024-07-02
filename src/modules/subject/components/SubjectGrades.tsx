@@ -1,6 +1,6 @@
 import BottomSheetModal from '@/components/BottomSheetModal'
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
-import { SemesterType, SingleGradeType } from '@/storage/grades'
+import grades, { SingleGradeType, SubjectType } from '@/storage/grades'
 import {
 	calculateAverageOfSemester,
 	calculateAverageOfSemesters,
@@ -17,13 +17,14 @@ import SubjectAverage from './SubjectAverage'
 
 type SelectedGrade = SingleGradeType & {
 	semester: 1 | 2
+	isPrimary: boolean
 }
 
-type GradesListProps = {
-	semesters: [SemesterType, SemesterType]
+type SubjectGradesProps = {
+	subject: SubjectType
 }
 
-export default function GradesList({ semesters }: GradesListProps) {
+export default function SubjectGrades({ subject }: SubjectGradesProps) {
 	const { styles } = useStyles(stylesheet)
 
 	// Default value just to make typescript happy
@@ -33,6 +34,7 @@ export default function GradesList({ semesters }: GradesListProps) {
 		type: 'Schulaufgabe',
 		semester: 1,
 		id: '0',
+		isPrimary: true,
 	})
 
 	const { bottomSheetModalRef, handlePresentModalPress, handleSheetChanges } =
@@ -41,29 +43,52 @@ export default function GradesList({ semesters }: GradesListProps) {
 	const handleShowGrade = ({
 		grade,
 		semester,
+		isPrimary,
 	}: {
 		grade: SingleGradeType
 		semester: 1 | 2
+		isPrimary: boolean
 	}) => {
-		setSelectedGrade({ semester, ...grade })
+		setSelectedGrade({ semester, isPrimary, ...grade })
 		handlePresentModalPress()
 	}
 
-	const handleChangeGradePoints = () => {}
+	const handleChangeGradePoints = (newPoints: number) => {
+		const semester$ = grades.lastUsedClass.value.subjects.find(
+			s => s.id.get() === subject.id,
+		)?.semesters[selectedGrade.semester - 1]
+
+		if (!semester$) {
+			console.log("No semester found for subject. This shouldn't be possible")
+			return
+		}
+
+		if (selectedGrade.isPrimary) {
+			semester$.primaryGrade.set({ ...selectedGrade, points: newPoints })
+		} else {
+			semester$.secondaryGrades
+				.find(grade => grade.id.get() === selectedGrade.id)
+				?.points.set(newPoints)
+		}
+
+		console.log(newPoints)
+	}
 
 	const handleDeleteGrade = () => {}
 
 	return (
 		<>
 			<SectionList
-				sections={semesters.map((semester, index) => ({
+				sections={subject.semesters.map((semester, index) => ({
 					data: semester.secondaryGrades,
 					semesterNumber: (index + 1) as 1 | 2,
 				}))}
 				keyExtractor={item => String(item.id)}
 				contentContainerStyle={styles.gradesList}
 				ListHeaderComponent={
-					<SubjectAverage average={calculateAverageOfSemesters(semesters)} />
+					<SubjectAverage
+						average={calculateAverageOfSemesters(subject.semesters)}
+					/>
 				}
 				ListHeaderComponentStyle={styles.listHeader}
 				renderItem={({ item, section: { semesterNumber } }) => (
@@ -73,6 +98,7 @@ export default function GradesList({ semesters }: GradesListProps) {
 								handleShowGrade({
 									grade: item,
 									semester: semesterNumber,
+									isPrimary: false,
 								})
 							}
 							singleGrade={item}
@@ -84,20 +110,25 @@ export default function GradesList({ semesters }: GradesListProps) {
 						<SemesterSectionHeader
 							semesterNumber={semesterNumber}
 							semesterAverage={toTwoSignificantFigures(
-								calculateAverageOfSemester(semesters[semesterNumber - 1]),
+								calculateAverageOfSemester(
+									subject.semesters[semesterNumber - 1],
+								),
 							)}
 						/>
-						{semesters[semesterNumber - 1].primaryGrade ? (
+						{subject.semesters[semesterNumber - 1].primaryGrade ? (
 							// For some reason typescript doesn't infer that we're checking
 							// that the grade is defined
 							<GradeView
 								onPress={() =>
 									handleShowGrade({
-										grade: semesters[semesterNumber - 1].primaryGrade!,
+										grade: subject.semesters[semesterNumber - 1].primaryGrade!,
 										semester: semesterNumber,
+										isPrimary: true,
 									})
 								}
-								singleGrade={semesters[semesterNumber - 1].primaryGrade!}
+								singleGrade={
+									subject.semesters[semesterNumber - 1].primaryGrade!
+								}
 							/>
 						) : null}
 					</View>

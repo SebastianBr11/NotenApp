@@ -60,7 +60,7 @@ function EditGradeForm({
 					control={control}
 					rules={{
 						required: true,
-						onChange: (newValue: string) => handleChange(newValue),
+						onChange: (event: any) => handleChange(event.target.value),
 					}}
 					name='points'
 					render={({ field: { onChange, value } }) => (

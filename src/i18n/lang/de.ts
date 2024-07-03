@@ -24,6 +24,11 @@ const translations: TranslationsType = {
 	'screen-subject:error-title': 'Ein Fehler ist aufgetreten',
 	'screen-subject:error-message':
 		'Dieses Halbjahr hat bereits eine Schulaufgabennote.',
+	'screen-subject:delete-subject': 'Fach löschen?',
+	'screen-subject:delete-subject-message':
+		'Bist du dir sicher, dass du das Fach %{subject} löschen willst?',
+	'screen-subject:delete-subject-cancel': 'Abbrechen',
+	'screen-subject:delete-subject-confirm': 'Löschen',
 	'screen-new-class:new-class': 'Neue Klasse',
 	'screen-new-class:year': 'Jahr',
 	'screen-new-class:year-placeholder': 'z. B. 10',

@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams } from 'expo-router'
+import { Stack, router, useLocalSearchParams } from 'expo-router'
 import React from 'react'
 import { Alert, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
@@ -11,6 +11,7 @@ import AddGradeForm, {
 	FormData,
 } from '@/modules/subject/components/AddGradeForm'
 import SubjectGrades from '@/modules/subject/components/SubjectGrades'
+import SubjectScreenActions from '@/modules/subject/components/SubjectScreenActions'
 import grades$, { SingleGradeType } from '@/storage/grades'
 import { calculateGradeFromPoints } from '@/util/school'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
@@ -47,9 +48,45 @@ function SubjectScreen() {
 		}
 	}
 
+	const handleEditSubject = () => {}
+
+	const handleDeleteSubject = () => {
+		Alert.alert(
+			t('screen-subject:delete-subject'),
+			t('screen-subject:delete-subject-message', { subject: subject.name }),
+			[
+				{
+					text: t('screen-subject:delete-subject-cancel'),
+					style: 'cancel',
+				},
+				{
+					text: t('screen-subject:delete-subject-confirm'),
+					style: 'destructive',
+					onPress: () => {
+						const subject$ = grades$.findSubject(subjectId + '')
+						if (subject$) {
+							subject$.delete()
+							router.replace('/')
+						}
+					},
+				},
+			],
+		)
+	}
+
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ headerTitle: subject.name }} />
+			<Stack.Screen
+				options={{
+					headerTitle: subject.name,
+					headerRight: () => (
+						<SubjectScreenActions
+							onEdit={handleEditSubject}
+							onDelete={handleDeleteSubject}
+						/>
+					),
+				}}
+			/>
 
 			<SubjectGrades subject={subject} />
 

@@ -57,16 +57,14 @@ function addGrade(
 	semester: 1 | 2,
 	newGrade: Omit<SingleGradeType, 'id'>,
 ) {
-	const subject = lastUsedClass$.value.subjects.find(
-		subject => subject.id.peek() === subjectId,
-	)
+	const subject$ = findSubject(subjectId)
 
-	if (!subject) {
+	if (!subject$) {
 		return false
 	}
 
-	const subjectSemester = subject.semesters[semester - 1]
-	const alreadyHasPrimaryGrade = !!subjectSemester.primaryGrade.get()
+	const subjectSemester$ = subject$.semesters[semester - 1]
+	const alreadyHasPrimaryGrade = !!subjectSemester$.primaryGrade.get()
 
 	if (newGrade.type === 'Schulaufgabe' && alreadyHasPrimaryGrade) {
 		return false
@@ -78,13 +76,13 @@ function addGrade(
 		// TypeScript wants id to be an Observable for some reason,
 		// so we're ignoring the error
 		// @ts-ignore
-		subjectSemester.primaryGrade.set({ ...newGrade, id })
+		subjectSemester$.primaryGrade.set({ ...newGrade, id })
 		return true
 	} else {
 		// Here as well
 		// Also the same issue occurs as in the function `addClass` in line 37
 		// @ts-ignore
-		subjectSemester.secondaryGrades.set(oldGrades => [
+		subjectSemester$.secondaryGrades.set(oldGrades => [
 			...oldGrades,
 			{ ...newGrade, id },
 		])
@@ -93,9 +91,7 @@ function addGrade(
 }
 
 function findGrade(subjectId: string, semesterNumber: 1 | 2, gradeId: string) {
-	const subject$ = lastUsedClass$.value.subjects.find(
-		s => s.id.get() === subjectId,
-	)
+	const subject$ = findSubject(subjectId)
 
 	const semester$ = subject$?.semesters[semesterNumber - 1]
 
@@ -104,6 +100,10 @@ function findGrade(subjectId: string, semesterNumber: 1 | 2, gradeId: string) {
 	} else {
 		return semester$?.secondaryGrades.find(grade => grade.id.get() === gradeId)
 	}
+}
+
+function findSubject(subjectId: string) {
+	return lastUsedClass$.value.subjects.find(s => s.id.get() === subjectId)
 }
 
 const amountOfSubjects$ = observable(() =>
@@ -121,6 +121,7 @@ const grades$ = observable({
 	addSubject,
 	addGrade,
 	findGrade,
+	findSubject,
 })
 
 export default grades$

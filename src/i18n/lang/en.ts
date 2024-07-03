@@ -21,6 +21,11 @@ const translations = {
 	'screen-subject:form-semester': 'Semester',
 	'screen-subject:error-title': 'An error has occurred.',
 	'screen-subject:error-message': 'This semester already has a Schulaufgabe.',
+	'screen-subject:delete-subject': 'Delete Subject?',
+	'screen-subject:delete-subject-message':
+		'Are you sure you want to delete the subject %{subject}?',
+	'screen-subject:delete-subject-cancel': 'Cancel',
+	'screen-subject:delete-subject-confirm': 'Delete',
 	'screen-new-class:new-class': 'New Class',
 	'screen-new-class:year': 'Year',
 	'screen-new-class:year-placeholder': 'e.g. 10',

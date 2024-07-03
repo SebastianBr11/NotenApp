@@ -31,16 +31,11 @@ function SubjectScreen() {
 	)!
 
 	const handleAddGrade = (data: FormData) => {
-		const didSucceed = grades$.addGrade(
-			currentClass.value.id,
-			subjectId + '',
-			data.semester,
-			{
-				grade: calculateGradeFromPoints(Number(data.points)),
-				type: data.type,
-				points: Number(data.points) as SingleGradeType['points'],
-			},
-		)
+		const didSucceed = grades$.addGrade(subjectId + '', data.semester, {
+			grade: calculateGradeFromPoints(Number(data.points)),
+			type: data.type,
+			points: Number(data.points) as SingleGradeType['points'],
+		})
 
 		if (didSucceed) {
 			bottomSheetModalRef.current?.dismiss()

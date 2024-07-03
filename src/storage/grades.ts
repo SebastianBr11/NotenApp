@@ -47,22 +47,19 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 
 function addSubject(classId: string, newSubject: Omit<SubjectType, 'id'>) {
 	const id = randomUUID()
-	classes$
-		.find(c => c.id.peek() === classId)
-		?.subjects.push({ ...newSubject, id })
+	lastUsedClass$.value.subjects.push({ ...newSubject, id })
 
 	return id
 }
 
 function addGrade(
-	classId: string,
 	subjectId: string,
 	semester: 1 | 2,
 	newGrade: Omit<SingleGradeType, 'id'>,
 ) {
-	const subject = classes$
-		.find(c => c.id.peek() === classId)
-		?.subjects.find(subject => subject.id.peek() === subjectId)
+	const subject = lastUsedClass$.value.subjects.find(
+		subject => subject.id.peek() === subjectId,
+	)
 
 	if (!subject) {
 		return false

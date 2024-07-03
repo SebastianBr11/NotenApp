@@ -95,6 +95,20 @@ function addGrade(
 	}
 }
 
+function findGrade(subjectId: string, semesterNumber: 1 | 2, gradeId: string) {
+	const subject$ = lastUsedClass$.value.subjects.find(
+		s => s.id.get() === subjectId,
+	)
+
+	const semester$ = subject$?.semesters[semesterNumber - 1]
+
+	if (semester$?.primaryGrade.id.get() === gradeId) {
+		return semester$.primaryGrade
+	} else {
+		return semester$?.secondaryGrades.find(grade => grade.id.get() === gradeId)
+	}
+}
+
 const amountOfSubjects$ = observable(() =>
 	calculateAmountOfSubjects(classes$.get()),
 )
@@ -109,6 +123,7 @@ const grades$ = observable({
 	addClass,
 	addSubject,
 	addGrade,
+	findGrade,
 })
 
 export default grades$

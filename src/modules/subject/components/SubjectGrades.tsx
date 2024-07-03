@@ -54,41 +54,21 @@ export default function SubjectGrades({ subject }: SubjectGradesProps) {
 	}
 
 	const handleChangeGradePoints = (newPoints: number) => {
-		const semester$ = grades$.lastUsedClass$.value.subjects.find(
-			s => s.id.get() === subject.id,
-		)?.semesters[selectedGrade.semester - 1]
-
-		if (!semester$) {
-			console.log("No semester found for subject. This shouldn't be possible")
-			return
-		}
-
-		if (selectedGrade.isPrimary) {
-			semester$.primaryGrade.set({ ...selectedGrade, points: newPoints })
-		} else {
-			semester$.secondaryGrades
-				.find(grade => grade.id.get() === selectedGrade.id)
-				?.points.set(newPoints)
-		}
+		const grade$ = grades$.findGrade(
+			subject.id,
+			selectedGrade.semester,
+			selectedGrade.id,
+		)
+		grade$?.points.set(newPoints)
 	}
 
 	const handleDeleteGrade = () => {
-		const semester$ = grades$.lastUsedClass$.value.subjects.find(
-			s => s.id.get() === subject.id,
-		)?.semesters[selectedGrade.semester - 1]
-
-		if (!semester$) {
-			console.log("No semester found for subject. This shouldn't be possible")
-			return
-		}
-
-		if (selectedGrade.isPrimary) {
-			semester$.primaryGrade.delete()
-		} else {
-			semester$.secondaryGrades
-				.find(grade => grade.id.get() === selectedGrade.id)
-				?.delete()
-		}
+		const grade$ = grades$.findGrade(
+			subject.id,
+			selectedGrade.semester,
+			selectedGrade.id,
+		)
+		grade$?.delete()
 
 		bottomSheetModalRef.current?.dismiss()
 	}

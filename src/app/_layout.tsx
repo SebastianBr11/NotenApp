@@ -5,9 +5,10 @@ import Feather from '@expo/vector-icons/Feather'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import * as Font from 'expo-font'
-import { Stack } from 'expo-router'
+import { Link, Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
+import { TouchableOpacity } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStyles } from 'react-native-unistyles'
 
@@ -84,9 +85,21 @@ function RootLayoutNav({ onLayout }: { onLayout: () => void }) {
 					}}
 				>
 					<Stack.Screen
-						name='(tabs)'
+						name='index'
 						options={{
-							headerShown: false,
+							headerTitle: t('screen-grades'),
+							headerRight: () => (
+								<Link href='/settings' asChild>
+									<TouchableOpacity activeOpacity={0.5}>
+										<Feather
+											name='settings'
+											size={25}
+											color={theme.colors.text1}
+											style={{ marginRight: theme.spacing['2xl'] }}
+										/>
+									</TouchableOpacity>
+								</Link>
+							),
 						}}
 					/>
 					<Stack.Screen

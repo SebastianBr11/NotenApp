@@ -106,6 +106,29 @@ function findSubject(subjectId: string) {
 	return lastUsedClass$.value.subjects.find(s => s.id.get() === subjectId)
 }
 
+function updateGrade(
+	subjectId: string,
+	semesterNumber: 1 | 2,
+	gradeId: string,
+	gradePartial: Partial<Pick<SingleGradeType, 'grade' | 'points'>>,
+) {
+	// @ts-expect-error
+	return findGrade(subjectId, semesterNumber, gradeId)?.set(
+		(grade$: SingleGradeType) => ({
+			...grade$,
+			gradePartial,
+		}),
+	)
+}
+
+function deleteGrade(
+	subjectId: string,
+	semesterNumber: 1 | 2,
+	gradeId: string,
+) {
+	findGrade(subjectId, semesterNumber, gradeId)?.delete()
+}
+
 const amountOfSubjects$ = observable(() =>
 	calculateAmountOfSubjects(classes$.get()),
 )
@@ -122,6 +145,8 @@ const grades$ = observable({
 	addGrade,
 	findGrade,
 	findSubject,
+	updateGrade,
+	deleteGrade,
 })
 
 export default grades$

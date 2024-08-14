@@ -54,22 +54,13 @@ export default function SubjectGrades({ subject }: SubjectGradesProps) {
 	}
 
 	const handleChangeGradePoints = (newPoints: number) => {
-		const grade$ = grades$.findGrade(
-			subject.id,
-			selectedGrade.semester,
-			selectedGrade.id,
-		)
-		grade$?.points.set(newPoints)
+		grades$.updateGrade(subject.id, selectedGrade.semester, selectedGrade.id, {
+			points: newPoints as SingleGradeType['points'],
+		})
 	}
 
 	const handleDeleteGrade = () => {
-		const grade$ = grades$.findGrade(
-			subject.id,
-			selectedGrade.semester,
-			selectedGrade.id,
-		)
-		grade$?.delete()
-
+		grades$.deleteGrade(subject.id, selectedGrade.semester, selectedGrade.id)
 		bottomSheetModalRef.current?.dismiss()
 	}
 

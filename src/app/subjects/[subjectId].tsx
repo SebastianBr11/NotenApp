@@ -33,7 +33,9 @@ function SubjectScreen() {
 
 	const handleAddGrade = (data: FormData) => {
 		const didSucceed = grades$.addGrade(subjectId + '', data.semester, {
-			grade: calculateGradeFromPoints(Number(data.points)),
+			grade: calculateGradeFromPoints(
+				Number(data.points) as SingleGradeType['points'],
+			),
 			type: data.type,
 			points: Number(data.points) as SingleGradeType['points'],
 		})

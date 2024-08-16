@@ -114,11 +114,25 @@ function updateGrade(
 ) {
 	// @ts-expect-error
 	return findGrade(subjectId, semesterNumber, gradeId)?.set(
-		(grade$: SingleGradeType) => ({
-			...grade$,
-			gradePartial,
-		}),
+		(grade: SingleGradeType) => {
+			console.log(grade, gradePartial)
+			console.log({ ...grade, ...gradePartial })
+			return {
+				...grade,
+				...gradePartial,
+			}
+		},
 	)
+}
+
+function updateSubject(
+	subjectId: string,
+	subjectPartial: Partial<SubjectType>,
+) {
+	return findSubject(subjectId)?.set((subject$: SubjectType) => ({
+		...subject$,
+		subjectPartial,
+	}))
 }
 
 function deleteGrade(
@@ -127,6 +141,10 @@ function deleteGrade(
 	gradeId: string,
 ) {
 	findGrade(subjectId, semesterNumber, gradeId)?.delete()
+}
+
+function deleteSubject(subjectId: string) {
+	findSubject(subjectId)?.delete()
 }
 
 const amountOfSubjects$ = observable(() =>
@@ -146,7 +164,9 @@ const grades$ = observable({
 	findGrade,
 	findSubject,
 	updateGrade,
+	updateSubject,
 	deleteGrade,
+	deleteSubject,
 })
 
 export default grades$

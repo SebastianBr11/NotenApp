@@ -114,14 +114,10 @@ function updateGrade(
 ) {
 	// @ts-expect-error
 	return findGrade(subjectId, semesterNumber, gradeId)?.set(
-		(grade: SingleGradeType) => {
-			console.log(grade, gradePartial)
-			console.log({ ...grade, ...gradePartial })
-			return {
-				...grade,
-				...gradePartial,
-			}
-		},
+		(grade: SingleGradeType) => ({
+			...grade,
+			...gradePartial,
+		}),
 	)
 }
 
@@ -129,9 +125,9 @@ function updateSubject(
 	subjectId: string,
 	subjectPartial: Partial<SubjectType>,
 ) {
-	return findSubject(subjectId)?.set((subject$: SubjectType) => ({
-		...subject$,
-		subjectPartial,
+	return findSubject(subjectId)?.set((subject: SubjectType) => ({
+		...subject,
+		...subjectPartial,
 	}))
 }
 

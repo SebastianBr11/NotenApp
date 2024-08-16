@@ -50,7 +50,9 @@ function SubjectScreen() {
 		}
 	}
 
-	const handleEditSubject = () => {}
+	const handleEditSubject = () => {
+		router.replace(`/subjects/${subjectId}/edit`)
+	}
 
 	const handleDeleteSubject = () => {
 		Alert.alert(
@@ -65,6 +67,7 @@ function SubjectScreen() {
 					text: t('screen-subject:delete-subject-confirm'),
 					style: 'destructive',
 					onPress: () => {
+						// TODO: change to using grades$.deleteSubject
 						const subject$ = grades$.findSubject(subjectId + '')
 						if (subject$) {
 							subject$.delete()

@@ -47,7 +47,10 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 
 function addSubject(classId: string, newSubject: Omit<SubjectType, 'id'>) {
 	const id = randomUUID()
-	lastUsedClass$.value.subjects.push({ ...newSubject, id })
+	lastUsedClass$.value.subjects.set(oldSubjects => [
+		...oldSubjects,
+		{ ...newSubject, id },
+	])
 
 	return id
 }

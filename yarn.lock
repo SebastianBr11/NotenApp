@@ -2143,12 +2143,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/state@npm:3.0.0-alpha.1":
-  version: 3.0.0-alpha.1
-  resolution: "@legendapp/state@npm:3.0.0-alpha.1"
+"@legendapp/state@npm:3.0.0-alpha.29":
+  version: 3.0.0-alpha.29
+  resolution: "@legendapp/state@npm:3.0.0-alpha.29"
   dependencies:
-    use-sync-external-store: "npm:^1.2.0"
-  checksum: 10c0/c3b7ac5359a6be6733455f11f309160e9f452a587aa3cdcb9f0399496c964f1bd5ec94555dec17a4d543e9e00e3ddc932ae1d0ebfb2570aff662db324c725229
+    use-sync-external-store: "npm:^1.2.2"
+  checksum: 10c0/c945ab4fcc80af19434f7337412aa7eea1536d0340c538f20467c4e71d3826f8f808b40b21ea43dfc64c8bed55cf3df0a826eb7feecfb7a11de2333ded6f4e22
   languageName: node
   linkType: hard
 
@@ -9380,7 +9380,7 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.0"
     "@gorhom/bottom-sheet": "npm:^4"
     "@hookform/resolvers": "npm:^3.3.4"
-    "@legendapp/state": "npm:3.0.0-alpha.1"
+    "@legendapp/state": "npm:3.0.0-alpha.29"
     "@react-navigation/native": "npm:^6.0.2"
     "@testing-library/react-native": "npm:^12.6.0"
     "@types/eslint": "npm:^8"
@@ -12383,12 +12383,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "use-sync-external-store@npm:1.2.0"
+"use-sync-external-store@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "use-sync-external-store@npm:1.2.2"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
+  checksum: 10c0/23b1597c10adf15b26ade9e8c318d8cc0abc9ec0ab5fc7ca7338da92e89c2536abd150a5891bf076836c352fdfa104fc7231fb48f806fd9960e0cbe03601abaf
   languageName: node
   linkType: hard
 

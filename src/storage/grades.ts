@@ -39,10 +39,12 @@ function addClass(newClass: Omit<ClassType, 'id'>) {
 	// Setting the classes observable directly even though it's recommended
 	// by Legend State authors to mutate the state directly, since that causes an error
 	// for some reason
-	classes$.set(oldClasses => [...oldClasses, { ...newClass, id: randomUUID() }])
+	const id = randomUUID()
+	classes$.set(oldClasses => [...oldClasses, { ...newClass, id }])
 
 	// This would be the recommended approach, but it doesn't work:
 	// classes.push({ ...newClass, id: randomUUID() })
+	return id
 }
 
 function addSubject(classId: string, newSubject: Omit<SubjectType, 'id'>) {

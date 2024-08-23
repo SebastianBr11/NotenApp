@@ -25,7 +25,7 @@ type ClassFormData = {
 }
 
 type AddClassFormProps = {
-	onAddClass: () => void
+	onAddClass: (classId: string) => void
 }
 
 export default function AddClassForm({ onAddClass }: AddClassFormProps) {
@@ -39,13 +39,13 @@ export default function AddClassForm({ onAddClass }: AddClassFormProps) {
 	})
 
 	const addClass = (data: ClassFormData) => {
-		grades$.addClass({
+		const classId = grades$.addClass({
 			year: data.year,
 			type: data.type,
 			subjects: [],
 		})
 
-		onAddClass()
+		onAddClass(classId)
 	}
 
 	return (

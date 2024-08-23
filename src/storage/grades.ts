@@ -95,6 +95,10 @@ function addGrade(
 	}
 }
 
+function findClass(classId: string) {
+	return classes$.find(c => c.id.get() === classId)
+}
+
 function findGrade(subjectId: string, semesterNumber: 1 | 2, gradeId: string) {
 	const subject$ = findSubject(subjectId)
 
@@ -136,6 +140,10 @@ function updateSubject(
 	}))
 }
 
+function deleteClass(classId: string) {
+	grades$.classes$.set(oldClasses => oldClasses.filter(c => c.id !== classId))
+}
+
 function deleteGrade(
 	subjectId: string,
 	semesterNumber: 1 | 2,
@@ -166,6 +174,7 @@ const grades$ = observable({
 	findSubject,
 	updateGrade,
 	updateSubject,
+	deleteClass,
 	deleteGrade,
 	deleteSubject,
 })

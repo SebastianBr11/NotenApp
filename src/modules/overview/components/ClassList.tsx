@@ -35,9 +35,7 @@ function ClassList() {
 					style: 'destructive',
 					onPress: () => {
 						grades$.lastUsedClass$.setFromIndex(0)
-						grades$.classes$.set(oldClasses =>
-							oldClasses.filter(c => c.id !== classId),
-						)
+						grades$.deleteClass(classId)
 					},
 				},
 			],

@@ -34,10 +34,10 @@ function ClassList() {
 					text: t('screen-grades:delete-class-confirm'),
 					style: 'destructive',
 					onPress: () => {
+						grades$.lastUsedClass$.setFromIndex(0)
 						grades$.classes$.set(oldClasses =>
 							oldClasses.filter(c => c.id !== classId),
 						)
-						grades$.lastUsedClass$.setFromIndex(0)
 					},
 				},
 			],

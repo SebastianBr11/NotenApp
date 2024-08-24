@@ -144,16 +144,16 @@ function deleteClass(classId: string) {
 	grades$.classes$.set(oldClasses => oldClasses.filter(c => c.id !== classId))
 }
 
+function deleteSubject(subjectId: string) {
+	findSubject(subjectId)?.delete()
+}
+
 function deleteGrade(
 	subjectId: string,
 	semesterNumber: 1 | 2,
 	gradeId: string,
 ) {
 	findGrade(subjectId, semesterNumber, gradeId)?.delete()
-}
-
-function deleteSubject(subjectId: string) {
-	findSubject(subjectId)?.delete()
 }
 
 const amountOfSubjects$ = observable(() =>

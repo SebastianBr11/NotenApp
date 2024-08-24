@@ -67,12 +67,12 @@ function SubjectScreen() {
 					text: t('screen-subject:delete-subject-confirm'),
 					style: 'destructive',
 					onPress: () => {
-						// TODO: change to using grades$.deleteSubject
-						const subject$ = grades$.findSubject(subjectId + '')
-						if (subject$) {
-							subject$.delete()
+						if (router.canGoBack()) {
+							router.back()
+						} else {
 							router.replace('/')
 						}
+						grades$.deleteSubject(subjectId + '')
 					},
 				},
 			],

@@ -1,8 +1,7 @@
 import ErrorText from '@/components/form/ErrorText'
-import FormScreen, {
-	FormScreenForm,
-	FormScreenHeader,
-} from '@/components/form/screen'
+import FormScreenContainer from '@/components/form/screen/FormScreenContainer'
+import FormScreenForm from '@/components/form/screen/FormScreenForm'
+import FormScreenHeader from '@/components/form/screen/FormScreenHeader'
 import SubmitButton from '@/components/form/SubmitButton'
 import TextInput from '@/components/form/TextInput'
 import TextInputLabel from '@/components/form/TextInputLabel'
@@ -44,7 +43,7 @@ export default function AddSubjectForm({
 	}
 
 	return (
-		<FormScreen>
+		<FormScreenContainer>
 			<FormScreenHeader>{t('screen-new-subject:new-subject')}</FormScreenHeader>
 
 			<FormScreenForm>
@@ -75,6 +74,6 @@ export default function AddSubjectForm({
 					{t('screen-new-subject:add-subject')}
 				</SubmitButton>
 			</FormScreenForm>
-		</FormScreen>
+		</FormScreenContainer>
 	)
 }

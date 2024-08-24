@@ -5,6 +5,11 @@ export type GymnasiumClassType = {
 	year: string
 	type: 'Gymnasium'
 	subjects: SubjectType[]
+	scientificPaper?: {
+		title: string
+		points: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+		grade: 1 | 2 | 3 | 4 | 5 | 6
+	}
 }
 
 type PrimaryGradeType = Grade & {
@@ -26,8 +31,4 @@ export type SubjectType = {
 	name: string
 	id: string
 	semesters: [SemesterType, SemesterType]
-	scientificPaper?: {
-		points: number
-		grade: 1 | 2 | 3 | 4 | 5 | 6
-	}
 }

@@ -10,6 +10,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import grades$ from '@/storage/grades'
 import AddSubjectPrompt from './AddSubjectPrompt'
+import ScientificPaperCard from './ScientificPaperCard'
 import SubjectCard from './SubjectCard'
 
 export default observer(SubjectCardView)
@@ -17,7 +18,7 @@ export default observer(SubjectCardView)
 function SubjectCardView() {
 	const { styles } = useStyles(stylesheet)
 
-	const { subjects } = grades$.lastUsedClass$.value.get()
+	const { subjects, scientificPaper } = grades$.lastUsedClass$.value.get()
 
 	if (subjects.length === 0) {
 		return (
@@ -27,11 +28,21 @@ function SubjectCardView() {
 		)
 	}
 
+	const redirectToScientificPaper = () => {}
+
 	return (
 		<Animated.FlatList
 			layout={FadingTransition}
 			contentContainerStyle={styles.list}
 			data={subjects}
+			ListHeaderComponent={
+				scientificPaper ? (
+					<ScientificPaperCard
+						scientificPaper={scientificPaper}
+						onPress={redirectToScientificPaper}
+					/>
+				) : null
+			}
 			keyExtractor={item => String(item.id)}
 			renderItem={({ item, index }) => (
 				<Animated.View

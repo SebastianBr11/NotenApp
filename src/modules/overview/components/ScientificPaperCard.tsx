@@ -1,9 +1,9 @@
 import CardContainer from '@/components/card/CardContainer'
 import CardText from '@/components/card/CardText'
-import { ClassType } from '@/storage/grades'
+import { ScientificPaperType } from '@/storage/grades'
 
 type ScientificPaperCardProps = {
-	scientificPaper: Required<ClassType>['scientificPaper']
+	scientificPaper: ScientificPaperType
 	onPress: () => void
 }
 

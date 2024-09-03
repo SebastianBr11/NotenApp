@@ -4,14 +4,18 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 type FormScreenHeaderProps = {
 	children: React.ReactNode
+	size?: 'sm' | 'lg'
 }
 
-export default function FormScreenHeader({ children }: FormScreenHeaderProps) {
+export default function FormScreenHeader({
+	children,
+	size,
+}: FormScreenHeaderProps) {
 	const { styles } = useStyles(stylesheet)
 
 	return (
 		<View style={styles.headerContainer}>
-			<Text style={styles.headerText}>{children}</Text>
+			<Text style={styles.headerText(size ?? 'lg')}>{children}</Text>
 		</View>
 	)
 }
@@ -23,12 +27,12 @@ const stylesheet = createStyleSheet(theme => ({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	headerText: {
-		fontSize: theme.fontSizes['5xl'],
-		lineHeight: theme.fontSizes['5xl'],
+	headerText: (size: 'sm' | 'lg') => ({
+		fontSize: size === 'sm' ? theme.fontSizes['3xl'] : theme.fontSizes['5xl'],
+		lineHeight: size === 'sm' ? theme.fontSizes['3xl'] : theme.fontSizes['5xl'],
 		fontWeight: theme.fontWeights.black,
 		letterSpacing: -1,
 		color: theme.colors.text4,
 		textAlign: 'center',
-	},
+	}),
 }))

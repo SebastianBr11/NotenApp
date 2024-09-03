@@ -48,6 +48,15 @@ const translations = {
 	'screen-grades:delete-class-cancel': 'Cancel',
 	'screen-grades:delete-class-confirm': 'Delete',
 	'screen-grades:no-subject-added': "You haven't added any Subjects yet",
+	'screen-scientific-paper': 'Scientific Paper',
+	'screen-scientific-paper:title': 'Title',
+	'screen-scientific-paper:form-title-placeholder': 'e.g. My paper',
+	'screen-scientific-paper:form-title-error-message': 'Title is required.',
+	'screen-scientific-paper:points': 'Points',
+	'screen-scientific-paper:form-points-placeholder': 'e.g. 10',
+	'screen-scientific-paper:form-points-error-message':
+		'Points are required and must be a number between 0 and 15.',
+	'scientific-paper:default-title': 'Default title',
 }
 
 export default translations

@@ -9,6 +9,8 @@ import Animated, {
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
 import grades$ from '@/storage/grades'
+import { router } from 'expo-router'
+import AddScientificPaperCard from './AddScientificPaperCard'
 import AddSubjectPrompt from './AddSubjectPrompt'
 import ScientificPaperCard from './ScientificPaperCard'
 import SubjectCard from './SubjectCard'
@@ -28,7 +30,9 @@ function SubjectCardView() {
 		)
 	}
 
-	const redirectToScientificPaper = () => {}
+	const redirectToScientificPaper = () => {
+		router.push('/scientific-paper')
+	}
 
 	return (
 		<Animated.FlatList
@@ -41,8 +45,11 @@ function SubjectCardView() {
 						scientificPaper={scientificPaper}
 						onPress={redirectToScientificPaper}
 					/>
-				) : null
+				) : (
+					<AddScientificPaperCard />
+				)
 			}
+			ListHeaderComponentStyle={styles.headerComponent}
 			keyExtractor={item => String(item.id)}
 			renderItem={({ item, index }) => (
 				<Animated.View
@@ -67,5 +74,10 @@ const stylesheet = createStyleSheet(theme => ({
 	list: {
 		gap: theme.spacing['3xl'],
 		flexGrow: 1,
+	},
+	headerComponent: {
+		paddingBottom: theme.spacing['3xl'],
+		borderBottomColor: theme.colors.bg2,
+		borderBottomWidth: 2,
 	},
 }))

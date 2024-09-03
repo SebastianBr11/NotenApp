@@ -52,6 +52,17 @@ const translations: TranslationsType = {
 	'screen-grades:delete-class-cancel': 'Abbrechen',
 	'screen-grades:delete-class-confirm': 'Löschen',
 	'screen-grades:no-subject-added': 'Du hast noch kein Fach hinzugefügt',
+	'screen-scientific-paper': 'Wissenschaftliche Arbeit',
+	'screen-scientific-paper:title': 'Titel',
+	'screen-scientific-paper:form-title-placeholder':
+		'z. B. Meine wissenschaftliche Arbeit',
+	'screen-scientific-paper:form-title-error-message':
+		'Der Titel wird benötigt.',
+	'screen-scientific-paper:points': 'Punkte',
+	'screen-scientific-paper:form-points-placeholder': 'z. B. 10',
+	'screen-scientific-paper:form-points-error-message':
+		'Punkte sind erforderlich und müssen eine Zahl zwischen 0 und 15 sein.',
+	'scientific-paper:default-title': 'Standardtitel',
 }
 
 export default translations

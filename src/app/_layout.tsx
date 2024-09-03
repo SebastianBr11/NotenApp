@@ -122,6 +122,12 @@ function RootLayoutNav({ onLayout }: { onLayout: () => void }) {
 							headerTitle: t('screen-new-class'),
 						}}
 					/>
+					<Stack.Screen
+						name='scientific-paper'
+						options={{
+							headerTitle: t('screen-scientific-paper'),
+						}}
+					/>
 				</Stack>
 			</BottomSheetModalProvider>
 		</GestureHandlerRootView>

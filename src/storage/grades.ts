@@ -19,6 +19,7 @@ export type ClassType = FosClassType | GymnasiumClassType
 export type SubjectType = FosSubjectType | GymnasiumSubjectType
 export type SemesterType = ClassType['subjects'][0]['semesters'][0]
 export type SingleGradeType = FosSingleGradeType | GymnasiumSingleGradeType
+export type ScientificPaperType = Required<ClassType>['scientificPaper']
 
 const classes$ = observable<ClassType[]>(IS_DEV ? EXAMPLE_CLASSES : [])
 

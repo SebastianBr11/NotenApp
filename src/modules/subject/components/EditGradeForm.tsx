@@ -60,7 +60,13 @@ function EditGradeForm({
 					control={control}
 					rules={{
 						required: true,
-						onChange: (event: any) => handleChange(event.target.value),
+						onChange: (event: any) => {
+							const { success } = formSchema.safeParse({
+								points: event.target.value,
+							})
+							if (!success) return
+							handleChange(event.target.value)
+						},
 					}}
 					name='points'
 					render={({ field: { onChange, value } }) => (
@@ -77,7 +83,6 @@ function EditGradeForm({
 					<ErrorText>{t('screen-subject:form-points-error-message')}</ErrorText>
 				)}
 			</View>
-
 			<DeleteButton onPress={handleDelete}>Delete Grade</DeleteButton>
 		</View>
 	)

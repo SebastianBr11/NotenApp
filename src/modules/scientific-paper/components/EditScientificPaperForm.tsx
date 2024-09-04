@@ -53,7 +53,6 @@ export default function EditScientificPaperForm({
 	return (
 		<FormScreenContainer>
 			<FormScreenHeader size='sm'>{scientificPaper.title}</FormScreenHeader>
-
 			<FormScreenForm>
 				<View>
 					<TextInputLabel>{t('screen-scientific-paper:title')}</TextInputLabel>
@@ -61,9 +60,13 @@ export default function EditScientificPaperForm({
 						control={control}
 						rules={{
 							required: true,
-							onChange: (event: any) =>
-								event.target.value !== '' &&
-								handleChangeTitle(event.target.value),
+							onChange: (event: any) => {
+								const { success } = formSchema
+									.pick({ title: true })
+									.safeParse({ title: event.target.value })
+								if (!success) return
+								handleChangeTitle(event.target.value)
+							},
 						}}
 						name='title'
 						render={({ field: { onChange, value } }) => (
@@ -91,9 +94,13 @@ export default function EditScientificPaperForm({
 						control={control}
 						rules={{
 							required: true,
-							onChange: (event: any) =>
-								event.target.value !== '' &&
-								handleChangePoints(event.target.value),
+							onChange: (event: any) => {
+								const { success } = formSchema
+									.pick({ points: true })
+									.safeParse({ points: event.target.value })
+								if (!success) return
+								handleChangePoints(event.target.value)
+							},
 						}}
 						name='points'
 						render={({ field: { onChange, value } }) => (

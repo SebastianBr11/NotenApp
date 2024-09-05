@@ -1,5 +1,6 @@
 import BottomSheetModal from '@/components/BottomSheetModal'
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
+import { t } from '@/i18n/util'
 import grades$, { SingleGradeType, SubjectType } from '@/storage/grades'
 import {
 	calculateAverageOfSemester,
@@ -10,10 +11,10 @@ import { BottomSheetView } from '@gorhom/bottom-sheet'
 import React, { useState } from 'react'
 import { SectionList, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
+import Average from './Average'
 import EditGradeForm from './EditGradeForm'
 import GradeView from './GradeView'
 import SemesterSectionHeader from './SemesterSectionHeader'
-import SubjectAverage from './SubjectAverage'
 
 type SelectedGrade = SingleGradeType & {
 	semester: 1 | 2
@@ -74,8 +75,9 @@ export default function SubjectGrades({ subject }: SubjectGradesProps) {
 				keyExtractor={item => String(item.id)}
 				contentContainerStyle={styles.gradesList}
 				ListHeaderComponent={
-					<SubjectAverage
+					<Average
 						average={calculateAverageOfSemesters(subject.semesters)}
+						unit={t('screen-subject:points')}
 					/>
 				}
 				ListHeaderComponentStyle={styles.listHeader}

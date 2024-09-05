@@ -1,4 +1,5 @@
 const translations = {
+	'average-component:average': 'Average',
 	'screen-grades': 'Grades',
 	'screen-calendar': 'Calendar',
 	'screen-settings': 'Settings',
@@ -9,7 +10,6 @@ const translations = {
 	'screen-new-subject:subject-name-placeholder': 'e.g. German',
 	'screen-new-subject:subject-name-error': 'The subject name is required.',
 	'screen-new-subject:add-subject': 'Add subject',
-	'screen-subject:average': 'Average',
 	'screen-subject:points': 'points',
 	'screen-subject:semester': 'Semester',
 	'screen-subject:add-grade': 'Add Grade',

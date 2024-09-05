@@ -9,7 +9,9 @@ import SchoolClassSelector from './SchoolClassSelector'
 import SubjectCardView from './SubjectCardView'
 
 import { useSetupBottomSheetModal } from '@/hooks/useSetupBottomSheetModal'
+import Average from '@/modules/subject/components/Average'
 import grades$ from '@/storage/grades'
+import { calculateClassAverage } from '@/util/gradeCalcFos'
 import ClassesModal from './ClassesModal'
 
 export default observer(GradesOverview)
@@ -28,6 +30,10 @@ function GradesOverview() {
 
 	return (
 		<View style={styles.mainView}>
+			<Average
+				average={calculateClassAverage(grades$.lastUsedClass$.value.get())}
+				unit=''
+			/>
 			{grades$.amountOfClasses$.get() > 0 ? (
 				<>
 					<View style={styles.listWrapper}>

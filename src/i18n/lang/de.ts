@@ -1,6 +1,7 @@
 import { TranslationsType } from './en'
 
 const translations: TranslationsType = {
+	'average-component:average': 'Durchschnitt',
 	'screen-grades': 'Noten',
 	'screen-calendar': 'Kalender',
 	'screen-settings': 'Einstellungen',
@@ -11,7 +12,6 @@ const translations: TranslationsType = {
 	'screen-new-subject:subject-name-placeholder': 'z. B. Deutsch',
 	'screen-new-subject:subject-name-error': 'Der Fachname wird benötigt.',
 	'screen-new-subject:add-subject': 'Fach hinzufügen',
-	'screen-subject:average': 'Durchschnitt',
 	'screen-subject:points': 'Punkte',
 	'screen-subject:semester': 'Halbjahr',
 	'screen-subject:add-grade': 'Note hinzufügen',

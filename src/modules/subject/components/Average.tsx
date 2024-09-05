@@ -3,21 +3,20 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 
-type SubjectAverageProps = {
+type AverageProps = {
 	average: number
+	unit: string
 }
 
-export default function SubjectAverage({ average }: SubjectAverageProps) {
+export default function Average({ average, unit }: AverageProps) {
 	const { styles } = useStyles(stylesheet)
 
 	return (
 		<View style={styles.averageContainer}>
-			<Text style={styles.averageText}>{t('screen-subject:average')}</Text>
+			<Text style={styles.averageText}>{t('average-component:average')}</Text>
 			<Text style={styles.average}>
 				{formatNumber(average)}{' '}
-				<Text style={styles.averagePointsText}>
-					{t('screen-subject:points')}
-				</Text>{' '}
+				<Text style={styles.averagePointsText}>{unit}</Text>{' '}
 			</Text>
 		</View>
 	)

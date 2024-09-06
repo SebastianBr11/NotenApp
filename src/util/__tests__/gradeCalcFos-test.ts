@@ -1,6 +1,8 @@
+import { OralExamType, WrittenExamType } from '@/storage/types/fos'
 import {
 	calculateAverage,
 	calculateAverageOfSemester,
+	calculateExamAverage,
 	calculateWeightedAmountOfSecondaryGrades,
 } from '../gradeCalcFos'
 
@@ -12,6 +14,49 @@ const getId = () => `${id++}`
 
 beforeEach(() => {
 	id = 0
+})
+
+describe('calculateExamAverage()', () => {
+	it('calculates the correct average points of both a written exam and an oral exam', () => {
+		const writtenExam: WrittenExamType = {
+			points: 15,
+			id: getId(),
+			grade: 1,
+			type: 'Schriftliche Prüfung',
+		}
+		const oralExam: OralExamType = {
+			points: 10,
+			id: getId(),
+			grade: 2,
+			type: 'Mündliche Prüfung',
+		}
+
+		expect(calculateExamAverage({ writtenExam, oralExam })).toBe(
+			(15 * 2 + 10) / 3,
+		)
+	})
+
+	it('calculates the correct average points of only a written exam ', () => {
+		const writtenExam: WrittenExamType = {
+			points: 15,
+			id: getId(),
+			grade: 1,
+			type: 'Schriftliche Prüfung',
+		}
+
+		expect(calculateExamAverage({ writtenExam })).toBe(15)
+	})
+
+	it('calculates the correct average points of only an oral exam ', () => {
+		const oralExam: OralExamType = {
+			points: 13,
+			id: getId(),
+			grade: 1,
+			type: 'Mündliche Prüfung',
+		}
+
+		expect(calculateExamAverage({ oralExam })).toBe(13)
+	})
 })
 
 describe('calculateWeightedAmountOfSecondaryGrades()', () => {

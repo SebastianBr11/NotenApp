@@ -68,12 +68,11 @@ export const calculateExamAverage = ({
 	const onlyWrittenExam = writtenExam && !oralExam
 	const onlyOralExam = oralExam && !writtenExam
 
-	return toTwoSignificantFigures(
-		calculateAverage({
-			points: 2 * writtenExamPoints + oralExamPoints,
-			amount: onlyWrittenExam ? 2 : onlyOralExam ? 1 : 3,
-		}),
-	)
+	return calculateAverage({
+		points: 2 * writtenExamPoints + oralExamPoints,
+		amount: onlyWrittenExam ? 2 : onlyOralExam ? 1 : 3,
+	})
+
 }
 
 type CalculateAverageProps = SemesterType[]

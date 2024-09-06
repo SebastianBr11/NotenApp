@@ -5,13 +5,22 @@ import {
 } from '../gradeCalcFos'
 
 import { SemesterType } from '@/storage/grades'
+
+let id = 0
+
+const getId = () => `${id++}`
+
+beforeEach(() => {
+	id = 0
+})
+
 describe('calculateWeightedAmountOfSecondaryGrades()', () => {
 	it('calculates the correct weighted amount of grades for a mix of grade types', () => {
 		const semester: SemesterType = {
-			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe', id: getId() },
 			secondaryGrades: [
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 3, points: 9, type: 'Mündlich' },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
 			],
 		}
 
@@ -19,10 +28,10 @@ describe('calculateWeightedAmountOfSecondaryGrades()', () => {
 
 		const semester2: SemesterType = {
 			secondaryGrades: [
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
 			],
 		}
 
@@ -65,10 +74,10 @@ describe('calculateAverage()', () => {
 describe('calculateAverageOfSemester()', () => {
 	it('calculates the correct average points of a semester', () => {
 		const semester: SemesterType = {
-			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe', id: getId() },
 			secondaryGrades: [
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 3, points: 9, type: 'Mündlich' },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
 			],
 		}
 
@@ -77,12 +86,12 @@ describe('calculateAverageOfSemester()', () => {
 		)
 
 		const semester2: SemesterType = {
-			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe' },
+			primaryGrade: { grade: 1, points: 15, type: 'Schulaufgabe', id: getId() },
 			secondaryGrades: [
-				{ grade: 2, points: 10, type: 'Kurzarbeit' },
-				{ grade: 2, points: 12, type: 'Kurzarbeit' },
-				{ grade: 3, points: 9, type: 'Mündlich' },
-				{ grade: 4, points: 5, type: 'Mündlich' },
+				{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+				{ grade: 2, points: 12, type: 'Kurzarbeit', id: getId() },
+				{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+				{ grade: 4, points: 5, type: 'Mündlich', id: getId() },
 			],
 		}
 

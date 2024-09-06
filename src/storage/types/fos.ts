@@ -20,6 +20,14 @@ type SecondaryGradeType = Grade & {
 	type: 'Kurzarbeit' | 'Mündlich'
 }
 
+export type WrittenExamType = Grade & {
+	type: 'Schriftliche Prüfung'
+}
+
+export type OralExamType = Grade & {
+	type: 'Mündliche Prüfung'
+}
+
 export type SingleGradeType = PrimaryGradeType | SecondaryGradeType
 
 type SemesterType = {
@@ -31,4 +39,6 @@ export type SubjectType = {
 	name: string
 	id: string
 	semesters: [SemesterType, SemesterType]
+	writtenExam?: WrittenExamType
+	oralExam?: OralExamType
 }

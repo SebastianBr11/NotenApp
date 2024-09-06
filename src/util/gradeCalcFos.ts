@@ -1,3 +1,4 @@
+import { OralExamType, WrittenExamType } from '@/storage/types/fos'
 import { toTwoSignificantFigures } from './number'
 
 import { ClassType, SemesterType, SingleGradeType } from '@/storage/grades'
@@ -11,21 +12,34 @@ import { ClassType, SemesterType, SingleGradeType } from '@/storage/grades'
 
 // TODO: Factor in exam grades
 export const calculateClassAverage = (classToUse: ClassType) => {
+	let amountOfExams = 0
+
 	let sumOfPoints = classToUse.subjects.reduce((sum, subject) => {
+		if (subject.writtenExam || subject.oralExam) {
+			amountOfExams++
+		}
+
 		return (
 			sum +
 			calculateAverageOfSemester(subject.semesters[0]) +
-			calculateAverageOfSemester(subject.semesters[1])
+			calculateAverageOfSemester(subject.semesters[1]) +
+			calculateExamAverage({
+				writtenExam: subject.writtenExam,
+				oralExam: subject.oralExam,
+			})
 		)
 	}, 0)
 
 	const shouldFactorInScientificPaper = !!classToUse.scientificPaper
 
-	// Amount of subjects * 2 for each semester
-	// +2 for the scientific paper
+	const amountOfSemesters = classToUse.subjects.length * 2
+
+	// amountOfExams * 2 because one exam counts as much as 2 semesters
 	// *15 for max points possible being 15
 	const maxPossiblePoints =
-		(classToUse.subjects.length * 2 + (shouldFactorInScientificPaper ? 2 : 0)) *
+		(amountOfSemesters +
+			(shouldFactorInScientificPaper ? 2 : 0) +
+			amountOfExams * 2) *
 		15
 
 	if (shouldFactorInScientificPaper) {
@@ -33,6 +47,33 @@ export const calculateClassAverage = (classToUse: ClassType) => {
 	}
 
 	return toTwoSignificantFigures(17 / 3 - 5 * (sumOfPoints / maxPossiblePoints))
+}
+
+type CalculateExamAverageType = {
+	writtenExam?: WrittenExamType
+	oralExam?: OralExamType
+}
+
+export const calculateExamAverage = ({
+	writtenExam,
+	oralExam,
+}: CalculateExamAverageType) => {
+	const writtenExamPoints = writtenExam?.points ?? 0
+	const oralExamPoints = oralExam?.points ?? 0
+
+	if (!writtenExam && !oralExam) {
+		return 0
+	}
+
+	const onlyWrittenExam = writtenExam && !oralExam
+	const onlyOralExam = oralExam && !writtenExam
+
+	return toTwoSignificantFigures(
+		calculateAverage({
+			points: 2 * writtenExamPoints + oralExamPoints,
+			amount: onlyWrittenExam ? 2 : onlyOralExam ? 1 : 3,
+		}),
+	)
 }
 
 type CalculateAverageProps = SemesterType[]

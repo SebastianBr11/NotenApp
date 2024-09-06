@@ -52,6 +52,8 @@ const translations: TranslationsType = {
 	'screen-grades:delete-class-cancel': 'Abbrechen',
 	'screen-grades:delete-class-confirm': 'Löschen',
 	'screen-grades:no-subject-added': 'Du hast noch kein Fach hinzugefügt',
+	'screen-grades:add-scientific-paper-details':
+		'Details deiner wissenschaftliche Arbeit hinzufügen',
 	'screen-scientific-paper': 'Wissenschaftliche Arbeit',
 	'screen-scientific-paper:title': 'Titel',
 	'screen-scientific-paper:form-title-placeholder':

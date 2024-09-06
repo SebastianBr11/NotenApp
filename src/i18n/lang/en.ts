@@ -48,6 +48,8 @@ const translations = {
 	'screen-grades:delete-class-cancel': 'Cancel',
 	'screen-grades:delete-class-confirm': 'Delete',
 	'screen-grades:no-subject-added': "You haven't added any Subjects yet",
+	'screen-grades:add-scientific-paper-details':
+		'Add details about your scientific paper',
 	'screen-scientific-paper': 'Scientific Paper',
 	'screen-scientific-paper:title': 'Title',
 	'screen-scientific-paper:form-title-placeholder': 'e.g. My paper',

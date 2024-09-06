@@ -1,5 +1,6 @@
 import CardContainer from '@/components/card/CardContainer'
 import CardText from '@/components/card/CardText'
+import { t } from '@/i18n/util'
 import { router } from 'expo-router'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 export default function AddScientificPaperCard() {
@@ -12,7 +13,7 @@ export default function AddScientificPaperCard() {
 	return (
 		<CardContainer onPress={navigateToScientificPaperScreen}>
 			<CardText style={styles.text}>
-				Add details about your scientific paper
+				{t('screen-grades:add-scientific-paper-details')}
 			</CardText>
 		</CardContainer>
 	)

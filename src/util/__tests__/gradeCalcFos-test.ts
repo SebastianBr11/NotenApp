@@ -2,11 +2,13 @@ import { OralExamType, WrittenExamType } from '@/storage/types/fos'
 import {
 	calculateAverage,
 	calculateAverageOfSemester,
+	calculateClassAverage,
 	calculateExamAverage,
 	calculateWeightedAmountOfSecondaryGrades,
 } from '../gradeCalcFos'
 
-import { SemesterType } from '@/storage/grades'
+import { ClassType, SemesterType } from '@/storage/grades'
+import { toTwoSignificantFigures } from '../number'
 
 let id = 0
 
@@ -14,6 +16,158 @@ const getId = () => `${id++}`
 
 beforeEach(() => {
 	id = 0
+})
+
+describe('calculateClassAverage()', () => {
+	it('calculates the correct average of a class with no exams', () => {
+		const classToUse: ClassType = {
+			id: getId(),
+			type: 'FOS',
+			year: '12',
+			subjects: [
+				{
+					name: 'Test',
+					id: getId(),
+					semesters: [
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 15,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 14,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 11, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+					],
+				},
+			],
+		}
+
+		const semesterOneAverage = Math.round(((10 + 9) / 2 + 15) / 2)
+		const semesterTwoAverage = Math.round(((11 + 9) / 2 + 14) / 2)
+
+		expect(calculateClassAverage(classToUse)).toBe(
+			toTwoSignificantFigures(
+				17 / 3 - (5 * (semesterOneAverage + semesterTwoAverage)) / 30,
+			),
+		)
+	})
+
+	it('calculates the correct average of a class with a written exam', () => {
+		const classToUse: ClassType = {
+			id: getId(),
+			type: 'FOS',
+			year: '12',
+			subjects: [
+				{
+					name: 'Test',
+					id: getId(),
+					writtenExam: {
+						grade: 1,
+						points: 12,
+						type: 'Schriftliche Prüfung',
+						id: getId(),
+					},
+					semesters: [
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 15,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 14,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 11, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+					],
+				},
+				{
+					name: 'Test2',
+					id: getId(),
+					semesters: [
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 15,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 10, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+						{
+							primaryGrade: {
+								grade: 1,
+								points: 14,
+								type: 'Schulaufgabe',
+								id: getId(),
+							},
+							secondaryGrades: [
+								{ grade: 2, points: 11, type: 'Kurzarbeit', id: getId() },
+								{ grade: 3, points: 9, type: 'Mündlich', id: getId() },
+							],
+						},
+					],
+				},
+			],
+		}
+
+		const subject1SemesterOneAverage = Math.round(((10 + 9) / 2 + 15) / 2)
+		const subject1SemesterTwoAverage = Math.round(((11 + 9) / 2 + 14) / 2)
+
+		const subject2SemesterOneAverage = Math.round(((10 + 9) / 2 + 15) / 2)
+		const subject2SemesterTwoAverage = Math.round(((11 + 9) / 2 + 14) / 2)
+
+		const examAverage = 12
+
+		const achievedPoints =
+			subject1SemesterOneAverage +
+			subject1SemesterTwoAverage +
+			subject2SemesterOneAverage +
+			subject2SemesterTwoAverage +
+			examAverage
+
+		// 4 Semesters and one exam which is worth as much as 2 semesters
+		// 15 points max per semester
+		const maxPossiblePoints = 15 * (4 + 2 * 1)
+
+		expect(calculateClassAverage(classToUse)).toBe(
+			toTwoSignificantFigures(
+				17 / 3 - (5 * achievedPoints) / maxPossiblePoints,
+			),
+		)
+	})
 })
 
 describe('calculateExamAverage()', () => {

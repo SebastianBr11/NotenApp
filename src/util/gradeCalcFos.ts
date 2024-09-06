@@ -21,12 +21,14 @@ export const calculateClassAverage = (classToUse: ClassType) => {
 
 		return (
 			sum +
-			calculateAverageOfSemester(subject.semesters[0]) +
-			calculateAverageOfSemester(subject.semesters[1]) +
-			calculateExamAverage({
-				writtenExam: subject.writtenExam,
-				oralExam: subject.oralExam,
-			})
+			Math.round(calculateAverageOfSemester(subject.semesters[0])) +
+			Math.round(calculateAverageOfSemester(subject.semesters[1])) +
+			Math.round(
+				calculateExamAverage({
+					writtenExam: subject.writtenExam,
+					oralExam: subject.oralExam,
+				}),
+			)
 		)
 	}, 0)
 
